@@ -3,7 +3,7 @@
 
         Diego Luna
         Daniel Romero
-        Juan C. Suárez
+        Juan C. Suï¿½rez
 
 */
 
@@ -63,7 +63,7 @@ int main(void)
                 Ticks obteniendose una base de tiempos). */
         tickConfig(50);
         /*      Se agrega ademas un "tick hook" nombrado myTickHook. El tick hook es
-                simplemente una funcion que se ejecutara peri­odicamente con cada
+                simplemente una funcion que se ejecutara periï¿½odicamente con cada
                 interrupcion de Tick, este nombre se refiere a una funcion "enganchada"
                 a una interrupcion.
                 El segundo parametro es el parametro que recibe la funcion myTickHook
