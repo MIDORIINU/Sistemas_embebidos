@@ -1,11 +1,11 @@
-# Sistemas_embebidos
+# Sistemas Embebidos
 Repositorio para el seminario de sistemas embebidos 66.48
 
 - Diego Luna
 - Daniel Romero
 - Juan C. Suárez
 
-# TP1
+# Documentación del TP1
 **Objetivo**
 - **Uso del IDE** edición, compilación y depuración de programas.
 - **Uso de GPIO** manejo de Salidas y Entradas Digitales.
