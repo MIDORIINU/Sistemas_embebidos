@@ -51,3 +51,136 @@ El archivo project.mk se configuró de la siguiente forma:
 - BOARD = edu_ciaa_nxp
 
 ![](Imagenes/02_firmware_v2.png)
+
+
+
+## 1.2 Debug
+Antes del debug, se debe realizar la operación **Build**. Se hizo click derecho sobre la carpeta *firmware_v2* y en el menú se seleccionó la opción **Build**.
+Para realizar el **Debug** se hizo click derecho sobre la carpeta *firmware_v2* y en el menú se seleccionó *Debug As--Debug Configurrations...*.
+![](Imagenes/03_debug_config_1.png)
+![](Imagenes/04_debug_config_2.png)
+
+Para realizar acciones en el modo debug se utilizaron los botones de la barra de tareas, o con los atajos:
+ > F5 Step Into
+ > F6 Step Over
+ > 
+ 
+![](Imagenes/05_debug_acciones.png)
+
+Para modificar el código se cambia a la vista de modo debug a modo developer.
+
+![](Imagenes/06_debug_vistas.png)
+
+## 1.3 Migrar blinky a TP1
+Se copiaron los archivos del ejemplo blinky a la carpeta *projects/TP1* y se le cambió el nombre de los archivos .c y .h a *TP1*. 
+
+![](Imagenes/07_blinky_TP1.png)
+
+Previamente a la compilación del proyecto se cambió la ruta dentros del   *project.mk*  por: *PROJECT = projects/TP1*. También se recomienda hacer un *clean* antes de compilar. 
+
+Para hacer un debug primero se cambió, en la ventana de *debug configurations*, la opción *C/C++ Application*
+
+![](Imagenes/08_TP1_debug.png)
+
+Haciendo *Step Into* en la función *boardConfig()* se abre el archivo *sapi_board.c*.
+
+Función *gpioWrite(gpioMap_t,bool_t)*
+```C
+bool_t gpioWrite(gpioMap_t pin, bool_t value){ // La función recibe el pin y el estado
+    
+    bool_t ret_val     = 1;   // Valor de retorno
+
+   int8_t pinNamePort = 0;    // Inicializa todas las variables en cero
+   int8_t pinNamePin  = 0;
+
+   int8_t func        = 0;
+
+   int8_t gpioPort    = 0;
+   int8_t gpioPin     = 0;
+
+   gpioObtainPinConfig( pin, &pinNamePort, &pinNamePin, &func, &gpioPort, &gpioPin );
+
+   Chip_GPIO_SetPinState( LPC_GPIO_PORT, gpioPort, gpioPin, value);
+
+   return ret_val;
+}
+```
+
+## 1.4 Repositorio
+Se creó un repositorio en GitHub, y se sincronizó la carpeta *TP1* del proyecto *firmware_v2*. 
+
+# 2 Switches leds
+
+## 2.1 compilacion condicional
+
+Para realizar la compilacion condicional de los codigos fuentes de TP_1, TP_2 y TP_3 se declarararon previamente las etiquetas TEST(asignando la etiqueta correspondinte al codigo a compilar) TP_1, TP_2 y TP_3.Luego se utilizaron las directivas del preprocesador #if(TEST == TP1_1) #endif para el codigo de blinky y #if(TEST == TP1_2) #endif para el codigo de blinkyswitches_leds.
+En la figura se puede ver como se sombrea la estructura que no va a ser compilada(TP_1 y TP_2).
+
+![](Imagenes/compilacion_condicional.png)
+
+2.2.a Funciones
+
+Para identificar las funciones de librería sAPI útiles para el sensado de un pulsador, se plasmó en esta tabla sus características:
+
+| Nombre | Descripción |
+| ------ | ----------- |
+| boardConfig(); | configura los pines de entrada y salida de placa |
+| gpioConfig( GPIO0, GPIO_INPUT ); | configura el pin del primer parametro(GPIO0) en el modo ingresado como segundo parametro(GPIO_INPUT entrada) |
+| valor = !gpioRead( TEC1 ); | lee el valor actual del pin introducido como parametro(TEC1) y retorna FALSE el estado es 1. |
+| gpioWrite( LEDB, valor ); | asigna el estado valor al pin introducido en el primer parametro(LEDB) |
+
+## 2.2.b Constantes y variables
+
+Tmabién dentro de TP1_2 se encuentran las siguientes constantes y variables:
+
+| Nombre | Descripción |
+| ------ | ----------- |
+| GPIO0 | pin correspondiente a GPIO0 |
+| GPIO_INPUT | estado de entrada de un pin GPIO |
+| GPIO1 | pin correspondiente a GPIO0 |
+| GPIO_OUTPUT | estado de salida de un pin GPIO |
+| TEC1 | primer pulsador |
+| LEDB | pin correspondiente a LED azul |
+| valor | variable booleana que se utiliza para el valor de estado de cada pulsador |
+| TEC2 | segundo pulsador |
+| LED1 | pin correspondiente a LED amarillo|
+| TEC3 | tercer pulsador |
+| LED2 | pin correspondiente a LED rojo |
+| TEC4 | cuarto pulsador |
+| LED3 | pin correspondiente a LED verde |
+
+# 3 tickHook
+
+## 3.1 compilacion condicional
+Para realizar la compilacion condicional de los codigos fuentes de TP_1,TP_2 y TP_3 se declarararon previamente las etiquetas TEST(asignando la etiqueta correspondinte al codigo a compilar) TP_1,TP_2 y TP_3.Luego se utilizaron las directivas del preprocesador #if(TEST == TP1_1) #endif para el codigo de blinky , #if(TEST == TP1_2) #endif para el codigo de blinkyswitches_leds y #if(TEST == TP1_3) #endif para el codigo de tickHook.
+
+En la figura se puede ver las etiquetas declaradas para compilar el codigo de tickHook.
+
+![](Imagenes/tickHooks_3_a_1.png)
+
+## 3.2.a funciones
+
+Se pueden visualizar en la siguiente figura las funciones:
+
+| Nombre | Descripción |
+| ------ | ----------- |
+| void myTickHook( void *ptr ) | funcion ejecutada con cada tick |
+| gpioWrite( LEDB, valor ); | asigna el estado valor al pin introducido en el primer parametro(LEDB) |
+|tickConfig( 50 ); | Inicializar el conteo de Ticks con resolucion de 50ms (se ejecuta periodicamente una interrupcion cada 50ms que incrementa un contador de Ticks obteniendose una base de tiempos). |
+| tickCallbackSet( myTickHook, (void*)LEDR );|ejecuta la funcion myTickHook con el parametro (void*)LEDR con una freceuncia determinada en tickConfig( 50 )|
+
+![](Imagenes/tickHooks_3_b_1_1.png)![](Imagenes/tickHooks_3_b_1_2.png)![](Imagenes/tickHooks_3_b_1_3.png)
+
+# 4 Mensajes de depuración por puerto serie
+
+## 4.c.1 funciones
+
+Para enviar mensajes por el puerto serie se utlizaron las siguientes funciones:
+
+| Nombre | Descripción |
+| ------ | ----------- |
+|  |
+|debugPrintConfigUart( UART_USB, 115200 );| funcion que configura el puerto serie y su velocidad |
+|debugPrintString( "DEBUG c/sAPI\r\n" ); | funcion que imprime en el puerto serie lo que recibe por parametro |
+
+
