@@ -57,6 +57,7 @@ El archivo project.mk se configuró de la siguiente forma:
 ## 1.2 Debug
 Antes del debug, se debe realizar la operación **Build**. Se hizo click derecho sobre la carpeta *firmware_v2* y en el menú se seleccionó la opción **Build**.
 Para realizar el **Debug** se hizo click derecho sobre la carpeta *firmware_v2* y en el menú se seleccionó *Debug As--Debug Configurrations...*.
+
 ![](Imagenes/03_debug_config_1.png)
 ![](Imagenes/04_debug_config_2.png)
 
@@ -169,7 +170,9 @@ Se pueden visualizar en la siguiente figura las funciones:
 |tickConfig( 50 ); | Inicializar el conteo de Ticks con resolucion de 50ms (se ejecuta periodicamente una interrupcion cada 50ms que incrementa un contador de Ticks obteniendose una base de tiempos). |
 | tickCallbackSet( myTickHook, (void*)LEDR );|ejecuta la funcion myTickHook con el parametro (void*)LEDR con una freceuncia determinada en tickConfig( 50 )|
 
-![](Imagenes/tickHooks_3_b_1_1.png)![](Imagenes/tickHooks_3_b_1_2.png)![](Imagenes/tickHooks_3_b_1_3.png)
+![](Imagenes/tickHooks_3_b_1_1.png)
+
+![](Imagenes/tickHooks_3_b_1_2.png)![](Imagenes/tickHooks_3_b_1_3.png)
 
 # 4 Mensajes de depuración por puerto serie
 
