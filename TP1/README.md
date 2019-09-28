@@ -38,3 +38,16 @@ $ git status -s
 $ git checkout master
 $ cp project.mk.template project.mk
 ```
+
+Posteriormente se ejecutó el Eclipse y se creó un workspace con el nombre Workspace_TPs_SE_2019 y se agregó el firmware_v2. Luego en File--New--Other--C/C++--Makefile Project with Existing Code...
+
+- En **Existing Code Location Browse** se colocó la ubicación de la carpeta *firmware_v2*.
+- Se destildó el casillero **C++**.
+- Se seleccionó la opción **Cross GCC ó ARM Cross GCC**.
+
+El archivo project.mk se configuró de la siguiente forma:
+- PROJECT = sapi_examples/edu-ciaa-nxp/bare_metal/gpio/gpio_02_blinky
+- TARGET = lpc4337_m4
+- BOARD = edu_ciaa_nxp
+
+![](Imagenes/02_firmware_v2.png)
