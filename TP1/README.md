@@ -46,6 +46,7 @@ Posteriormente se ejecutó el Eclipse y se creó un workspace con el nombre Work
 - Se seleccionó la opción **Cross GCC ó ARM Cross GCC**.
 
 El archivo project.mk se configuró de la siguiente forma:
+
 - PROJECT = sapi_examples/edu-ciaa-nxp/bare_metal/gpio/gpio_02_blinky
 - TARGET = lpc4337_m4
 - BOARD = edu_ciaa_nxp
@@ -108,7 +109,9 @@ bool_t gpioWrite(gpioMap_t pin, bool_t value){ // La función recibe el pin y el
 ```
 
 ## 1.4 Repositorio
-Se creó un repositorio en GitHub, y se sincronizó la carpeta *TP1* del proyecto *firmware_v2*. 
+Se creó un repositorio en GitHub, y se sincronizó en el directorio *projects* del proyecto *firmware_v2*. 
+
+Mas precisamente, se creo un único repositorio para todos los TPS, con subdirectorios para cada TP. 
 
 # 2 Switches leds
 
@@ -119,7 +122,7 @@ En la figura se puede ver como se sombrea la estructura que no va a ser compilad
 
 ![](Imagenes/compilacion_condicional.png)
 
-2.2.a Funciones
+## 2.2.a Funciones
 
 Para identificar las funciones de librería sAPI útiles para el sensado de un pulsador, se plasmó en esta tabla sus características:
 
