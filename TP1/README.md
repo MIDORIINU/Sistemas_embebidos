@@ -108,6 +108,20 @@ bool_t gpioWrite(gpioMap_t pin, bool_t value){ // La función recibe el pin y el
 }
 ```
 
+
+# 1.3.a Configuración de diversos pines de la EDU-CIAA
+
+Para configurar los pines mapeados de la EDU-CIAA, de acuerdo a su función (GPIO, ADC, PWM, etc), se debe tener en cuenta que el firmware_v2 está basado en la [sAPI](https://github.com/epernia/sAPI), una  HAL (Hardware Abstraction Layer) cuya base es LPCOpen. La sAPI  cómo se aprecia en la siguiente figura, es una colección de [módulos de capas de la sAPI](https://github.com/epernia/sAPI/blob/master/documentation/docs/assets/img/sapi-modulos-capas.png) con diferentes diferentes periféricos configurados para ser usados a modo de ejemplo.
+
+![](Imagenes/sapi-modulos-capas.png)
+
+Si se desea configurar un pin como GPIO, se debe usar la función de sAPI *gpioWrite* de acuerdo con el [pinout de la EDU-CIAA](https://github.com/epernia/sAPI/blob/master/documentation/docs/assets/pdf/EDU-CIAA-NXP_Pinout_A4_v4r3_ES.pdf) y la hoja de datos del LPC4337. 
+
+
+
+
+
+
 ## 1.4 Repositorio
 Se creó un repositorio en GitHub, y se sincronizó en el directorio *projects* del proyecto *firmware_v2*. 
 
@@ -189,13 +203,12 @@ Para enviar mensajes por el puerto serie se utlizaron las siguientes funciones:
 |debugPrintConfigUart( UART_USB, 115200 );| funcion que configura el puerto serie y su velocidad |
 |debugPrintString( "DEBUG c/sAPI\r\n" ); | funcion que imprime en el puerto serie lo que recibe por parametro |
 
+# 5 Planilla de seguimiento del TP1
+
+Se completaron todos los puntos pedidos por el TP como se muestra en la planilla mostrada a continuación.
+
+![](Imagenes/Planilla.png)
 
 
 
-# 5 Configuración de diversos pines de la EDU-CIAA
 
-Para configurar los pines mapeados de la EDU-CIAA, de acuerdo a su función (GPIO, ADC, PWM, etc), se debe tener en cuenta que el firmware_v2 está basado en la [sAPI](https://github.com/epernia/sAPI), una  HAL (Hardware Abstraction Layer) cuya base es LPCOpen. La sAPI  cómo se aprecia en la siguiente figura, es una colección de [módulos de capas de la sAPI](https://github.com/epernia/sAPI/blob/master/documentation/docs/assets/img/sapi-modulos-capas.png) con diferentes diferentes periféricos configurados para ser usados a modo de ejemplo.
-
-![](Imagenes/sapi-modulos-capas.png)
-
-Si se desea configurar un pin como GPIO, se debe usar la función de sAPI *gpioWrite* de acuerdo con el [pinout de la EDU-CIAA](https://github.com/epernia/sAPI/blob/master/documentation/docs/assets/pdf/EDU-CIAA-NXP_Pinout_A4_v4r3_ES.pdf) y la hoja de datos del LPC4337. 
