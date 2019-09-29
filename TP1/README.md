@@ -126,7 +126,7 @@ bool_t gpioWrite(gpioMap_t pin, bool_t value){ // La función recibe el pin y el
 
 Se puede ver que la misma llama a la función *gpioObtainPinConfig()*, esta función convierte el pin del tipo enumerado que la **SAPI** define para hacerlo mas user-friendly, a las designaciones que internamente usa el código de bajo nivel para acceder a los registros del pin. La conversión es realizada mediante la definición de un array de estructuras que es constante y que está indexado por el tipo enumerado de los pines, el contenido de estas estructuras es ***{ {PinNamePortN ,PinNamePinN}, PinFUNC, {GpioPortN, GpioPinN} }*** de esta forma toda la información es obtenida en forma de una estructura de la cual se extrae la información requerida, nombre del puerto, pin, función, puerto GPIO y pin GPIO, particularmente para GPIO genérico la función es **FUNC4**. Como ejemplo completo, el **LEDB** queda definido por ***{ {2 ,2}, FUNC4, {5, 2} }*** .
 
-Luego se puede ver que se llama a la función *Chip_GPIO_SetPinState()*, la misma unafunción de bajo nivel proveída por el fabricante, que finalmente accede a las posiciones de memoria de lo registros a modificar. Esta última función utiliza un puntero de una matriz en memoria que corresponde a los registros, **LPC\_GPIO_PORT**,  este puntero es definido como una costante que apunta ala base de los registros, dependiente del particular microcontrolador para el cual se esté compilando, que se resuelve mediante los include que se seleccionan al definir la constante que identifica al procesador.
+Luego se puede ver que se llama a la función *Chip_GPIO_SetPinState()*, la misma una función de bajo nivel proveída por el fabricante, que finalmente accede a las posiciones de memoria de lo registros a modificar. Esta última función utiliza un puntero de una matriz en memoria que corresponde a los registros, **LPC\_GPIO_PORT**,  este puntero es definido como una constante que apunta ala base de los registros, dependiente del particular microcontrolador para el cual se esté compilando, que se resuelve mediante los include que se seleccionan al definir la constante que identifica al procesador.
 
 
 
@@ -224,6 +224,8 @@ Para enviar mensajes por el puerto serie se utlizaron las siguientes funciones:
 |  |
 |debugPrintConfigUart( UART_USB, 115200 );| funcion que configura el puerto serie y su velocidad |
 |debugPrintString( "DEBUG c/sAPI\r\n" ); | funcion que imprime en el puerto serie lo que recibe por parametro |
+
+
 
 # 5 Planilla de seguimiento del TP1
 
