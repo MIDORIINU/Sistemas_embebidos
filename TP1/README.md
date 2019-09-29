@@ -84,10 +84,24 @@ Para hacer un debug primero se cambió, en la ventana de *debug configurations*,
 
 ![](Imagenes/08_TP1_debug.png)
 
-Haciendo *Step Into* en la función *boardConfig()* se abre el archivo *sapi_board.c*.
 
-Función *gpioWrite(gpioMap_t,bool_t)*
-```C
+
+
+# 1.3.a Acceso a los GPIO
+
+
+
+Haciendo *Step Into* en las funciones *boardConfig()* y *gpioWrite()* se abren los archivos *sapi_board.c* y *sapi_gpio.c*.
+
+
+En el cuerpo de la función *boardConfig()* se llama a una serie de funciones de inicalización, en particular para GPIO, se llama a la función *gpioConfig()*, la misma llama a las funciones de bajo nivel *Chip_GPIO_Init* *Chip_SCU_PinMux* y *Chip_GPIO_SetDir*, las mismas permiten respectivamente, habilitar el pin del puerto, seleccionar la función del mismo y el tipo de GPIO (entrada, salida, con o sin PULLUPS o PULLDOWNS en varias combinaciones).
+
+
+
+En el cuerpo de la función *gpioWrite(gpioMap\_t,bool\_t)*, que se transcribe a continuación:
+
+
+```c
 bool_t gpioWrite(gpioMap_t pin, bool_t value){ // La función recibe el pin y el estado
     
     bool_t ret_val     = 1;   // Valor de retorno
@@ -109,7 +123,15 @@ bool_t gpioWrite(gpioMap_t pin, bool_t value){ // La función recibe el pin y el
 ```
 
 
-# 1.3.a Configuración de diversos pines de la EDU-CIAA
+
+Se puede ver que la misma llama a la función *gpioObtainPinConfig()*, esta función convierte el pin del tipo enumerado que la **SAPI** define para hacerlo mas user-friendly, a las designaciones que internamente usa el código de bajo nivel para acceder a los registros del pin. La conversión es realizada mediante la definición de un array de estructuras que es constante y que está indexado por el tipo enumerado de los pines, el contenido de estas estructuras es ***{ {PinNamePortN ,PinNamePinN}, PinFUNC, {GpioPortN, GpioPinN} }*** de esta forma toda la información es obtenida en forma de una estructura de la cual se extrae la información requerida, nombre del puerto, pin, función, puerto GPIO y pin GPIO, particularmente para GPIO genérico la función es **FUNC4**. Como ejemplo completo, el **LEDB** queda definido por ***{ {2 ,2}, FUNC4, {5, 2} }*** .
+
+Luego se puede ver que se llama a la función *Chip_GPIO_SetPinState()*, la misma unafunción de bajo nivel proveída por el fabricante, que finalmente accede a las posiciones de memoria de lo registros a modificar. Esta última función utiliza un puntero de una matriz en memoria que corresponde a los registros, **LPC\_GPIO_PORT**,  este puntero es definido como una costante que apunta ala base de los registros, dependiente del particular microcontrolador para el cual se esté compilando, que se resuelve mediante los include que se seleccionan al definir la constante que identifica al procesador.
+
+
+
+
+# 1.3.b Configuración de diversos pines de la EDU-CIAA
 
 Para configurar los pines mapeados de la EDU-CIAA, de acuerdo a su función (GPIO, ADC, PWM, etc), se debe tener en cuenta que el firmware_v2 está basado en la [sAPI](https://github.com/epernia/sAPI), una  HAL (Hardware Abstraction Layer) cuya base es LPCOpen. La sAPI  cómo se aprecia en la siguiente figura, es una colección de [módulos de capas de la sAPI](https://github.com/epernia/sAPI/blob/master/documentation/docs/assets/img/sapi-modulos-capas.png) con diferentes diferentes periféricos configurados para ser usados a modo de ejemplo.
 
