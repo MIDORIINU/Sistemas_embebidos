@@ -187,3 +187,12 @@ Para enviar mensajes por el puerto serie se utlizaron las siguientes funciones:
 |debugPrintString( "DEBUG c/sAPI\r\n" ); | funcion que imprime en el puerto serie lo que recibe por parametro |
 
 
+
+
+# 5 Configuración de diversos pines de la EDU-CIAA
+
+Para configurar los pines mapeados de la EDU-CIAA, de acuerdo a su función (GPIO, ADC, PWM, etc), se debe tener en cuenta que el firmware_v2 está basado en la [sAPI](https://github.com/epernia/sAPI), una  HAL (Hardware Abstraction Layer) cuya base es LPCOpen. La sAPI  cómo se aprecia en la siguiente figura, es una colección de [módulos de capas de la sAPI](https://github.com/epernia/sAPI/blob/master/documentation/docs/assets/img/sapi-modulos-capas.png) con diferentes diferentes periféricos configurados para ser usados a modo de ejemplo.
+
+![](Imagenes/sapi-modulos-capas.png)
+
+Si se desea configurar un pin como GPIO, se debe usar la función de sAPI *gpioWrite* de acuerdo con el [pinout de la EDU-CIAA](https://github.com/epernia/sAPI/blob/master/documentation/docs/assets/pdf/EDU-CIAA-NXP_Pinout_A4_v4r3_ES.pdf) y la hoja de datos del LPC4337. 
