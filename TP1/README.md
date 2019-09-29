@@ -225,6 +225,12 @@ Para enviar mensajes por el puerto serie se utlizaron las siguientes funciones:
 |debugPrintConfigUart( UART_USB, 115200 );| funcion que configura el puerto serie y su velocidad |
 |debugPrintString( "DEBUG c/sAPI\r\n" ); | funcion que imprime en el puerto serie lo que recibe por parametro |
 
+
+## 4.c.2 Terminales
+
+Como programas terminales, encontramos que los mas simples de utilizar son el **Termite** en **Windows** y el **CuteTerm** en **Linux**. En Windows se tiene el problema que el puerto **COM** al que queda asociado el terminal virtual del chip FTDI, puede cambiar según el puerto USB físico de la máquina a la que se conecte la placa, sin entrar en soluciones mas complejas, lo mas simple es conectarla siempre al mismo puerto, en **Linux** en general el Kernel intenta asginar el mismo puerto a un mismo ID, sin embargo el problema ni siquiera se presenta si simplemente se abre el puerto por ID, por ejemplo:  **/dev/serial/by-id/usb-MBED_MBED_CMSIS-DAP_10105a42e87da33c103dccfb6bc235360a97-if01**. El particular ID que corresponde al puerto serial virtual de la placa ***EDU-CIAA***, se puede determinar observando los mensajes del kernel con el comando **dmesg | grep tty** o ejecutando el comando **lsusb**.
+
+
 # 5 Planilla de seguimiento del TP1
 
 Se completaron todos los puntos pedidos por el TP como se muestra en la planilla mostrada a continuación.
