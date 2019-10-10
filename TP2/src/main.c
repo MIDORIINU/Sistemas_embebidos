@@ -231,9 +231,9 @@ int main(void)
                                 }
                         }
 #else
-                        prefixIface_raise_evTick(&statechart);                                  // Event -> evTick => OK
+                        prefixIface_raise_evTick(&statechart);                         // Event -> evTick => OK
 #endif
-                        prefix_runCycle(&statechart);                                                   // Run Cycle of Statechart
+                        prefix_runCycle(&statechart);                                  // Run Cycle of Statechart
                 }
 
                 delay(1500);
