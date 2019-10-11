@@ -1,42 +1,4 @@
-/*      Copyright 2017, Pablo Ridolfi, Juan Esteban Alarcón, Juan Manuel Cruz
-        All rights reserved.
 
-        This file is part of Workspace.
-
-        Redistribution and use in source and binary forms, with or without
-        modification, are permitted provided that the following conditions are met:
-
-        1. Redistributions of source code must retain the above copyright notice,
-        this list of conditions and the following disclaimer.
-
-        2. Redistributions in binary form must reproduce the above copyright notice,
-        this list of conditions and the following disclaimer in the documentation
-        and/or other materials provided with the distribution.
-
-        3. Neither the name of the copyright holder nor the names of its
-        contributors may be used to endorse or promote products derived from this
-        software without specific prior written permission.
-
-        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-        IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-        ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-        LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-        CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-        SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-        INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-        CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-        ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-        POSSIBILITY OF SUCH DAMAGE.
-
-*/
-
-/**     @brief This is a simple statechart example using Yakindu Statechart Tool
-        Plug-in (update site: http://updates.yakindu.org/sct/mars/releases/).
-*/
-
-/**     \addtogroup statechart Simple UML Statechart example.
- ** @{ */
 
 /*==================[inclusions]=============================================*/
 
@@ -71,14 +33,18 @@
 #define SCT_3 (3)       /* Test Statechart EDU-CIAA-NXP - IDE LPCXpresso - Application
                                                 #define __USE_TIME_EVENTS (true)
                                                 rm prefix.sct
-                                                cp Application.-sct prefix.sct                                                          */
+                                                cp app.-sct prefix.sct                                                          */
 #define SCT_3 (3)       /* Test Statechart EDU-CIAA-NXP - IDE LPCXpresso - Portón
                                                 #define __USE_TIME_EVENTS (true)
                                                 rm prefix.sct
                                                 cp Porton.-sct prefix.sct                                                                       */
 
-/* Select a compilation choise  */
-#define TEST (SCT_1)
+#define SCT_4 (4)
+
+
+
+
+#define TEST (SCT_4)
 
 
 #define TICKRATE_1MS    (1)                             /* 1000 ticks per second */
@@ -235,7 +201,6 @@ int main(void)
 #endif
                         prefix_runCycle(&statechart);                                  // Run Cycle of Statechart
                 }
-
                 delay(1500);
         }
 }
@@ -387,6 +352,190 @@ int main(void)
                 }
         }
 }
+#endif
+
+#if (TEST == SCT_4)
+
+
+/**     state machine user-defined external function (action)
+
+        @param handle state machine instance
+        @param sc_integer state
+*/
+
+enum {sCUAD = 0, sTRIA, sSEN} stype;
+
+enum {mFREC = 0, mMAGN} mmagfrec;
+
+
+
+void prefixIface_aSetForma(const Prefix* handle, const sc_integer cFORMA)
+{
+
+        switch(cFORMA)
+        {
+        case sCUAD:
+                gpioWrite(LEDR, true);
+                gpioWrite(LEDG, false);
+                gpioWrite(LEDB, false);
+                break;
+        case sTRIA:
+                gpioWrite(LEDR, false);
+                gpioWrite(LEDG, true);
+                gpioWrite(LEDB, false);
+                break;
+        case sSEN:
+                gpioWrite(LEDR, false);
+                gpioWrite(LEDG, false);
+                gpioWrite(LEDB, true);
+                break;
+
+        }
+
+}
+
+void prefixIface_aSetMagn(const Prefix* handle, const sc_integer cMAGN)
+{
+        switch((int)(cMAGN))
+        {
+        case mFREC:
+                gpioWrite(LED1, false);
+                gpioWrite(LED2, true);
+                gpioWrite(LED3, false);
+                break;
+
+        case mMAGN:
+                gpioWrite(LED1, true);
+                gpioWrite(LED2, false);
+                gpioWrite(LED3, false);
+                break;
+        }
+
+
+
+}
+
+void prefixIface_aIncFrec(const Prefix* handle)
+{
+
+
+
+        gpioWrite(LED3, true);
+        delay(25);
+        gpioWrite(LED3, false);
+}
+
+void prefixIface_aDecFrec(const Prefix* handle)
+{
+
+
+        gpioWrite(LED3, true);
+        delay(25);
+        gpioWrite(LED3, false);
+}
+
+void prefixIface_aIncTens(const Prefix* handle)
+{
+        prefixIface_aIncFrec(handle);
+}
+
+void prefixIface_aDecTens(const Prefix* handle)
+{
+        prefixIface_aDecFrec(handle);
+}
+
+
+
+
+uint32_t Buttons_GetStatus_(void)
+{
+        uint8_t ret = false;
+        uint32_t idx;
+        for(idx = 0; idx < 4; ++idx)
+        {
+                if(gpioRead(TEC1 + idx) == 0)
+                        ret |= 1 << idx;
+        }
+        return ret;
+}
+
+/**
+        @brief       main routine for statechart example
+        @return      Function should not exit.
+*/
+int main(void)
+{
+
+        uint32_t BUTTON_Status;
+
+        delay_t TECDelay;
+
+        bool_t bTECread = false;
+
+        /* Generic Initialization */
+        boardConfig();
+
+        prefix_init(&statechart);
+
+        prefix_enter(&statechart);
+
+        delayConfig(&TECDelay, 50);
+
+        while(1)
+        {
+
+                if(!bTECread)
+                {
+                        BUTTON_Status = Buttons_GetStatus_();
+
+                        bTECread = true;
+                }
+                else if(delayRead(&TECDelay))
+                {
+                        if(BUTTON_Status == Buttons_GetStatus_())
+                        {
+
+                                switch(BUTTON_Status)
+                                {
+
+                                case 1: // TEC1
+                                        prefixIface_raise_eForma(&statechart);
+                                        break;
+                                case 2: // TEC2
+                                        prefixIface_raise_eMagn(&statechart);
+                                        break;
+                                case 4: // TEC3
+                                        prefixIface_raise_eUp(&statechart);
+                                        break;
+                                case 8: // TEC4
+                                        prefixIface_raise_eDown(&statechart);
+                                        break;
+
+                                }
+
+
+
+                        }
+                        else
+                        {
+                                prefix_runCycle(&statechart);  // Run Cycle of Statechart
+                        }
+
+                        bTECread = false;
+
+                }
+                else
+                {
+                        prefix_runCycle(&statechart);  // Run Cycle of Statechart
+                }
+
+        }
+
+
+
+
+}
+
 #endif
 
 
