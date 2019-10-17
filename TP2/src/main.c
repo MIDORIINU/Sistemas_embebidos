@@ -44,7 +44,7 @@
 
 
 
-#define TEST (SCT_4)
+
 
 
 #define TICKRATE_1MS    (1)                             /* 1000 ticks per second */
@@ -59,8 +59,10 @@ static Prefix statechart;
 
 
 /* Select a TimeEvents choise   */
-#define __USE_TIME_EVENTS (false)       /* "false" without TimeEvents */
-//#define __USE_TIME_EVENTS (true)      /* or "true" with TimerEvents */
+//#define __USE_TIME_EVENTS (false)       /* "false" without TimeEvents */
+#define __USE_TIME_EVENTS (true)      /* or "true" with TimerEvents */
+
+#define TEST (SCT_4)
 
 /*! This is a timed state machine that requires timer services */
 #if (__USE_TIME_EVENTS == true)
@@ -394,7 +396,7 @@ void prefixIface_aSetForma(const Prefix* handle, const sc_integer cFORMA)
 
 }
 
-void prefixIface_aSetMagn(const Prefix* handle, const sc_integer cMAGN)
+void prefixIface_aSetMode(const Prefix* handle, const sc_integer cMAGN)
 {
         switch((int)(cMAGN))
         {
@@ -415,7 +417,7 @@ void prefixIface_aSetMagn(const Prefix* handle, const sc_integer cMAGN)
 
 }
 
-void prefixIface_aIncFrec(const Prefix* handle)
+void prefixIface_aIncrement(const Prefix* handle, const sc_integer cMODE)
 {
 
 
@@ -425,7 +427,7 @@ void prefixIface_aIncFrec(const Prefix* handle)
         gpioWrite(LED3, false);
 }
 
-void prefixIface_aDecFrec(const Prefix* handle)
+void prefixIface_aDecrement(const Prefix* handle, const sc_integer cMODE)
 {
 
 
@@ -468,7 +470,7 @@ int main(void)
 
         uint32_t BUTTON_Status;
 
-        delay_t TECDelay;
+        //delay_t TECDelay;
 
         bool_t bTECread = false;
 
@@ -479,10 +481,23 @@ int main(void)
 
         prefix_enter(&statechart);
 
-        delayConfig(&TECDelay, 50);
+        //delayConfig(&TECDelay, 50);
 
         while(1)
         {
+                BUTTON_Status = Buttons_GetStatus_();
+
+                if(prefix_isStateActive(statechart, Prefix_TECS_NO_OPRIMIDO) &&
+                                (0 != Buttons_GetStatus_()))
+                {
+                        prefixIface_raise_evTECSDOWN(&statechart);
+
+                }
+
+
+
+
+
 
                 if(!bTECread)
                 {
