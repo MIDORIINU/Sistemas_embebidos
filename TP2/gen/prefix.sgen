@@ -7,5 +7,10 @@ GeneratorModel for yakindu::c {
 			targetFolder = "projects/TPS/TP2/gen"
 			libraryTargetFolder = "projects/TPS/TP2/gen"
 		}
+		
+	    feature GeneratorOptions {
+            inEventQueue = true
+        }	
+		
 	}
 }

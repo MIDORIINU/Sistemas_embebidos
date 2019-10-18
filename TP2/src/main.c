@@ -44,7 +44,7 @@
 
 
 
-#define TEST (SCT_4)
+
 
 
 #define TICKRATE_1MS    (1)                             /* 1000 ticks per second */
@@ -59,8 +59,10 @@ static Prefix statechart;
 
 
 /* Select a TimeEvents choise   */
-#define __USE_TIME_EVENTS (false)       /* "false" without TimeEvents */
-//#define __USE_TIME_EVENTS (true)      /* or "true" with TimerEvents */
+//#define __USE_TIME_EVENTS (false)       /* "false" without TimeEvents */
+#define __USE_TIME_EVENTS (true)      /* or "true" with TimerEvents */
+
+#define TEST (SCT_4)
 
 /*! This is a timed state machine that requires timer services */
 #if (__USE_TIME_EVENTS == true)
@@ -368,6 +370,17 @@ enum {sCUAD = 0, sTRIA, sSEN} stype;
 enum {mFREC = 0, mMAGN} mmagfrec;
 
 
+sc_integer Buttons_GetStatus_(void)
+{
+        int8_t ret = false;
+        uint32_t idx;
+        for(idx = 0; idx < 4; ++idx)
+        {
+                if(gpioRead(TEC1 + idx) == 0)
+                        ret |= 1 << idx;
+        }
+        return ret;
+}
 
 void prefixIface_aSetForma(const Prefix* handle, const sc_integer cFORMA)
 {
@@ -394,9 +407,9 @@ void prefixIface_aSetForma(const Prefix* handle, const sc_integer cFORMA)
 
 }
 
-void prefixIface_aSetMagn(const Prefix* handle, const sc_integer cMAGN)
+void prefixIface_aSetMode(const Prefix* handle, const sc_integer cMODE)
 {
-        switch((int)(cMAGN))
+        switch((int)(cMODE))
         {
         case mFREC:
                 gpioWrite(LED1, false);
@@ -412,51 +425,45 @@ void prefixIface_aSetMagn(const Prefix* handle, const sc_integer cMAGN)
         }
 
 
-
 }
 
-void prefixIface_aIncFrec(const Prefix* handle)
+void prefixIface_aTeclas(const Prefix* handle, const sc_integer But)
 {
-
-
-
-        gpioWrite(LED3, true);
-        delay(25);
-        gpioWrite(LED3, false);
-}
-
-void prefixIface_aDecFrec(const Prefix* handle)
-{
-
-
-        gpioWrite(LED3, true);
-        delay(25);
-        gpioWrite(LED3, false);
-}
-
-void prefixIface_aIncTens(const Prefix* handle)
-{
-        prefixIface_aIncFrec(handle);
-}
-
-void prefixIface_aDecTens(const Prefix* handle)
-{
-        prefixIface_aDecFrec(handle);
-}
-
-
-
-
-uint32_t Buttons_GetStatus_(void)
-{
-        uint8_t ret = false;
-        uint32_t idx;
-        for(idx = 0; idx < 4; ++idx)
+        switch(But)
         {
-                if(gpioRead(TEC1 + idx) == 0)
-                        ret |= 1 << idx;
+
+        case 1: // TEC1
+                prefixIface_raise_eFORMA(&statechart);
+                break;
+        case 2: // TEC2
+                prefixIface_raise_eMODE(&statechart);
+                break;
+        case 4: // TEC3
+                prefixIface_raise_eINCREMENT(&statechart);
+                break;
+        case 8: // TEC4
+                prefixIface_raise_eDECREMENT(&statechart);
+                break;
+
         }
-        return ret;
+
+        prefix_runCycle(&statechart);
+
+}
+
+void prefixIface_aIncrement(const Prefix* handle, const sc_integer cMODE)
+{
+        gpioWrite(LED3, true);
+        delay(25);
+        gpioWrite(LED3, false);
+}
+
+void prefixIface_aDecrement(const Prefix* handle, const sc_integer cMODE)
+{
+        gpioWrite(LED3, true);
+        delay(25);
+        gpioWrite(LED3, false);
+
 }
 
 /**
@@ -466,72 +473,96 @@ uint32_t Buttons_GetStatus_(void)
 int main(void)
 {
 
-        uint32_t BUTTON_Status;
-
-        delay_t TECDelay;
-
-        bool_t bTECread = false;
+        sc_integer BUTTON_Status;
 
         /* Generic Initialization */
         boardConfig();
-
+        /* Init Ticks counter => TICKRATE_MS */
+        tickConfig(TICKRATE_MS);
+        /* Add Tick Hook */
+        tickCallbackSet(myTickHook, (void*)NULL);
+        /* Statechart Initialization */
+#if (__USE_TIME_EVENTS)
+        InitTimerTicks(ticks, NOF_TIMERS);
+#endif
         prefix_init(&statechart);
 
         prefix_enter(&statechart);
 
-        delayConfig(&TECDelay, 50);
 
         while(1)
         {
+                BUTTON_Status = Buttons_GetStatus_();
 
-                if(!bTECread)
+
+                if(prefix_isStateActive(&statechart, Prefix_TECS_NO_OPRIMIDO) &&
+                                (0 != BUTTON_Status))
                 {
-                        BUTTON_Status = Buttons_GetStatus_();
+                        prefixIface_set_buttons(&statechart, BUTTON_Status);
 
-                        bTECread = true;
+                        prefixIface_raise_evTECSDOWN(&statechart);
                 }
-                else if(delayRead(&TECDelay))
+                else if(prefix_isStateActive(&statechart, Prefix_TECS_OPRIMIDO) &&
+                                (0 == BUTTON_Status))
                 {
-                        if(BUTTON_Status == Buttons_GetStatus_())
+                        prefixIface_set_buttons(&statechart, 0);
+
+                        prefixIface_raise_evTECSUP(&statechart);
+
+                }
+                else if(prefix_isStateActive(&statechart, Prefix_TECS_VALIDACION))
+                {
+                        if(prefixIface_get_buttons(&statechart) == Buttons_GetStatus_())
                         {
-
-                                switch(BUTTON_Status)
-                                {
-
-                                case 1: // TEC1
-                                        prefixIface_raise_eForma(&statechart);
-                                        break;
-                                case 2: // TEC2
-                                        prefixIface_raise_eMagn(&statechart);
-                                        break;
-                                case 4: // TEC3
-                                        prefixIface_raise_eUp(&statechart);
-                                        break;
-                                case 8: // TEC4
-                                        prefixIface_raise_eDown(&statechart);
-                                        break;
-
-                                }
-
-
-
+                                prefixIface_raise_evTECSVALID(&statechart);
                         }
                         else
                         {
-                                prefix_runCycle(&statechart);  // Run Cycle of Statechart
+                                prefixIface_raise_evTECSNOVALID(&statechart);
                         }
-
-                        bTECread = false;
-
                 }
-                else
+
+
+                if(
+                        prefix_isStateActive(&statechart, Prefix_magnitud_region_INC_FREC) ||
+                        prefix_isStateActive(&statechart, Prefix_magnitud_region_DEC_FREC) ||
+                        prefix_isStateActive(&statechart, Prefix_magnitud_region_INC_TENS) ||
+                        prefix_isStateActive(&statechart, Prefix_magnitud_region_DEC_TENS))
                 {
-                        prefix_runCycle(&statechart);  // Run Cycle of Statechart
+                        prefixIface_raise_eDONE(&statechart);
                 }
+
+
+
+
+                prefix_runCycle(&statechart);
+
+                if(SysTick_Time_Flag == true)
+                {
+                        SysTick_Time_Flag = false;
+#if (__USE_TIME_EVENTS)
+                        UpdateTimers(ticks, NOF_TIMERS);
+
+                        int i;
+
+                        for(i = 0; i < NOF_TIMERS; i++)
+                        {
+                                if(IsPendEvent(ticks, NOF_TIMERS, ticks[i].evid) == true)
+                                {
+                                        prefix_raiseTimeEvent(&statechart, ticks[i].evid);      // Event -> Ticks.evid => OK
+                                        MarkAsAttEvent(ticks, NOF_TIMERS, ticks[i].evid);
+                                }
+                        }
+#else
+                        prefixIface_raise_evTick(&statechart);                         // Event -> evTick => OK
+#endif
+                        prefix_runCycle(&statechart);                                  // Run Cycle of Statechart
+                }
+
+
+
 
         }
-
-
 
 
 }
