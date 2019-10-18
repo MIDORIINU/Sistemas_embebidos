@@ -407,7 +407,11 @@ void prefixIface_aSetForma(const Prefix* handle, const sc_integer cFORMA)
 
 }
 
+<<<<<<< HEAD
 void prefixIface_aSetMode(const Prefix* handle, const sc_integer cMODE)
+=======
+void prefixIface_aSetMode(const Prefix* handle, const sc_integer cMAGN)
+>>>>>>> a9811854349107eeb8546865d1fc817f1a4f4be6
 {
         switch((int)(cMODE))
         {
@@ -427,7 +431,11 @@ void prefixIface_aSetMode(const Prefix* handle, const sc_integer cMODE)
 
 }
 
+<<<<<<< HEAD
 void prefixIface_aTeclas(const Prefix* handle, const sc_integer But)
+=======
+void prefixIface_aIncrement(const Prefix* handle, const sc_integer cMODE)
+>>>>>>> a9811854349107eeb8546865d1fc817f1a4f4be6
 {
         switch(But)
         {
@@ -451,7 +459,11 @@ void prefixIface_aTeclas(const Prefix* handle, const sc_integer But)
 
 }
 
+<<<<<<< HEAD
 void prefixIface_aIncrement(const Prefix* handle, const sc_integer cMODE)
+=======
+void prefixIface_aDecrement(const Prefix* handle, const sc_integer cMODE)
+>>>>>>> a9811854349107eeb8546865d1fc817f1a4f4be6
 {
         gpioWrite(LED3, true);
         delay(25);
@@ -473,7 +485,15 @@ void prefixIface_aDecrement(const Prefix* handle, const sc_integer cMODE)
 int main(void)
 {
 
+<<<<<<< HEAD
         sc_integer BUTTON_Status;
+=======
+        uint32_t BUTTON_Status;
+
+        //delay_t TECDelay;
+
+        bool_t bTECread = false;
+>>>>>>> a9811854349107eeb8546865d1fc817f1a4f4be6
 
         /* Generic Initialization */
         boardConfig();
@@ -489,10 +509,29 @@ int main(void)
 
         prefix_enter(&statechart);
 
+<<<<<<< HEAD
+=======
+        //delayConfig(&TECDelay, 50);
+>>>>>>> a9811854349107eeb8546865d1fc817f1a4f4be6
 
         while(1)
         {
                 BUTTON_Status = Buttons_GetStatus_();
+<<<<<<< HEAD
+=======
+
+                if(prefix_isStateActive(statechart, Prefix_TECS_NO_OPRIMIDO) &&
+                                (0 != Buttons_GetStatus_()))
+                {
+                        prefixIface_raise_evTECSDOWN(&statechart);
+
+                }
+
+
+
+
+
+>>>>>>> a9811854349107eeb8546865d1fc817f1a4f4be6
 
 
                 if(prefix_isStateActive(&statechart, Prefix_TECS_NO_OPRIMIDO) &&
