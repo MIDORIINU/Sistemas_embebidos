@@ -20,7 +20,7 @@
         TP2 Statechart EDU-CIAA-NXP - Generador de señales
                                                 #define __USE_TIME_EVENTS (true)
                                                 rm prefix.sct
-                                                cp GeneradorSenales.sct
+                                                cp GeneradorSenales.-sct prefix.sct
 */
 
 #define SCT_TP2_2 (2)
@@ -28,7 +28,7 @@
         TP2 Statechart EDU-CIAA-NXP - Puerta corrediza
                                                 #define __USE_TIME_EVENTS (true)
                                                 rm prefix.sct
-                                                cp PuertaCorrediza.sct
+                                                cp PuertaCorrediza.-sct prefix.sct
 */
 
 #define SCT_TP2_3 (3)
@@ -36,7 +36,7 @@
         TP2 Statechart EDU-CIAA-NXP - Portón cochera
                                                 #define __USE_TIME_EVENTS (true)
                                                 rm prefix.sct
-                                                cp PortonCochera.sct
+                                                cp PortonCochera.-sct prefix.sct
 */
 
 #define SCT_TP2_4 (4)
@@ -44,7 +44,7 @@
         TP2 Statechart EDU-CIAA-NXP - Escalera mecánica
                                                 #define __USE_TIME_EVENTS (true)
                                                 rm prefix.sct
-                                                cp EscaleraMecanica.sct
+                                                cp EscaleraMecanica.-sct prefix.sct
 */
 
 #define SCT_TP2_5 (5)
@@ -52,21 +52,16 @@
         TP2 Statechart EDU-CIAA-NXP - Horno microondas
                                                 #define __USE_TIME_EVENTS (true)
                                                 rm prefix.sct
-                                                cp HornoMicroondas.sct
+                                                cp HornoMicroondas.-sct prefix.sct
 */
-
-
 
 
 #define TICKRATE_1MS    (1)                     /* 1000 ticks per second */
 #define TICKRATE_MS             (TICKRATE_1MS)  /* 1000 ticks per second */
 
 
-
-
-
 /* Select active statechart. */
-#define ACTIVE_ST (SCT_TP2_1)
+#define ACTIVE_ST (SCT_TP2_2)
 
 /*==================[internal macro declaration]==============================*/
 
@@ -75,7 +70,19 @@
 /* Select a TimeEvents choice   */
 #define __USE_TIME_EVENTS (true)
 
-#define __USE_TECS_STATE_CHART (true)
+#define __USE_BUTTONS_STATE_CHART (true)
+
+/*      The DEBUG* functions are sAPI debug print functions.
+        Code that uses the DEBUG* functions will have their I/O routed to
+        the sAPI DEBUG UART. */
+DEBUG_PRINT_ENABLE;
+
+#elif (ACTIVE_ST == SCT_TP2_2)
+
+/* Select a TimeEvents choice   */
+#define __USE_TIME_EVENTS (true)
+
+#define __USE_BUTTONS_STATE_CHART (true)
 
 /*      The DEBUG* functions are sAPI debug print functions.
         Code that uses the DEBUG* functions will have their I/O routed to
@@ -106,7 +113,7 @@ TimerTicks ticks[NOF_TIMERS];
 
 /*==================[internal functions declaration]=========================*/
 
-#if (__USE_TECS_STATE_CHART)
+#if (__USE_BUTTONS_STATE_CHART)
 
 static void ImplementButtons(const sc_integer Btn);
 
@@ -138,7 +145,6 @@ static void myTickHook(void* ptr);
 
 
 /*==================[main function]===============================*/
-
 
 
 /**
@@ -181,8 +187,23 @@ int main(void)
 
 #elif (ACTIVE_ST == SCT_TP2_2)
 
+        while(1)
+        {
+
+                prefix_runCycle(&statechart);
+
+                CheckTimeEvents();
+
+        } //while
+
 
 #elif (ACTIVE_ST == SCT_TP2_3)
+
+
+#elif (ACTIVE_ST == SCT_TP2_4)
+
+
+#elif (ACTIVE_ST == SCT_TP2_5)
 
 
 #endif
@@ -192,6 +213,8 @@ int main(void)
 
 
 /*==================[internal functions definition]==========================*/
+
+#if (ACTIVE_ST == SCT_TP2_1)
 
 static void ImplementButtons(const sc_integer Btn)
 {
@@ -220,6 +243,36 @@ static bool RepeatButtons(const sc_integer Btn)
         return ((4 == Btn) || (8 == Btn));
 }
 
+#elif (ACTIVE_ST == SCT_TP2_2)
+
+static void ImplementButtons(const sc_integer Btn)
+{
+        switch(Btn)
+        {
+
+        case 1: // TEC1
+
+                break;
+        case 2: // TEC2
+                prefixIface_raise_eBtnClosed(&statechart);
+                break;
+        case 4: // TEC3
+                prefixIface_raise_eBtnOpen(&statechart);
+                break;
+        case 8: // TEC4
+                prefixIface_raise_eBtnPresence(&statechart);
+                break;
+
+        }
+}
+
+
+static bool RepeatButtons(const sc_integer Btn)
+{
+        return false;
+}
+
+#endif
 
 /**
         @brief       Check for pending time events and raise them.
@@ -298,7 +351,7 @@ void prefix_unsetTimer(Prefix* handle, const sc_eventid evid)
 #endif
 
 
-#if (__USE_TECS_STATE_CHART)
+#if (__USE_BUTTONS_STATE_CHART)
 
 /**     state machine user-defined external function (action)
 
@@ -343,7 +396,6 @@ sc_boolean prefixIface_aRepeatButtons(const Prefix* handle, const sc_integer Btn
 
 void prefixIface_aSetShape(const Prefix* handle, const sc_integer cSHAPE)
 {
-
         if(PREFIX_PREFIXIFACE_CTRIANG == cSHAPE)
         {
                 gpioWrite(LEDR, true);
@@ -416,9 +468,77 @@ void prefixIface_aDecrement(const Prefix* handle, const sc_integer cMODE)
 
 }
 
+#elif (ACTIVE_ST == SCT_TP2_2)
+
+void prefixIface_aSensClosed(const Prefix* handle)
+{
+        gpioWrite(LED1, true);
+        delay(25);
+        gpioWrite(LED1, false);
+
+        stdioPrintf(UART_USB, "Puerta cerrada.\n");
+
+        prefixIface_raise_evClosed(&statechart);
+
+        prefix_runCycle(&statechart);
+
+}
+
+
+void prefixIface_aSensOpen(const Prefix* handle)
+{
+        gpioWrite(LED2, true);
+        delay(25);
+        gpioWrite(LED2, false);
+
+        stdioPrintf(UART_USB, "Puerta abierta.\n");
+
+        prefixIface_raise_evOpen(&statechart);
+
+        prefix_runCycle(&statechart);
+
+}
+
+
+void prefixIface_aSensPresence(const Prefix* handle, const sc_boolean Pres)
+{
+        gpioWrite(LED3, Pres);
+
+        stdioPrintf(UART_USB, "Presencia: %s.\n", Pres?"SI":"NO");
+
+}
+
+
+void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const sc_boolean cOPEN)
+{
+        if(PREFIX_PREFIXIFACE_COPEN == cACTION)
+        {
+                gpioWrite(LEDR, true);
+                gpioWrite(LEDG, false);
+                gpioWrite(LEDB, false);
+
+                stdioPrintf(UART_USB, "MOTOR: ABRIENDO.\n");
+        }
+        else if(PREFIX_PREFIXIFACE_CCLOSE == cACTION)
+        {
+                gpioWrite(LEDR, false);
+                gpioWrite(LEDG, true);
+                gpioWrite(LEDB, false);
+
+                stdioPrintf(UART_USB, "MOTOR: CERRANDO.\n");
+        }
+        else if(PREFIX_PREFIXIFACE_CSTOP == cACTION)
+        {
+                gpioWrite(LEDR, false);
+                gpioWrite(LEDG, false);
+                gpioWrite(LEDB, true);
+
+                stdioPrintf(UART_USB, "MOTOR: DETENIDO (%s).\n", cOPEN?"ABIERTO":"CERRADO");
+        }
+
+}
+
+
 #endif
-
-
-/** @} doxygen end group definition */
 
 /*==================[end of file]============================================*/
