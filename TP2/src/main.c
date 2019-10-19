@@ -128,6 +128,7 @@ static bool RepeatButtons(const sc_integer Btn);
 */
 static void CheckTimeEvents(void);
 
+static void format(float valor, char* dst, uint8_t pos);
 
 #if (__USE_TIME_EVENTS)
 
@@ -304,6 +305,23 @@ static void CheckTimeEvents(void)
 }
 
 
+static void format(float valor, char* dst, uint8_t pos)
+{
+        uint16_t val;
+        val = 10 * valor;
+        val = val % 1000;
+        dst[pos] = (val / 100) + '0';
+        pos++;
+        dst[pos] = (val % 100) / 10 + '0';
+        pos++;
+        dst[pos] = '.';
+        pos++;
+        dst[pos] = (val % 10) + '0';
+        pos++;
+        dst[pos] = '\0';
+}
+
+
 #if (__USE_TIME_EVENTS)
 
 /**
@@ -453,7 +471,36 @@ void prefixIface_aIncrement(const Prefix* handle, const sc_integer cMODE)
         delay(25);
         gpioWrite(LED3, false);
 
-        stdioPrintf(UART_USB, "INCREMENT: %s.\n", (cMODE == PREFIX_PREFIXIFACE_CFREQ)?"frequency":"voltage");
+        if(cMODE == PREFIX_PREFIXIFACE_CFREQ)
+        {
+                sc_integer freq = prefixIface_get_frequency(&statechart);
+
+                if(freq <= 19999)
+                {
+                        freq += 1;
+
+                        prefixIface_set_frequency(&statechart, freq);
+                }
+
+                stdioPrintf(UART_USB, "INCREMENT FREQUENCY: %d Hertz.\n", freq);
+        }
+        else if(cMODE == PREFIX_PREFIXIFACE_CVOLT)
+        {
+                sc_real volt = prefixIface_get_voltage(&statechart);
+
+                if(volt <= 9.9)
+                {
+                        volt += 0.1;
+
+                        prefixIface_set_voltage(&statechart, volt);
+                }
+
+                char buffout[10];
+
+                format(volt, buffout, 0);
+
+                stdioPrintf(UART_USB, "INCREMENT VOLTAGE: %s volt.\n", buffout);
+        }
 
 }
 
@@ -464,7 +511,36 @@ void prefixIface_aDecrement(const Prefix* handle, const sc_integer cMODE)
         delay(25);
         gpioWrite(LED3, false);
 
-        stdioPrintf(UART_USB, "DECREMENT: %s.\n", (cMODE == PREFIX_PREFIXIFACE_CFREQ)?"frequency":"voltage");
+        if(cMODE == PREFIX_PREFIXIFACE_CFREQ)
+        {
+                sc_integer freq = prefixIface_get_frequency(&statechart);
+
+                if(freq > 20)
+                {
+                        freq -= 1;
+
+                        prefixIface_set_frequency(&statechart, freq);
+                }
+
+                stdioPrintf(UART_USB, "DECREMENT FREQUENCY: %d Hertz.\n", freq);
+        }
+        else if(cMODE == PREFIX_PREFIXIFACE_CVOLT)
+        {
+                sc_real volt = prefixIface_get_voltage(&statechart);
+
+                if(volt >= 0.0)
+                {
+                        volt -= 0.1;
+
+                        prefixIface_set_voltage(&statechart, volt);
+                }
+
+                char buffout[10];
+
+                format(volt, buffout, 0);
+
+                stdioPrintf(UART_USB, "DECREMENT VOLTAGE: %s volt.\n", buffout);
+        }
 
 }
 
