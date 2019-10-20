@@ -36,7 +36,7 @@
         TP2 Statechart EDU-CIAA-NXP - Portón cochera
                                                 #define __USE_TIME_EVENTS (true)
                                                 rm prefix.sct
-                                                cp PortonCochera.-sct prefix.sct
+                                                cp Porton.-sct prefix.sct
 */
 
 #define SCT_TP2_4 (4)
@@ -113,6 +113,15 @@ TimerTicks ticks[NOF_TIMERS];
 
 /*==================[internal functions declaration]=========================*/
 
+static void SetLED(gpioMap_t LEDid, bool state);
+
+static void SetRGBLED(bool Rstate, bool Gstate, bool Bstate);
+
+#if (ACTIVE_ST == SCT_TP2_1)
+static void BlinkLED(gpioMap_t LEDid, tick_t TimeMS);
+
+#endif
+
 #if (__USE_BUTTONS_STATE_CHART)
 
         static void ImplementButtons(const sc_integer Btn);
@@ -179,39 +188,18 @@ int main(void)
 
         prefix_enter(&statechart);
 
-        #if (ACTIVE_ST == SCT_TP2_1)
-
         while(1)
         {
+
+                #if ((ACTIVE_ST == SCT_TP2_1) || (ACTIVE_ST == SCT_TP2_2))
 
                 prefix_runCycle(&statechart);
 
                 CheckTimeEvents();
 
-        } //while
-
-        #elif (ACTIVE_ST == SCT_TP2_2)
-
-        while(1)
-        {
-
-                prefix_runCycle(&statechart);
-
-                CheckTimeEvents();
+                #endif
 
         } //while
-
-
-        #elif (ACTIVE_ST == SCT_TP2_3)
-
-
-        #elif (ACTIVE_ST == SCT_TP2_4)
-
-
-        #elif (ACTIVE_ST == SCT_TP2_5)
-
-
-        #endif
 
 } //main
 
@@ -219,6 +207,29 @@ int main(void)
 
 /*==================[internal functions definition]==========================*/
 
+static void SetLED(gpioMap_t LEDid, bool state)
+{
+        gpioWrite(LEDid, (bool_t) state);
+}
+
+
+static void SetRGBLED(bool Rstate, bool Gstate, bool Bstate)
+{
+        gpioWrite(LEDR, (bool_t) Rstate);
+        gpioWrite(LEDG, (bool_t) Gstate);
+        gpioWrite(LEDB, (bool_t) Bstate);
+}
+
+
+#if (ACTIVE_ST == SCT_TP2_1)
+static void BlinkLED(gpioMap_t LEDid, tick_t TimeMS)
+{
+        gpioWrite(LEDid, true);
+        delay(TimeMS);
+        gpioWrite(LEDid, false);
+}
+
+#endif
 
 #if (__USE_BUTTONS_STATE_CHART)
 
@@ -245,6 +256,7 @@ static void ImplementButtons(const sc_integer Btn)
         }
 
         #elif (ACTIVE_ST == SCT_TP2_2)
+
         switch(Btn)
         {
 
@@ -270,9 +282,13 @@ static void ImplementButtons(const sc_integer Btn)
 static bool RepeatButtons(const sc_integer Btn)
 {
         #if (ACTIVE_ST == SCT_TP2_1)
+
         return ((4 == Btn) || (8 == Btn));
+
         #elif (ACTIVE_ST == SCT_TP2_2)
+
         return false;
+
         #endif
 
 }
@@ -424,25 +440,19 @@ void prefixIface_aSetShape(const Prefix* handle, const sc_integer cSHAPE)
 {
         if(PREFIX_PREFIXIFACE_CTRIANG == cSHAPE)
         {
-                gpioWrite(LEDR, true);
-                gpioWrite(LEDG, false);
-                gpioWrite(LEDB, false);
+                SetRGBLED(true, false, false);
 
                 stdioPrintf(UART_USB, "SHAPE: TRIANGULAR.\n");
         }
         else if(PREFIX_PREFIXIFACE_CSQUARE == cSHAPE)
         {
-                gpioWrite(LEDR, false);
-                gpioWrite(LEDG, true);
-                gpioWrite(LEDB, false);
+                SetRGBLED(false, true, false);
 
                 stdioPrintf(UART_USB, "SHAPE: SQUARE.\n");
         }
         else if(PREFIX_PREFIXIFACE_CSINUSOID == cSHAPE)
         {
-                gpioWrite(LEDR, false);
-                gpioWrite(LEDG, false);
-                gpioWrite(LEDB, true);
+                SetRGBLED(false, false, true);
 
                 stdioPrintf(UART_USB, "SHAPE: SINUSOIDAL.\n");
         }
@@ -455,17 +465,17 @@ void prefixIface_aSetMode(const Prefix* handle, const sc_integer cMODE)
 
         if(PREFIX_PREFIXIFACE_CFREQ == cMODE)
         {
-                gpioWrite(LED1, true);
-                gpioWrite(LED2, false);
-                gpioWrite(LED3, false);
+                SetLED(LED1, true);
+                SetLED(LED2, false);
+                SetLED(LED3, false);
 
                 stdioPrintf(UART_USB, "MODE: FREQUENCY.\n");
         }
         else if(PREFIX_PREFIXIFACE_CVOLT == cMODE)
         {
-                gpioWrite(LED1, false);
-                gpioWrite(LED2, true);
-                gpioWrite(LED3, false);
+                SetLED(LED1, false);
+                SetLED(LED2, true);
+                SetLED(LED3, false);
 
                 stdioPrintf(UART_USB, "MODE: VOLTAGE.\n");
         }
@@ -475,9 +485,7 @@ void prefixIface_aSetMode(const Prefix* handle, const sc_integer cMODE)
 
 void prefixIface_aIncrement(const Prefix* handle, const sc_integer cMODE)
 {
-        gpioWrite(LED3, true);
-        delay(25);
-        gpioWrite(LED3, false);
+        BlinkLED(LED3, 25);
 
         if(cMODE == PREFIX_PREFIXIFACE_CFREQ)
         {
@@ -515,9 +523,7 @@ void prefixIface_aIncrement(const Prefix* handle, const sc_integer cMODE)
 
 void prefixIface_aDecrement(const Prefix* handle, const sc_integer cMODE)
 {
-        gpioWrite(LED3, true);
-        delay(25);
-        gpioWrite(LED3, false);
+        BlinkLED(LED3, 25);
 
         if(cMODE == PREFIX_PREFIXIFACE_CFREQ)
         {
@@ -556,40 +562,29 @@ void prefixIface_aDecrement(const Prefix* handle, const sc_integer cMODE)
 
 void prefixIface_aSensClosed(const Prefix* handle)
 {
-        if(prefix_isStateActive(&statechart, Prefix_DOOR_CLOSING))
-        {
-                gpioWrite(LED1, true);
+        SetLED(LED1, true);
 
-                stdioPrintf(UART_USB, "PUERTA: CERRADA.\n");
+        stdioPrintf(UART_USB, "PUERTA: CERRADA.\n");
 
-                prefixIface_raise_evClosed(&statechart);
-
-                prefix_runCycle(&statechart);
-        }
+        prefix_runCycle(&statechart);
 }
 
 
 void prefixIface_aSensOpen(const Prefix* handle)
 {
-        if(prefix_isStateActive(&statechart, Prefix_DOOR_OPENING))
-        {
-                gpioWrite(LED2, true);
+        SetLED(LED2, true);
 
-                stdioPrintf(UART_USB, "PUERTA: ABIERTA.\n");
+        stdioPrintf(UART_USB, "PUERTA: ABIERTA.\n");
 
-                prefixIface_raise_evOpen(&statechart);
-
-                prefix_runCycle(&statechart);
-        }
+        prefix_runCycle(&statechart);
 }
 
 
 void prefixIface_aSensPresence(const Prefix* handle, const sc_boolean Pres)
 {
-        gpioWrite(LED3, Pres);
+        SetLED(LED3, Pres);
 
         stdioPrintf(UART_USB, "PRESENCIA: %s.\n", Pres?"SI":"NO");
-
 }
 
 
@@ -597,31 +592,25 @@ void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const 
 {
         if(PREFIX_PREFIXIFACE_COPEN == cACTION)
         {
-                gpioWrite(LEDR, true);
-                gpioWrite(LEDG, false);
-                gpioWrite(LEDB, false);
+                SetRGBLED(true, false, false);
 
-                gpioWrite(LED1, false);
-                gpioWrite(LED2, false);
+                SetLED(LED1, false);
+                SetLED(LED2, false);
 
                 stdioPrintf(UART_USB, "MOTOR: ABRIENDO.\n");
         }
         else if(PREFIX_PREFIXIFACE_CCLOSE == cACTION)
         {
-                gpioWrite(LEDR, false);
-                gpioWrite(LEDG, true);
-                gpioWrite(LEDB, false);
+                SetRGBLED(false, true, false);
 
-                gpioWrite(LED1, false);
-                gpioWrite(LED2, false);
+                SetLED(LED1, false);
+                SetLED(LED2, false);
 
                 stdioPrintf(UART_USB, "MOTOR: CERRANDO.\n");
         }
         else if(PREFIX_PREFIXIFACE_CSTOP == cACTION)
         {
-                gpioWrite(LEDR, false);
-                gpioWrite(LEDG, false);
-                gpioWrite(LEDB, true);
+                SetRGBLED(false, false, true);
 
                 stdioPrintf(UART_USB, "MOTOR: DETENIDO (%s).\n", cOPEN?"ABIERTO":"CERRADO");
         }
