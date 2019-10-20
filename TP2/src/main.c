@@ -67,27 +67,27 @@
 
 #if (ACTIVE_ST == SCT_TP2_1)
 
-/* Select a TimeEvents choice   */
-#define __USE_TIME_EVENTS (true)
+        /* Select a TimeEvents choice   */
+        #define __USE_TIME_EVENTS (true)
 
-#define __USE_BUTTONS_STATE_CHART (true)
+        #define __USE_BUTTONS_STATE_CHART (true)
 
-/*      The DEBUG* functions are sAPI debug print functions.
+        /*      The DEBUG* functions are sAPI debug print functions.
         Code that uses the DEBUG* functions will have their I/O routed to
         the sAPI DEBUG UART. */
-DEBUG_PRINT_ENABLE;
+        DEBUG_PRINT_ENABLE;
 
 #elif (ACTIVE_ST == SCT_TP2_2)
 
-/* Select a TimeEvents choice   */
-#define __USE_TIME_EVENTS (true)
+        /* Select a TimeEvents choice   */
+        #define __USE_TIME_EVENTS (true)
 
-#define __USE_BUTTONS_STATE_CHART (true)
+        #define __USE_BUTTONS_STATE_CHART (true)
 
-/*      The DEBUG* functions are sAPI debug print functions.
+        /*      The DEBUG* functions are sAPI debug print functions.
         Code that uses the DEBUG* functions will have their I/O routed to
         the sAPI DEBUG UART. */
-DEBUG_PRINT_ENABLE;
+        DEBUG_PRINT_ENABLE;
 
 #endif
 
@@ -103,9 +103,9 @@ static Prefix statechart;
 
 /*! This is a timed state machine that requires timer services */
 #if (__USE_TIME_EVENTS == true)
-#define NOF_TIMERS (sizeof(PrefixTimeEvents)/sizeof(sc_boolean))
+        #define NOF_TIMERS (sizeof(PrefixTimeEvents)/sizeof(sc_boolean))
 #else
-#define NOF_TIMERS 0
+        #define NOF_TIMERS 0
 #endif
 
 TimerTicks ticks[NOF_TIMERS];
@@ -115,9 +115,9 @@ TimerTicks ticks[NOF_TIMERS];
 
 #if (__USE_BUTTONS_STATE_CHART)
 
-static void ImplementButtons(const sc_integer Btn);
+        static void ImplementButtons(const sc_integer Btn);
 
-static bool RepeatButtons(const sc_integer Btn);
+        static bool RepeatButtons(const sc_integer Btn);
 
 #endif
 
@@ -128,15 +128,19 @@ static bool RepeatButtons(const sc_integer Btn);
 */
 static void CheckTimeEvents(void);
 
-static void format(float valor, char* dst, uint8_t pos);
+#if (ACTIVE_ST == SCT_TP2_1)
+
+        static void format(float valor, char* dst, uint8_t pos);
+
+#endif
 
 #if (__USE_TIME_EVENTS)
 
-/**
+        /**
         @brief       Hook on Handle interrupt from SysTick timer
         @return      Nothing
-*/
-static void myTickHook(void* ptr);
+        */
+        static void myTickHook(void* ptr);
 
 #endif
 
@@ -167,15 +171,15 @@ int main(void)
         tickCallbackSet(myTickHook, (void*)NULL);
 
         /* Statechart Initialization */
-#if (__USE_TIME_EVENTS)
+        #if (__USE_TIME_EVENTS)
         InitTimerTicks(ticks, NOF_TIMERS);
-#endif
+        #endif
 
         prefix_init(&statechart);
 
         prefix_enter(&statechart);
 
-#if (ACTIVE_ST == SCT_TP2_1)
+        #if (ACTIVE_ST == SCT_TP2_1)
 
         while(1)
         {
@@ -186,7 +190,7 @@ int main(void)
 
         } //while
 
-#elif (ACTIVE_ST == SCT_TP2_2)
+        #elif (ACTIVE_ST == SCT_TP2_2)
 
         while(1)
         {
@@ -198,16 +202,16 @@ int main(void)
         } //while
 
 
-#elif (ACTIVE_ST == SCT_TP2_3)
+        #elif (ACTIVE_ST == SCT_TP2_3)
 
 
-#elif (ACTIVE_ST == SCT_TP2_4)
+        #elif (ACTIVE_ST == SCT_TP2_4)
 
 
-#elif (ACTIVE_ST == SCT_TP2_5)
+        #elif (ACTIVE_ST == SCT_TP2_5)
 
 
-#endif
+        #endif
 
 } //main
 
@@ -215,62 +219,62 @@ int main(void)
 
 /*==================[internal functions definition]==========================*/
 
-#if (ACTIVE_ST == SCT_TP2_1)
+
+#if (__USE_BUTTONS_STATE_CHART)
 
 static void ImplementButtons(const sc_integer Btn)
 {
+        #if (ACTIVE_ST == SCT_TP2_1)
+
         switch(Btn)
         {
 
-        case 1: // TEC1
-                prefixIface_raise_evSHAPE(&statechart);
-                break;
-        case 2: // TEC2
-                prefixIface_raise_evMODE(&statechart);
-                break;
-        case 4: // TEC3
-                prefixIface_raise_evINCREMENT(&statechart);
-                break;
-        case 8: // TEC4
-                prefixIface_raise_evDECREMENT(&statechart);
-                break;
+                case 1: // TEC1
+                        prefixIface_raise_evSHAPE(&statechart);
+                        break;
+                case 2: // TEC2
+                        prefixIface_raise_evMODE(&statechart);
+                        break;
+                case 4: // TEC3
+                        prefixIface_raise_evINCREMENT(&statechart);
+                        break;
+                case 8: // TEC4
+                        prefixIface_raise_evDECREMENT(&statechart);
+                        break;
 
         }
+
+        #elif (ACTIVE_ST == SCT_TP2_2)
+        switch(Btn)
+        {
+
+                case 1: // TEC1
+
+                        break;
+                case 2: // TEC2
+                        prefixIface_raise_eBtnClosed(&statechart);
+                        break;
+                case 4: // TEC3
+                        prefixIface_raise_eBtnOpen(&statechart);
+                        break;
+                case 8: // TEC4
+                        prefixIface_raise_eBtnPresence(&statechart);
+                        break;
+
+        }
+
+        #endif
 }
 
 
 static bool RepeatButtons(const sc_integer Btn)
 {
+        #if (ACTIVE_ST == SCT_TP2_1)
         return ((4 == Btn) || (8 == Btn));
-}
-
-#elif (ACTIVE_ST == SCT_TP2_2)
-
-static void ImplementButtons(const sc_integer Btn)
-{
-        switch(Btn)
-        {
-
-        case 1: // TEC1
-
-                break;
-        case 2: // TEC2
-                prefixIface_raise_eBtnClosed(&statechart);
-                break;
-        case 4: // TEC3
-                prefixIface_raise_eBtnOpen(&statechart);
-                break;
-        case 8: // TEC4
-                prefixIface_raise_eBtnPresence(&statechart);
-                break;
-
-        }
-}
-
-
-static bool RepeatButtons(const sc_integer Btn)
-{
+        #elif (ACTIVE_ST == SCT_TP2_2)
         return false;
+        #endif
+
 }
 
 #endif
@@ -284,7 +288,7 @@ static void CheckTimeEvents(void)
         if(SysTick_Time_Flag == true)
         {
                 SysTick_Time_Flag = false;
-#if (__USE_TIME_EVENTS)
+                #if (__USE_TIME_EVENTS)
                 UpdateTimers(ticks, NOF_TIMERS);
 
                 int i;
@@ -297,13 +301,15 @@ static void CheckTimeEvents(void)
                                 MarkAsAttEvent(ticks, NOF_TIMERS, ticks[i].evid);
                         }
                 }
-#else
+                #else
                 prefixIface_raise_evTick(&statechart);                             // Event -> evTick => OK
-#endif
+                #endif
                 prefix_runCycle(&statechart);                                      // Run Cycle of Statechart
         }
 }
 
+
+#if (ACTIVE_ST == SCT_TP2_1)
 
 static void format(float valor, char* dst, uint8_t pos)
 {
@@ -320,6 +326,8 @@ static void format(float valor, char* dst, uint8_t pos)
         pos++;
         dst[pos] = '\0';
 }
+
+#endif
 
 
 #if (__USE_TIME_EVENTS)
@@ -548,31 +556,23 @@ void prefixIface_aDecrement(const Prefix* handle, const sc_integer cMODE)
 
 void prefixIface_aSensClosed(const Prefix* handle)
 {
-        gpioWrite(LED1, true);
-        delay(25);
-        gpioWrite(LED1, false);
+        if(prefix_isStateActive(&statechart, Prefix_DOOR_CLOSING))
+        {
+                prefixIface_raise_evClosed(&statechart);
 
-        stdioPrintf(UART_USB, "Puerta cerrada.\n");
-
-        prefixIface_raise_evClosed(&statechart);
-
-        prefix_runCycle(&statechart);
-
+                prefix_runCycle(&statechart);
+        }
 }
 
 
 void prefixIface_aSensOpen(const Prefix* handle)
 {
-        gpioWrite(LED2, true);
-        delay(25);
-        gpioWrite(LED2, false);
+        if(prefix_isStateActive(&statechart, Prefix_DOOR_OPENING))
+        {
+                prefixIface_raise_evOpen(&statechart);
 
-        stdioPrintf(UART_USB, "Puerta abierta.\n");
-
-        prefixIface_raise_evOpen(&statechart);
-
-        prefix_runCycle(&statechart);
-
+                prefix_runCycle(&statechart);
+        }
 }
 
 
@@ -580,7 +580,7 @@ void prefixIface_aSensPresence(const Prefix* handle, const sc_boolean Pres)
 {
         gpioWrite(LED3, Pres);
 
-        stdioPrintf(UART_USB, "Presencia: %s.\n", Pres?"SI":"NO");
+        stdioPrintf(UART_USB, "PRESENCIA: %s.\n", Pres?"SI":"NO");
 
 }
 
@@ -593,6 +593,9 @@ void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const 
                 gpioWrite(LEDG, false);
                 gpioWrite(LEDB, false);
 
+                gpioWrite(LED1, false);
+                gpioWrite(LED2, false);
+
                 stdioPrintf(UART_USB, "MOTOR: ABRIENDO.\n");
         }
         else if(PREFIX_PREFIXIFACE_CCLOSE == cACTION)
@@ -600,6 +603,9 @@ void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const 
                 gpioWrite(LEDR, false);
                 gpioWrite(LEDG, true);
                 gpioWrite(LEDB, false);
+
+                gpioWrite(LED1, false);
+                gpioWrite(LED2, false);
 
                 stdioPrintf(UART_USB, "MOTOR: CERRANDO.\n");
         }
@@ -609,7 +615,22 @@ void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const 
                 gpioWrite(LEDG, false);
                 gpioWrite(LEDB, true);
 
-                stdioPrintf(UART_USB, "MOTOR: DETENIDO (%s).\n", cOPEN?"ABIERTO":"CERRADO");
+                if(cOPEN)
+                {
+                        gpioWrite(LED2, true);
+
+                        stdioPrintf(UART_USB, "PUERTA: ABIERTA.\n");
+
+                        stdioPrintf(UART_USB, "MOTOR: DETENIDO (ABIERTO).\n");
+                }
+                else
+                {
+                        gpioWrite(LED1, true);
+
+                        stdioPrintf(UART_USB, "PUERTA: CERRADA.\n");
+
+                        stdioPrintf(UART_USB, "MOTOR: DETENIDO (CERRADO).\n");
+                }
         }
 
 }
