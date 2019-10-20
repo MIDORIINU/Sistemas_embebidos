@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0">
-  <sgraph:Statechart xmi:id="_me37AFepEeiXJJ0LdR8_qg" specification="interface:&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;operation aButtons(Btn:integer)&#xA;operation aReadButtons():integer&#xA;operation aRepeatButtons(Btn:integer):boolean&#xA;&#xA;&#xA;var Buttons: integer = 0&#xA;var NewButtons: integer = 0&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;&#xA;in event evClosed&#xA;in event evOpen&#xA;&#xA;&#xA;operation aControl(cACTION:integer, cOPEN:boolean)&#xA;&#xA;const cOPEN: integer = 0&#xA;const cCLOSE: integer = 1&#xA;const cSTOP: integer = 2&#xA;&#xA;var Presence: boolean = false&#xA;&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;in event eBtnOpen&#xA;in event eBtnClosed&#xA;in event eBtnPresence&#xA;&#xA;operation aSensOpen()&#xA;operation aSensClosed()&#xA;operation aSensPresence(Pres:boolean)" name="prefix">
+  <sgraph:Statechart xmi:id="_me37AFepEeiXJJ0LdR8_qg" specification="interface:&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;operation aButtons(Btn:integer)&#xA;operation aReadButtons():integer&#xA;operation aRepeatButtons(Btn:integer):boolean&#xA;&#xA;&#xA;var Buttons: integer = 0&#xA;var NewButtons: integer = 0&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;&#xA;in event evClosed&#xA;in event evOpen&#xA;&#xA;&#xA;operation aControl(cACTION:integer, cOPEN:boolean)&#xA;&#xA;const cOPEN: integer = 0&#xA;const cCLOSE: integer = 1&#xA;const cSTOP: integer = 2&#xA;const cWAIT: integer = 3&#xA;&#xA;var Presence: boolean = false&#xA;&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;in event eBtnOpen&#xA;in event eBtnClosed&#xA;in event eBtnPresence&#xA;&#xA;operation aSensOpen()&#xA;operation aSensClosed()&#xA;operation aSensPresence(Pres:boolean)" name="prefix">
     <regions xmi:id="_me-oslepEeiXJJ0LdR8_qg" name="DOOR">
       <vertices xsi:type="sgraph:Entry" xmi:id="_mfF9cVepEeiXJJ0LdR8_qg">
         <outgoingTransitions xmi:id="_mfQVgVepEeiXJJ0LdR8_qg" specification="&#xA;" target="_mfIZtFepEeiXJJ0LdR8_qg"/>
@@ -18,7 +18,7 @@
       <vertices xsi:type="sgraph:State" xmi:id="_RyAaoFe6EeiYuMep_3QDzA" specification="entry / aControl (cOPEN, false)" name="OPENING" incomingTransitions="_fdXXYFe6EeiYuMep_3QDzA _14zCoFe6EeiYuMep_3QDzA">
         <outgoingTransitions xmi:id="_jdYQMFe6EeiYuMep_3QDzA" specification="evOpen" target="_FbaSYFevEeiYuMep_3QDzA"/>
       </vertices>
-      <vertices xsi:type="sgraph:State" xmi:id="_GWHPkPJlEemW4YmAlqzbfA" name="WAIT" incomingTransitions="_Oa3wMPJlEemW4YmAlqzbfA">
+      <vertices xsi:type="sgraph:State" xmi:id="_GWHPkPJlEemW4YmAlqzbfA" specification="entry / aControl (cWAIT, true)" name="WAIT" incomingTransitions="_Oa3wMPJlEemW4YmAlqzbfA">
         <outgoingTransitions xmi:id="_IijR8PJlEemW4YmAlqzbfA" specification="after 3 s [!Presence]" target="_mfIZtFepEeiXJJ0LdR8_qg"/>
         <outgoingTransitions xmi:id="_bMj6APJlEemW4YmAlqzbfA" specification="always [Presence]" target="_FbaSYFevEeiYuMep_3QDzA"/>
       </vertices>

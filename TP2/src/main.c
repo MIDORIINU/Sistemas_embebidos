@@ -558,6 +558,10 @@ void prefixIface_aSensClosed(const Prefix* handle)
 {
         if(prefix_isStateActive(&statechart, Prefix_DOOR_CLOSING))
         {
+                gpioWrite(LED1, true);
+
+                stdioPrintf(UART_USB, "PUERTA: CERRADA.\n");
+
                 prefixIface_raise_evClosed(&statechart);
 
                 prefix_runCycle(&statechart);
@@ -569,6 +573,10 @@ void prefixIface_aSensOpen(const Prefix* handle)
 {
         if(prefix_isStateActive(&statechart, Prefix_DOOR_OPENING))
         {
+                gpioWrite(LED2, true);
+
+                stdioPrintf(UART_USB, "PUERTA: ABIERTA.\n");
+
                 prefixIface_raise_evOpen(&statechart);
 
                 prefix_runCycle(&statechart);
@@ -615,22 +623,11 @@ void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const 
                 gpioWrite(LEDG, false);
                 gpioWrite(LEDB, true);
 
-                if(cOPEN)
-                {
-                        gpioWrite(LED2, true);
-
-                        stdioPrintf(UART_USB, "PUERTA: ABIERTA.\n");
-
-                        stdioPrintf(UART_USB, "MOTOR: DETENIDO (ABIERTO).\n");
-                }
-                else
-                {
-                        gpioWrite(LED1, true);
-
-                        stdioPrintf(UART_USB, "PUERTA: CERRADA.\n");
-
-                        stdioPrintf(UART_USB, "MOTOR: DETENIDO (CERRADO).\n");
-                }
+                stdioPrintf(UART_USB, "MOTOR: DETENIDO (%s).\n", cOPEN?"ABIERTO":"CERRADO");
+        }
+        else if(PREFIX_PREFIXIFACE_CWAIT == cACTION)
+        {
+                stdioPrintf(UART_USB, "MOTOR: ESPERANDO 3 s.\n");
         }
 
 }
