@@ -48,6 +48,19 @@ PROJECT_INC_FOLDERS := $(PROJECT)/inc \
 
 # source files
 PROJECT_C_FILES := $(wildcard $(PROJECT)/src/*.c) \
-                   $(wildcard $(PROJECT)/gen/*.c)
+                   $(wildcard $(PROJECT)/gen/*.c)                    
 
 PROJECT_ASM_FILES := $(wildcard $(PROJECT)/src/*.S)
+
+YAKINDU_MODEL ?= 1
+
+SYMBOLS += -DACTIVE_ST=$(YAKINDU_MODEL)
+
+
+ifeq ($(OS),Windows_NT)
+	SCC = scc.bat
+else
+	SCC = scc
+endif
+
+

@@ -36,7 +36,7 @@
         TP2 Statechart EDU-CIAA-NXP - Portón cochera
                                                 #define __USE_TIME_EVENTS (true)
                                                 rm prefix.sct
-                                                cp Porton.-sct prefix.sct
+                                                cp PortonCochera.-sct prefix.sct
 */
 
 #define SCT_TP2_4 (4)
@@ -61,7 +61,9 @@
 
 
 /* Select active statechart. */
-#define ACTIVE_ST (SCT_TP2_2)
+#if (!defined(ACTIVE_ST))
+#define ACTIVE_ST (SCT_TP2_1)
+#endif
 
 /*==================[internal macro declaration]==============================*/
 
@@ -531,9 +533,7 @@ void prefixIface_aDecrement(const Prefix* handle, const sc_integer cMODE)
 
                 if(freq > 20)
                 {
-                        freq -= 1;
-
-                        prefixIface_set_frequency(&statechart, freq);
+                        prefixIface_set_frequency(&statechart, freq - 1);
                 }
 
                 stdioPrintf(UART_USB, "DECREMENT FREQUENCY: %d Hertz.\n", freq);
@@ -544,9 +544,7 @@ void prefixIface_aDecrement(const Prefix* handle, const sc_integer cMODE)
 
                 if(volt >= 0.0)
                 {
-                        volt -= 0.1;
-
-                        prefixIface_set_voltage(&statechart, volt);
+                        prefixIface_set_voltage(&statechart, volt - 0.1);
                 }
 
                 char buffout[10];
