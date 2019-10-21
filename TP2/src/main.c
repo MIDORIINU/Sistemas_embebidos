@@ -62,7 +62,7 @@
 
 /* Select active statechart. */
 #if (!defined(ACTIVE_ST))
-#define ACTIVE_ST (SCT_TP2_1)
+        #define ACTIVE_ST (SCT_TP2_3)
 #endif
 
 /*==================[internal macro declaration]==============================*/
@@ -80,6 +80,18 @@
         DEBUG_PRINT_ENABLE;
 
 #elif (ACTIVE_ST == SCT_TP2_2)
+
+        /* Select a TimeEvents choice   */
+        #define __USE_TIME_EVENTS (true)
+
+        #define __USE_BUTTONS_STATE_CHART (true)
+
+        /*      The DEBUG* functions are sAPI debug print functions.
+        Code that uses the DEBUG* functions will have their I/O routed to
+        the sAPI DEBUG UART. */
+        DEBUG_PRINT_ENABLE;
+
+#elif (ACTIVE_ST == SCT_TP2_3)
 
         /* Select a TimeEvents choice   */
         #define __USE_TIME_EVENTS (true)
@@ -117,10 +129,20 @@ TimerTicks ticks[NOF_TIMERS];
 
 static void SetLED(gpioMap_t LEDid, bool state);
 
-static void SetRGBLED(bool Rstate, bool Gstate, bool Bstate);
+#if (ACTIVE_ST == SCT_TP2_3)
+        static void GetRGBLED(bool* RGBState);
+
+#endif
+
+static void SetRGBLED(const bool* RGBState);
 
 #if (ACTIVE_ST == SCT_TP2_1)
-static void BlinkLED(gpioMap_t LEDid, tick_t TimeMS);
+        static void BlinkLED(gpioMap_t LEDid, tick_t TimeMS);
+
+#endif
+
+#if (ACTIVE_ST == SCT_TP2_3)
+        static void BlinkRGBLED(const bool* RGBState, tick_t TimeMS);
 
 #endif
 
@@ -193,7 +215,7 @@ int main(void)
         while(1)
         {
 
-                #if ((ACTIVE_ST == SCT_TP2_1) || (ACTIVE_ST == SCT_TP2_2))
+                #if ((ACTIVE_ST == SCT_TP2_1) || (ACTIVE_ST == SCT_TP2_2) || (ACTIVE_ST == SCT_TP2_3))
 
                 prefix_runCycle(&statechart);
 
@@ -215,11 +237,24 @@ static void SetLED(gpioMap_t LEDid, bool state)
 }
 
 
-static void SetRGBLED(bool Rstate, bool Gstate, bool Bstate)
+#if (ACTIVE_ST == SCT_TP2_3)
+static void GetRGBLED(bool* RGBState)
 {
-        gpioWrite(LEDR, (bool_t) Rstate);
-        gpioWrite(LEDG, (bool_t) Gstate);
-        gpioWrite(LEDB, (bool_t) Bstate);
+        for(int i = 0;  i < 3; i++)
+        {
+                *(RGBState++) = (bool) gpioRead(LEDR + i);
+        }
+}
+
+#endif
+
+
+static void SetRGBLED(const bool* RGBState)
+{
+        for(int i = 0;  i < 3; i++)
+        {
+                gpioWrite(LEDR + i, (bool_t)(*(RGBState++)));
+        }
 }
 
 
@@ -232,6 +267,22 @@ static void BlinkLED(gpioMap_t LEDid, tick_t TimeMS)
 }
 
 #endif
+
+
+#if (ACTIVE_ST == SCT_TP2_3)
+static void BlinkRGBLED(const bool* RGBState, tick_t TimeMS)
+{
+        SetRGBLED(RGBState);
+        delay(TimeMS);
+        SetRGBLED(((const bool[3])
+        {
+                false, false, false
+        }));
+
+}
+
+#endif
+
 
 #if (__USE_BUTTONS_STATE_CHART)
 
@@ -442,19 +493,28 @@ void prefixIface_aSetShape(const Prefix* handle, const sc_integer cSHAPE)
 {
         if(PREFIX_PREFIXIFACE_CTRIANG == cSHAPE)
         {
-                SetRGBLED(true, false, false);
+                SetRGBLED((const bool[3])
+                {
+                        true, false, false
+                });
 
                 stdioPrintf(UART_USB, "SHAPE: TRIANGULAR.\n");
         }
         else if(PREFIX_PREFIXIFACE_CSQUARE == cSHAPE)
         {
-                SetRGBLED(false, true, false);
+                SetRGBLED((const bool[3])
+                {
+                        false, true, false
+                });
 
                 stdioPrintf(UART_USB, "SHAPE: SQUARE.\n");
         }
         else if(PREFIX_PREFIXIFACE_CSINUSOID == cSHAPE)
         {
-                SetRGBLED(false, false, true);
+                SetRGBLED((const bool[3])
+                {
+                        false, false, true
+                });
 
                 stdioPrintf(UART_USB, "SHAPE: SINUSOIDAL.\n");
         }
@@ -590,7 +650,7 @@ void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const 
 {
         if(PREFIX_PREFIXIFACE_COPEN == cACTION)
         {
-                SetRGBLED(true, false, false);
+                SetRGBLED((const bool[3]) {true, false, false});
 
                 SetLED(LED1, false);
                 SetLED(LED2, false);
@@ -599,7 +659,7 @@ void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const 
         }
         else if(PREFIX_PREFIXIFACE_CCLOSE == cACTION)
         {
-                SetRGBLED(false, true, false);
+                SetRGBLED((const bool[3]) {false, true, false});
 
                 SetLED(LED1, false);
                 SetLED(LED2, false);
@@ -608,13 +668,88 @@ void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const 
         }
         else if(PREFIX_PREFIXIFACE_CSTOP == cACTION)
         {
-                SetRGBLED(false, false, true);
+                SetRGBLED((const bool[3]) {false, false, true});
 
                 stdioPrintf(UART_USB, "MOTOR: DETENIDO (%s).\n", cOPEN?"ABIERTO":"CERRADO");
         }
         else if(PREFIX_PREFIXIFACE_CWAIT == cACTION)
         {
                 stdioPrintf(UART_USB, "MOTOR: ESPERANDO 3 s.\n");
+        }
+
+}
+
+
+#elif (ACTIVE_ST == SCT_TP2_3)
+
+void prefixIface_aSensClosed(const Prefix* handle)
+{
+        SetLED(LED1, true);
+
+        stdioPrintf(UART_USB, "PUERTA: CERRADA.\n");
+
+        prefix_runCycle(&statechart);
+}
+
+
+void prefixIface_aSensOpen(const Prefix* handle)
+{
+        SetLED(LED2, true);
+
+        stdioPrintf(UART_USB, "PUERTA: ABIERTA.\n");
+
+        prefix_runCycle(&statechart);
+}
+
+
+void prefixIface_aSensCar(const Prefix* handle, const sc_boolean CarPres)
+{
+        SetLED(LED3, CarPres);
+
+        stdioPrintf(UART_USB, "AUTO: %s.\n", CarPres?"SI":"NO");
+}
+
+
+void prefixIface_aSensRemote(const Prefix* handle)
+{
+        bool LEDRGBstate[3];
+
+        GetRGBLED(LEDRGBstate);
+
+        SetRGBLED((const bool[3]) {false, false, false});
+
+        BlinkRGBLED((const bool[3]) {true, true, true}, 30);
+
+        SetRGBLED(LEDRGBstate);
+
+}
+
+
+void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const sc_boolean cOPEN)
+{
+        if(PREFIX_PREFIXIFACE_COPEN == cACTION)
+        {
+                SetRGBLED((const bool[3]) {true, false, false});
+
+                SetLED(LED1, false);
+                SetLED(LED2, false);
+
+                stdioPrintf(UART_USB, "MOTOR: ABRIENDO.\n");
+        }
+        else if(PREFIX_PREFIXIFACE_CCLOSE == cACTION)
+        {
+                SetRGBLED((const bool[3]) {false, true, false});
+
+                SetLED(LED1, false);
+                SetLED(LED2, false);
+
+                stdioPrintf(UART_USB, "MOTOR: CERRANDO.\n");
+        }
+        else if(PREFIX_PREFIXIFACE_CSTOP == cACTION)
+        {
+                SetRGBLED((const bool[3]) { false, false, true});
+
+                stdioPrintf(UART_USB, "MOTOR: DETENIDO (%s).\n", cOPEN?"ABIERTO":"CERRADO");
         }
 
 }

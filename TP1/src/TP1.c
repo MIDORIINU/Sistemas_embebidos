@@ -31,8 +31,8 @@ DEBUG_PRINT_ENABLE;
 
 /*==================[internal functions declaration]=========================*/
 #if (TP1_PROJECT == TP1_3)
-/* FUNCION que se ejecuta cada vez que ocurre un Tick. */
-static void myTickHook(void* ptr);
+        /* FUNCION que se ejecuta cada vez que ocurre un Tick. */
+        static void myTickHook(void* ptr);
 #endif
 
 
@@ -52,12 +52,12 @@ int main(void)
         boardConfig();
         /* UART for debug messages. */
         debugPrintConfigUart(UART_USB, 115200);
-#if (TP1_PROJECT == TP1_2)
+        #if (TP1_PROJECT == TP1_2)
         gpioConfig(GPIO0, GPIO_INPUT);
         gpioConfig(GPIO1, GPIO_OUTPUT);
         /* Variable para almacenar el valor de tecla leido */
         bool_t valor;
-#elif (TP1_PROJECT == TP1_3)
+        #elif (TP1_PROJECT == TP1_3)
         /*      Inicializar el conteo de Ticks con resolucion de 50ms (se ejecuta
                 periodicamente una interrupcion cada 50ms que incrementa un contador de
                 Ticks obteniendose una base de tiempos). */
@@ -71,19 +71,19 @@ int main(void)
         */
         tickCallbackSet(myTickHook, (void*)LEDR);
         delay(1000);
-#endif
+        #endif
         debugPrintString("DEBUG c/sAPI\r\n");
         /* ------------- REPETIR POR SIEMPRE ------------- */
         while(1)
         {
-#if (TP1_PROJECT == TP1_1)
+                #if (TP1_PROJECT == TP1_1)
                 /* Prendo el led azul */
                 gpioWrite(LEDB, ON);
                 delay(500);
                 /* Apago el led azul */
                 gpioWrite(LEDB, OFF);
                 delay(500);
-#elif (TP1_PROJECT == TP1_2)
+                #elif (TP1_PROJECT == TP1_2)
                 valor = !gpioRead(TEC1);
                 gpioWrite(LEDB, valor);
                 valor = !gpioRead(TEC2);
@@ -94,7 +94,7 @@ int main(void)
                 gpioWrite(LED3, valor);
                 valor = !gpioRead(GPIO0);
                 gpioWrite(GPIO1, valor);
-#elif (TP1_PROJECT == TP1_3)
+                #elif (TP1_PROJECT == TP1_3)
                 tickCallbackSet(myTickHook, (void*)LEDG);
                 debugPrintString("LED RGB G\n");
                 delay(1000);
@@ -113,7 +113,7 @@ int main(void)
                 tickCallbackSet(myTickHook, (void*)LEDR);
                 debugPrintString("LED RGB R\n");
                 delay(1000);
-#endif
+                #endif
         }
         /*      NO DEBE LLEGAR NUNCA AQUI, debido a que a este programa no es llamado
                 por ningun S.O. */
