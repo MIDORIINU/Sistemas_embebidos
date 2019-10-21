@@ -62,7 +62,7 @@
 
 /* Select active statechart. */
 #if (!defined(ACTIVE_ST))
-        #define ACTIVE_ST (SCT_TP2_4)
+        #define ACTIVE_ST (SCT_TP2_1)
 #endif
 
 /*==================[internal macro declaration]==============================*/
@@ -363,6 +363,23 @@ static void ImplementButtons(const sc_integer Btn)
         }
 
         #elif (ACTIVE_ST == SCT_TP2_4)
+        switch(Btn)
+        {
+                case 1: // TEC1
+                        break;
+                case 2: // TEC2
+                        prefixIface_raise_evBtnSpeed(&statechart);
+                        break;
+                case 4: // TEC3
+                        prefixIface_raise_evBtnIngress(&statechart);
+                        break;
+                case 8: // TEC4
+                        prefixIface_raise_evBtnEgress(&statechart);
+                        break;
+
+        }
+
+        #elif (ACTIVE_ST == SCT_TP2_5)
         switch(Btn)
         {
                 case 1: // TEC1
@@ -812,6 +829,55 @@ void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const 
 
 
 #elif (ACTIVE_ST == SCT_TP2_4)
+
+void prefixIface_aSensIngress(const Prefix* handle)
+{
+        BlinkLED(LED2, 25);
+
+        stdioPrintf(UART_USB, "INGRESO: DETECTADO.\n");
+
+        prefix_runCycle(&statechart);
+}
+
+
+void prefixIface_aSensEgress(const Prefix* handle)
+{
+        BlinkLED(LED3, 25);
+
+        stdioPrintf(UART_USB, "EGRESO: DETECTADO.\n");
+
+        prefix_runCycle(&statechart);
+}
+
+
+void prefixIface_aSensSpeed(const Prefix* handle, const sc_integer cSpeed)
+{
+        BlinkLED(LED1, 25);
+
+        stdioPrintf(UART_USB, "VELOCIDAD: %d.\n", cSpeed);
+
+        prefix_runCycle(&statechart);
+}
+
+
+void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const sc_integer cSpeed)
+{
+        if(PREFIX_PREFIXIFACE_CSTOP == cACTION)
+        {
+                SetRGBLED((const bool[3]) {false, false, true});
+
+                stdioPrintf(UART_USB, "ESCALERA: DETENIDA.\n");
+        }
+        else if(PREFIX_PREFIXIFACE_CSTART == cACTION)
+        {
+                SetRGBLED((const bool[3]) {(2 == cSpeed), (1 == cSpeed), false});
+
+                stdioPrintf(UART_USB, "EACALERA: EN MARCHA A VELOCIDAD %d.\n", cSpeed);
+        }
+
+}
+
+#elif (ACTIVE_ST == SCT_TP2_5)
 
 void prefixIface_aSensIngress(const Prefix* handle)
 {

@@ -52,7 +52,7 @@ PROJECT_C_FILES := $(wildcard $(PROJECT)/src/*.c) \
 
 PROJECT_ASM_FILES := $(wildcard $(PROJECT)/src/*.S)
 
-YAKINDU_MODEL ?= 4
+YAKINDU_MODEL ?= 5
 
 SYMBOLS += -DACTIVE_ST=$(YAKINDU_MODEL)
 
