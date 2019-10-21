@@ -274,10 +274,7 @@ static void BlinkRGBLED(const bool* RGBState, tick_t TimeMS)
 {
         SetRGBLED(RGBState);
         delay(TimeMS);
-        SetRGBLED(((const bool[3])
-        {
-                false, false, false
-        }));
+        SetRGBLED(((const bool[3]) {false, false, false}));
 
 }
 
@@ -289,10 +286,8 @@ static void BlinkRGBLED(const bool* RGBState, tick_t TimeMS)
 static void ImplementButtons(const sc_integer Btn)
 {
         #if (ACTIVE_ST == SCT_TP2_1)
-
         switch(Btn)
         {
-
                 case 1: // TEC1
                         prefixIface_raise_evSHAPE(&statechart);
                         break;
@@ -309,21 +304,36 @@ static void ImplementButtons(const sc_integer Btn)
         }
 
         #elif (ACTIVE_ST == SCT_TP2_2)
-
         switch(Btn)
         {
-
                 case 1: // TEC1
-
                         break;
                 case 2: // TEC2
-                        prefixIface_raise_eBtnClosed(&statechart);
+                        prefixIface_raise_evBtnClosed(&statechart);
                         break;
                 case 4: // TEC3
-                        prefixIface_raise_eBtnOpen(&statechart);
+                        prefixIface_raise_evBtnOpen(&statechart);
                         break;
                 case 8: // TEC4
-                        prefixIface_raise_eBtnPresence(&statechart);
+                        prefixIface_raise_evBtnPresence(&statechart);
+                        break;
+
+        }
+
+        #elif (ACTIVE_ST == SCT_TP2_3)
+        switch(Btn)
+        {
+                case 1: // TEC1
+                        prefixIface_raise_evBtnRemote(&statechart);
+                        break;
+                case 2: // TEC2
+                        prefixIface_raise_evBtnClosed(&statechart);
+                        break;
+                case 4: // TEC3
+                        prefixIface_raise_evBtnOpen(&statechart);
+                        break;
+                case 8: // TEC4
+                        prefixIface_raise_evBtnCar(&statechart);
                         break;
 
         }
@@ -335,11 +345,9 @@ static void ImplementButtons(const sc_integer Btn)
 static bool RepeatButtons(const sc_integer Btn)
 {
         #if (ACTIVE_ST == SCT_TP2_1)
-
         return ((4 == Btn) || (8 == Btn));
 
-        #elif (ACTIVE_ST == SCT_TP2_2)
-
+        #elif ((ACTIVE_ST == SCT_TP2_2) || (ACTIVE_ST == SCT_TP2_3))
         return false;
 
         #endif
@@ -674,7 +682,7 @@ void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const 
         }
         else if(PREFIX_PREFIXIFACE_CWAIT == cACTION)
         {
-                stdioPrintf(UART_USB, "MOTOR: ESPERANDO 3 s.\n");
+                stdioPrintf(UART_USB, "MOTOR: ESPERANDO PARA CERRAR EN 3 s.\n");
         }
 
 }
@@ -718,9 +726,13 @@ void prefixIface_aSensRemote(const Prefix* handle)
 
         SetRGBLED((const bool[3]) {false, false, false});
 
-        BlinkRGBLED((const bool[3]) {true, true, true}, 30);
+        BlinkRGBLED((const bool[3]) {true, true, true}, 100);
 
         SetRGBLED(LEDRGBstate);
+
+        stdioPrintf(UART_USB, "REMOTE CONROL SIGNAL.\n");
+
+        prefix_runCycle(&statechart);
 
 }
 
@@ -750,6 +762,10 @@ void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const 
                 SetRGBLED((const bool[3]) { false, false, true});
 
                 stdioPrintf(UART_USB, "MOTOR: DETENIDO (%s).\n", cOPEN?"ABIERTO":"CERRADO");
+        }
+        else if(PREFIX_PREFIXIFACE_CWAIT == cACTION)
+        {
+                stdioPrintf(UART_USB, "MOTOR: ESPERANDO PARA CERRAR EN 5 s.\n");
         }
 
 }
