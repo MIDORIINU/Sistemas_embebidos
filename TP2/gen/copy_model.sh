@@ -1,11 +1,11 @@
 #!/bin/bash
 
-SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-
 if [ -z "$1" ] ; then
         echo "Error: Missing model number."
         exit 1
 fi
+
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
 cd "${SCRIPTPATH}"
 
