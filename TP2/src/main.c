@@ -151,7 +151,10 @@ TimerTicks ticks[NOF_TIMERS];
 
 /*==================[internal functions declaration]=========================*/
 
-static void SetLED(gpioMap_t LEDid, bool state);
+#if ((ACTIVE_ST == SCT_TP2_1) || (ACTIVE_ST == SCT_TP2_2) || (ACTIVE_ST == SCT_TP2_3))
+        static void SetLED(gpioMap_t LEDid, bool state);
+
+#endif
 
 #if (ACTIVE_ST == SCT_TP2_3)
         static void GetRGBLED(bool* RGBState);
@@ -160,7 +163,7 @@ static void SetLED(gpioMap_t LEDid, bool state);
 
 static void SetRGBLED(const bool* RGBState);
 
-#if (ACTIVE_ST == SCT_TP2_1)
+#if ((ACTIVE_ST == SCT_TP2_1) || (ACTIVE_ST == SCT_TP2_4))
         static void BlinkLED(gpioMap_t LEDid, tick_t TimeMS);
 
 #endif
@@ -250,11 +253,13 @@ int main(void)
 
 /*==================[internal functions definition]==========================*/
 
+#if ((ACTIVE_ST == SCT_TP2_1) || (ACTIVE_ST == SCT_TP2_2) || (ACTIVE_ST == SCT_TP2_3))
 static void SetLED(gpioMap_t LEDid, bool state)
 {
         gpioWrite(LEDid, (bool_t) state);
 }
 
+#endif
 
 #if (ACTIVE_ST == SCT_TP2_3)
 static void GetRGBLED(bool* RGBState)
@@ -277,7 +282,7 @@ static void SetRGBLED(const bool* RGBState)
 }
 
 
-#if (ACTIVE_ST == SCT_TP2_1)
+#if ((ACTIVE_ST == SCT_TP2_1) || (ACTIVE_ST == SCT_TP2_4))
 static void BlinkLED(gpioMap_t LEDid, tick_t TimeMS)
 {
         gpioWrite(LEDid, true);
@@ -357,25 +362,24 @@ static void ImplementButtons(const sc_integer Btn)
 
         }
 
-#elif (ACTIVE_ST == SCT_TP2_4)
-switch(Btn)
-{
-        case 1: // TEC1
-                prefixIface_raise_evBtnRemote(&statechart);
-                break;
-        case 2: // TEC2
-                prefixIface_raise_evBtnClosed(&statechart);
-                break;
-        case 4: // TEC3
-                prefixIface_raise_evBtnOpen(&statechart);
-                break;
-        case 8: // TEC4
-                prefixIface_raise_evBtnCar(&statechart);
-                break;
+        #elif (ACTIVE_ST == SCT_TP2_4)
+        switch(Btn)
+        {
+                case 1: // TEC1
+                        break;
+                case 2: // TEC2
+                        prefixIface_raise_evBtnSpeed(&statechart);
+                        break;
+                case 4: // TEC3
+                        prefixIface_raise_evBtnIngress(&statechart);
+                        break;
+                case 8: // TEC4
+                        prefixIface_raise_evBtnEgress(&statechart);
+                        break;
 
-}
+        }
 
-#endif
+        #endif
 }
 
 
@@ -809,86 +813,52 @@ void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const 
 
 #elif (ACTIVE_ST == SCT_TP2_4)
 
-void prefixIface_aSensClosed(const Prefix* handle)
+void prefixIface_aSensIngress(const Prefix* handle)
 {
-        SetLED(LED1, true);
+        BlinkLED(LED2, 25);
 
-        stdioPrintf(UART_USB, "PUERTA: CERRADA.\n");
+        stdioPrintf(UART_USB, "INGRESO: DETECTADO.\n");
 
         prefix_runCycle(&statechart);
 }
 
 
-void prefixIface_aSensOpen(const Prefix* handle)
+void prefixIface_aSensEgress(const Prefix* handle)
 {
-        SetLED(LED2, true);
+        BlinkLED(LED3, 25);
 
-        stdioPrintf(UART_USB, "PUERTA: ABIERTA.\n");
+        stdioPrintf(UART_USB, "EGRESO: DETECTADO.\n");
 
         prefix_runCycle(&statechart);
 }
 
 
-void prefixIface_aSensCar(const Prefix* handle, const sc_boolean CarPres)
+void prefixIface_aSensSpeed(const Prefix* handle, const sc_integer cSpeed)
 {
-        SetLED(LED3, CarPres);
+        BlinkLED(LED1, 25);
 
-        stdioPrintf(UART_USB, "AUTO: %s.\n", CarPres?"SI":"NO");
-}
-
-
-void prefixIface_aSensRemote(const Prefix* handle)
-{
-        bool LEDRGBstate[3];
-
-        GetRGBLED(LEDRGBstate);
-
-        SetRGBLED((const bool[3]) {false, false, false});
-
-        BlinkRGBLED((const bool[3]) {true, true, true}, 100);
-
-        SetRGBLED(LEDRGBstate);
-
-        stdioPrintf(UART_USB, "REMOTE CONROL SIGNAL.\n");
+        stdioPrintf(UART_USB, "VELOCIDAD: %d.\n", cSpeed);
 
         prefix_runCycle(&statechart);
-
 }
 
 
-void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const sc_boolean cOPEN)
+void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const sc_integer cSpeed)
 {
-        if(PREFIX_PREFIXIFACE_COPEN == cACTION)
+        if(PREFIX_PREFIXIFACE_CSTOP == cACTION)
         {
-                SetRGBLED((const bool[3]) {true, false, false});
+                SetRGBLED((const bool[3]) {false, false, true});
 
-                SetLED(LED1, false);
-                SetLED(LED2, false);
-
-                stdioPrintf(UART_USB, "MOTOR: ABRIENDO.\n");
+                stdioPrintf(UART_USB, "ESCALERA: DETENIDA.\n");
         }
-        else if(PREFIX_PREFIXIFACE_CCLOSE == cACTION)
+        else if(PREFIX_PREFIXIFACE_CSTART == cACTION)
         {
-                SetRGBLED((const bool[3]) {false, true, false});
+                SetRGBLED((const bool[3]) {(2 == cSpeed), (1 == cSpeed), false});
 
-                SetLED(LED1, false);
-                SetLED(LED2, false);
-
-                stdioPrintf(UART_USB, "MOTOR: CERRANDO.\n");
-        }
-        else if(PREFIX_PREFIXIFACE_CSTOP == cACTION)
-        {
-                SetRGBLED((const bool[3]) { false, false, true});
-
-                stdioPrintf(UART_USB, "MOTOR: DETENIDO (%s).\n", cOPEN?"ABIERTO":"CERRADO");
-        }
-        else if(PREFIX_PREFIXIFACE_CWAIT == cACTION)
-        {
-                stdioPrintf(UART_USB, "MOTOR: ESPERANDO PARA CERRAR EN 5 s.\n");
+                stdioPrintf(UART_USB, "EACALERA: EN MARCHA A VELOCIDAD %d.\n", cSpeed);
         }
 
 }
-
 
 #endif
 
