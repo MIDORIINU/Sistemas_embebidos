@@ -62,7 +62,7 @@
 
 /* Select active statechart. */
 #if (!defined(ACTIVE_ST))
-        #define ACTIVE_ST (SCT_TP2_1)
+        #define ACTIVE_ST (SCT_TP2_5)
 #endif
 
 /*==================[internal macro declaration]==============================*/
@@ -151,10 +151,11 @@ TimerTicks ticks[NOF_TIMERS];
 
 /*==================[internal functions declaration]=========================*/
 
-#if ((ACTIVE_ST == SCT_TP2_1) || (ACTIVE_ST == SCT_TP2_2) || (ACTIVE_ST == SCT_TP2_3))
+#if ((ACTIVE_ST == SCT_TP2_1) || (ACTIVE_ST == SCT_TP2_2) || (ACTIVE_ST == SCT_TP2_3) || (ACTIVE_ST == SCT_TP2_5))
         static void SetLED(gpioMap_t LEDid, bool state);
 
 #endif
+
 
 #if (ACTIVE_ST == SCT_TP2_3)
         static void GetRGBLED(bool* RGBState);
@@ -163,7 +164,7 @@ TimerTicks ticks[NOF_TIMERS];
 
 static void SetRGBLED(const bool* RGBState);
 
-#if ((ACTIVE_ST == SCT_TP2_1) || (ACTIVE_ST == SCT_TP2_4))
+#if ((ACTIVE_ST == SCT_TP2_1) || (ACTIVE_ST == SCT_TP2_4) || (ACTIVE_ST == SCT_TP2_5))
         static void BlinkLED(gpioMap_t LEDid, tick_t TimeMS);
 
 #endif
@@ -253,7 +254,7 @@ int main(void)
 
 /*==================[internal functions definition]==========================*/
 
-#if ((ACTIVE_ST == SCT_TP2_1) || (ACTIVE_ST == SCT_TP2_2) || (ACTIVE_ST == SCT_TP2_3))
+#if ((ACTIVE_ST == SCT_TP2_1) || (ACTIVE_ST == SCT_TP2_2) || (ACTIVE_ST == SCT_TP2_3) || (ACTIVE_ST == SCT_TP2_5))
 static void SetLED(gpioMap_t LEDid, bool state)
 {
         gpioWrite(LEDid, (bool_t) state);
@@ -282,7 +283,7 @@ static void SetRGBLED(const bool* RGBState)
 }
 
 
-#if ((ACTIVE_ST == SCT_TP2_1) || (ACTIVE_ST == SCT_TP2_4))
+#if ((ACTIVE_ST == SCT_TP2_1) || (ACTIVE_ST == SCT_TP2_4) || (ACTIVE_ST == SCT_TP2_5))
 static void BlinkLED(gpioMap_t LEDid, tick_t TimeMS)
 {
         gpioWrite(LEDid, true);
@@ -385,13 +386,13 @@ static void ImplementButtons(const sc_integer Btn)
                 case 1: // TEC1
                         break;
                 case 2: // TEC2
-                        prefixIface_raise_evBtnSpeed(&statechart);
+                        prefixIface_raise_evBtnStartStop(&statechart);
                         break;
                 case 4: // TEC3
-                        prefixIface_raise_evBtnIngress(&statechart);
+                        prefixIface_raise_evBtnOvenMode(&statechart);
                         break;
                 case 8: // TEC4
-                        prefixIface_raise_evBtnEgress(&statechart);
+                        prefixIface_raise_evBtnDoor(&statechart);
                         break;
 
         }
@@ -879,51 +880,96 @@ void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const 
 
 #elif (ACTIVE_ST == SCT_TP2_5)
 
-void prefixIface_aSensIngress(const Prefix* handle)
+void prefixIface_aOvenControl(const Prefix* handle, const sc_integer cOVENMODE, const sc_boolean cCOOKING, const sc_boolean cDOOROPEN)
 {
+
+        char* smode = 0;
+
+        bool lmode[3] = {false, false, (bool)(cCOOKING || cDOOROPEN)};
+
+        if(PREFIX_PREFIXIFACE_CMICROWAVE == cOVENMODE)
+        {
+                smode = "MICRO-ONDAS";
+
+                lmode[0] = (bool)cCOOKING;
+                lmode[1] = false;
+        }
+        else if(PREFIX_PREFIXIFACE_CGRILL == cOVENMODE)
+        {
+                smode = "GRILL";
+
+                lmode[0] = false;
+                lmode[1] = (bool)cCOOKING;
+        }
+        else if((PREFIX_PREFIXIFACE_CMICROWAVE + PREFIX_PREFIXIFACE_CGRILL) == cOVENMODE)
+        {
+                smode = "MICRO-ONDAS CON GRILL";
+
+                lmode[0] = (bool)cCOOKING;
+                lmode[1] = (bool)cCOOKING;
+        }
+
+        SetRGBLED(lmode);
+
+        if(cCOOKING)
+        {
+
+                stdioPrintf(UART_USB, "HORNO: COCINANDO EN MODO %s.\n", smode);
+        }
+        else
+        {
+                stdioPrintf(UART_USB, "HORNO: APAGADO.\n");
+
+        }
+
+}
+
+
+void prefixIface_aLight(const Prefix* handle, const sc_boolean cON)
+{
+        SetLED(LEDB, (bool)cON);
+}
+
+
+void prefixIface_aSensDoor(const Prefix* handle, const sc_boolean cDoorOpen)
+{
+        SetLED(LED3, (bool)cDoorOpen);
+
+        stdioPrintf(UART_USB, "PUERTA: %s.\n", cDoorOpen?"ABIERTA":"CERRADA");
+}
+
+
+void prefixIface_aSensOvenMode(const Prefix* handle, const sc_integer cOVENMODE)
+{
+        char* smode = 0;
+
         BlinkLED(LED2, 25);
 
-        stdioPrintf(UART_USB, "INGRESO: DETECTADO.\n");
+        if(PREFIX_PREFIXIFACE_CMICROWAVE == cOVENMODE)
+        {
+                smode = "MICRO-ONDAS";
+        }
+        else if(PREFIX_PREFIXIFACE_CGRILL == cOVENMODE)
+        {
+                smode = "GRILL";
+
+        }
+        else if((PREFIX_PREFIXIFACE_CMICROWAVE + PREFIX_PREFIXIFACE_CGRILL) == cOVENMODE)
+        {
+                smode = "MICRO-ONDAS CON GRILL";
+        }
+
+        stdioPrintf(UART_USB, "MODO: %s.\n", smode);
 
         prefix_runCycle(&statechart);
 }
 
 
-void prefixIface_aSensEgress(const Prefix* handle)
-{
-        BlinkLED(LED3, 25);
-
-        stdioPrintf(UART_USB, "EGRESO: DETECTADO.\n");
-
-        prefix_runCycle(&statechart);
-}
-
-
-void prefixIface_aSensSpeed(const Prefix* handle, const sc_integer cSpeed)
+void prefixIface_aSensStartStop(const Prefix* handle, const sc_boolean cCOOKING)
 {
         BlinkLED(LED1, 25);
 
-        stdioPrintf(UART_USB, "VELOCIDAD: %d.\n", cSpeed);
-
         prefix_runCycle(&statechart);
-}
-
-
-void prefixIface_aControl(const Prefix* handle, const sc_integer cACTION, const sc_integer cSpeed)
-{
-        if(PREFIX_PREFIXIFACE_CSTOP == cACTION)
-        {
-                SetRGBLED((const bool[3]) {false, false, true});
-
-                stdioPrintf(UART_USB, "ESCALERA: DETENIDA.\n");
-        }
-        else if(PREFIX_PREFIXIFACE_CSTART == cACTION)
-        {
-                SetRGBLED((const bool[3]) {(2 == cSpeed), (1 == cSpeed), false});
-
-                stdioPrintf(UART_USB, "EACALERA: EN MARCHA A VELOCIDAD %d.\n", cSpeed);
-        }
-
 }
 
 #endif
