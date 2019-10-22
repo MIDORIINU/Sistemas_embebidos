@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0">
-  <sgraph:Statechart xmi:id="_me37AFepEeiXJJ0LdR8_qg" specification="interface:&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// BUTTONS&#xA;&#xA;operation aButtons(Btn:integer)&#xA;operation aReadButtons():integer&#xA;operation aRepeatButtons(Btn:integer):boolean&#xA;&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// MODE&#xA;&#xA;const cMICROWAVE: integer = 1&#xA;const cGRILL: integer = 2&#xA;&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// OVEN&#xA;&#xA;const cSTOP: integer = 0&#xA;const cCOOKING: integer = 1&#xA;&#xA;operation aOvenControl(cOVENMODE:integer, cCOOKING:boolean, cDOOROPEN:boolean)&#xA;operation aLight(cON: boolean)&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// SENSORS&#xA;&#xA;in event evBtnDoor&#xA;in event evBtnOvenMode&#xA;in event evBtnStartStop&#xA;&#xA;operation aSensDoor(cDoorOpen:boolean)&#xA;operation aSensOvenMode(cOVENMODE: integer)&#xA;operation aSensStartStop(cCOOKING:boolean)&#xA;&#xA;internal:&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// BUTTONS&#xA;&#xA;var Buttons: integer = 0&#xA;var NewButtons: integer = 0&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// MODE&#xA;&#xA;var DoorOpen : boolean&#xA;var Mode: integer&#xA;&#xA;event evOvenMode&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// OVEN&#xA;&#xA;&#xA;&#xA;event evStartStop&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// SENSORS&#xA;&#xA;&#xA;" name="prefix">
+  <sgraph:Statechart xmi:id="_me37AFepEeiXJJ0LdR8_qg" specification="interface:&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// BUTTONS&#xA;&#xA;operation aButtons(Btn:integer)&#xA;operation aReadButtons():integer&#xA;operation aRepeatButtons(Btn:integer):boolean&#xA;&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// MODE&#xA;&#xA;const cMICROWAVE: integer = 1&#xA;const cGRILL: integer = 2&#xA;&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// OVEN&#xA;&#xA;const cSTOP: integer = 0&#xA;const cCOOKING: integer = 1&#xA;&#xA;operation aOvenControl(cOVENMODE:integer, cCOOKING:boolean, cDOOROPEN:boolean)&#xA;operation aLight(cON: boolean)&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// SENSORS&#xA;&#xA;in event evBtnDoor&#xA;in event evBtnOvenMode&#xA;in event evBtnStartStop&#xA;&#xA;operation aSensDoor(cDoorOpen:boolean)&#xA;operation aSensOvenMode()&#xA;operation aSensStartStop()&#xA;&#xA;internal:&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// BUTTONS&#xA;&#xA;var Buttons: integer = 0&#xA;var NewButtons: integer = 0&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// MODE&#xA;&#xA;var DoorOpen : boolean&#xA;var Mode: integer&#xA;&#xA;event evOvenMode&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// OVEN&#xA;&#xA;&#xA;&#xA;event evStartStop&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// SENSORS&#xA;&#xA;&#xA;" name="prefix">
     <regions xmi:id="_me-oslepEeiXJJ0LdR8_qg" name="MODE">
       <vertices xsi:type="sgraph:Entry" xmi:id="_mfF9cVepEeiXJJ0LdR8_qg">
         <outgoingTransitions xmi:id="_nhp7IPSZEemiZobDH4k9FA" specification="" target="_RyAaoFe6EeiYuMep_3QDzA"/>
@@ -47,10 +47,10 @@
       <vertices xsi:type="sgraph:Entry" xmi:id="_Qfk-cPJbEemW4YmAlqzbfA">
         <outgoingTransitions xmi:id="_Rzp1cPJbEemW4YmAlqzbfA" specification="" target="_MT0IoPJbEemW4YmAlqzbfA"/>
       </vertices>
-      <vertices xsi:type="sgraph:State" xmi:id="_Tg2XEPJbEemW4YmAlqzbfA" specification="entry / raise evOvenMode; aSensOvenMode(Mode)" name="SEN_OVEN_MODE" incomingTransitions="_WO_YUPJbEemW4YmAlqzbfA">
+      <vertices xsi:type="sgraph:State" xmi:id="_Tg2XEPJbEemW4YmAlqzbfA" specification="entry / raise evOvenMode; aSensOvenMode()" name="SEN_OVEN_MODE" incomingTransitions="_WO_YUPJbEemW4YmAlqzbfA">
         <outgoingTransitions xmi:id="_arYrIPJbEemW4YmAlqzbfA" specification="always" target="_MT0IoPJbEemW4YmAlqzbfA"/>
       </vertices>
-      <vertices xsi:type="sgraph:State" xmi:id="_guNJPfJbEemW4YmAlqzbfA" specification="entry / raise evStartStop; aSensStartStop(active(OVEN.COOKING))" name="SEN_START_STOP" incomingTransitions="_xOAjgPJbEemW4YmAlqzbfA">
+      <vertices xsi:type="sgraph:State" xmi:id="_guNJPfJbEemW4YmAlqzbfA" specification="entry / raise evStartStop; aSensStartStop()" name="SEN_START_STOP" incomingTransitions="_xOAjgPJbEemW4YmAlqzbfA">
         <outgoingTransitions xmi:id="_zT-xgPJbEemW4YmAlqzbfA" specification="always" target="_MT0IoPJbEemW4YmAlqzbfA"/>
       </vertices>
       <vertices xsi:type="sgraph:State" xmi:id="_leoLR_JbEemW4YmAlqzbfA" specification="entry / DoorOpen = !DoorOpen; aLight(DoorOpen); aSensDoor(DoorOpen)" name="SEN_DOOR" incomingTransitions="_rMOnQPJbEemW4YmAlqzbfA">
@@ -59,7 +59,7 @@
     </regions>
     <regions xmi:id="_dY6hoPR6Eemuwa8PvyYQkg" name="OVEN">
       <vertices xsi:type="sgraph:State" xmi:id="_kwtOkPR6Eemuwa8PvyYQkg" specification="entry / aLight(DoorOpen); aOvenControl (Mode, false, DoorOpen)" name="STOP" incomingTransitions="_Zmxa0PR8Eemuwa8PvyYQkg _C11kMPR9Eemuwa8PvyYQkg _Teg7wPR_Eemuwa8PvyYQkg">
-        <outgoingTransitions xmi:id="_A6HeYPR9Eemuwa8PvyYQkg" specification="evStartStop" target="_mfJtYPR6Eemuwa8PvyYQkg"/>
+        <outgoingTransitions xmi:id="_A6HeYPR9Eemuwa8PvyYQkg" specification="evStartStop [!DoorOpen]" target="_mfJtYPR6Eemuwa8PvyYQkg"/>
       </vertices>
       <vertices xsi:type="sgraph:State" xmi:id="_mfJtYPR6Eemuwa8PvyYQkg" specification="entry / aLight(true); aOvenControl (Mode, true, DoorOpen)" name="COOKING" incomingTransitions="_A6HeYPR9Eemuwa8PvyYQkg">
         <outgoingTransitions xmi:id="_C11kMPR9Eemuwa8PvyYQkg" specification="evStartStop" target="_kwtOkPR6Eemuwa8PvyYQkg"/>

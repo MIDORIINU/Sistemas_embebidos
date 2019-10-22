@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0">
-  <sgraph:Statechart xmi:id="_me37AFepEeiXJJ0LdR8_qg" specification="interface:&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// BUTTONS&#xA;&#xA;operation aButtons(Btn:integer)&#xA;operation aReadButtons():integer&#xA;operation aRepeatButtons(Btn:integer):boolean&#xA;&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// DOOR&#xA;&#xA;const cOPEN: integer = 0&#xA;const cCLOSE: integer = 1&#xA;const cSTOP: integer = 2&#xA;const cWAIT: integer = 3&#xA;&#xA;operation aControl(cACTION:integer, cOPEN:boolean)&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// SENSORS&#xA;&#xA;in event eBtnOpen&#xA;in event eBtnClosed&#xA;in event eBtnPresence&#xA;&#xA;operation aSensOpen()&#xA;operation aSensClosed()&#xA;operation aSensPresence(Pres:boolean)&#xA;&#xA;internal:&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// BUTTONS&#xA;&#xA;var Buttons: integer = 0&#xA;var NewButtons: integer = 0&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// DOOR&#xA;&#xA;event evClosed&#xA;event evOpen&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// SENSORS&#xA;&#xA;var Presence: boolean = false&#xA;" name="prefix">
+  <sgraph:Statechart xmi:id="_me37AFepEeiXJJ0LdR8_qg" specification="interface:&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// BUTTONS&#xA;&#xA;operation aButtons(Btn:integer)&#xA;operation aReadButtons():integer&#xA;operation aRepeatButtons(Btn:integer):boolean&#xA;&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// DOOR&#xA;&#xA;const cOPEN: integer = 0&#xA;const cCLOSE: integer = 1&#xA;const cSTOP: integer = 2&#xA;const cWAIT: integer = 3&#xA;&#xA;operation aControl(cACTION:integer, cOPEN:boolean)&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// SENSORS&#xA;&#xA;in event evBtnOpen&#xA;in event evBtnClosed&#xA;in event evBtnPresence&#xA;&#xA;operation aSensOpen()&#xA;operation aSensClosed()&#xA;operation aSensPresence(Pres:boolean)&#xA;&#xA;internal:&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// BUTTONS&#xA;&#xA;var Buttons: integer = 0&#xA;var NewButtons: integer = 0&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// DOOR&#xA;&#xA;event evClosed&#xA;event evOpen&#xA;&#xA;//////////////////////////////////////&#xA;&#xA;// SENSORS&#xA;&#xA;var Presence: boolean = false&#xA;" name="prefix">
     <regions xmi:id="_me-oslepEeiXJJ0LdR8_qg" name="DOOR">
       <vertices xsi:type="sgraph:Entry" xmi:id="_mfF9cVepEeiXJJ0LdR8_qg">
         <outgoingTransitions xmi:id="_mfQVgVepEeiXJJ0LdR8_qg" specification="&#xA;" target="_mfIZtFepEeiXJJ0LdR8_qg"/>
@@ -48,9 +48,9 @@
     </regions>
     <regions xmi:id="_03Y6cPJaEemW4YmAlqzbfA" name="SENSORS">
       <vertices xsi:type="sgraph:State" xmi:id="_MT0IoPJbEemW4YmAlqzbfA" name="SENSING" incomingTransitions="_Rzp1cPJbEemW4YmAlqzbfA _arYrIPJbEemW4YmAlqzbfA _tzAcQPJbEemW4YmAlqzbfA _zT-xgPJbEemW4YmAlqzbfA">
-        <outgoingTransitions xmi:id="_WO_YUPJbEemW4YmAlqzbfA" specification="eBtnClosed" target="_Tg2XEPJbEemW4YmAlqzbfA"/>
-        <outgoingTransitions xmi:id="_rMOnQPJbEemW4YmAlqzbfA" specification="eBtnOpen" target="_leoLR_JbEemW4YmAlqzbfA"/>
-        <outgoingTransitions xmi:id="_xOAjgPJbEemW4YmAlqzbfA" specification="eBtnPresence" target="_guNJPfJbEemW4YmAlqzbfA"/>
+        <outgoingTransitions xmi:id="_WO_YUPJbEemW4YmAlqzbfA" specification="evBtnClosed" target="_Tg2XEPJbEemW4YmAlqzbfA"/>
+        <outgoingTransitions xmi:id="_rMOnQPJbEemW4YmAlqzbfA" specification="evBtnOpen" target="_leoLR_JbEemW4YmAlqzbfA"/>
+        <outgoingTransitions xmi:id="_xOAjgPJbEemW4YmAlqzbfA" specification="evBtnPresence" target="_guNJPfJbEemW4YmAlqzbfA"/>
       </vertices>
       <vertices xsi:type="sgraph:Entry" xmi:id="_Qfk-cPJbEemW4YmAlqzbfA">
         <outgoingTransitions xmi:id="_Rzp1cPJbEemW4YmAlqzbfA" specification="" target="_MT0IoPJbEemW4YmAlqzbfA"/>

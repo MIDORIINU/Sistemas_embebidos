@@ -918,7 +918,7 @@ void prefixIface_aOvenControl(const Prefix* handle, const sc_integer cOVENMODE, 
         }
         else
         {
-                stdioPrintf(UART_USB, "HORNO: APAGADO.\n");
+                stdioPrintf(UART_USB, "HORNO: APAGADO EN MODO %s.\n", smode);
 
         }
 
@@ -939,35 +939,21 @@ void prefixIface_aSensDoor(const Prefix* handle, const sc_boolean cDoorOpen)
 }
 
 
-void prefixIface_aSensOvenMode(const Prefix* handle, const sc_integer cOVENMODE)
+void prefixIface_aSensOvenMode(const Prefix* handle)
 {
-        char* smode = 0;
-
         BlinkLED(LED2, 25);
 
-        if(PREFIX_PREFIXIFACE_CMICROWAVE == cOVENMODE)
-        {
-                smode = "MICRO-ONDAS";
-        }
-        else if(PREFIX_PREFIXIFACE_CGRILL == cOVENMODE)
-        {
-                smode = "GRILL";
-
-        }
-        else if((PREFIX_PREFIXIFACE_CMICROWAVE + PREFIX_PREFIXIFACE_CGRILL) == cOVENMODE)
-        {
-                smode = "MICRO-ONDAS CON GRILL";
-        }
-
-        stdioPrintf(UART_USB, "MODO: %s.\n", smode);
+        stdioPrintf(UART_USB, "MODO: CICLO.\n");
 
         prefix_runCycle(&statechart);
 }
 
 
-void prefixIface_aSensStartStop(const Prefix* handle, const sc_boolean cCOOKING)
+void prefixIface_aSensStartStop(const Prefix* handle)
 {
         BlinkLED(LED1, 25);
+
+        stdioPrintf(UART_USB, "ENCENDIDO: CICLO.\n");
 
         prefix_runCycle(&statechart);
 }
