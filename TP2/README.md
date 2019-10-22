@@ -7,13 +7,13 @@
 # 1 IDE
 Siguiendo los primeros pasos de instalación y configuración del *IDE* enunciados en el *TP1* se estableció como ejemplo guía dentro del *firmware_v2*: *sapi_examples/edu-ciaa-nxp/statecharts/statecharts_bare_metal*
 
-Se copió el ejemplo   *sapi_examples/edu-ciaa-nxp/statcharts/statecharts_bare_metal/gen/*. Dado que no existía el archivo *prefix.sct* se copió y pegó Blinky.-sct y renombró como: *prefix.sct*.
+Se copió el ejemplo *sapi_examples/edu-ciaa-nxp/statcharts/statecharts_bare_metal/gen/*. Dado que no existía el archivo *prefix.sct* se copió y pegó Blinky.-sct y renombró como: *prefix.sct*.
 
-![](renombrar_ prefix_sct.png)
-![](Imagenes/renombrar_ prefix_sct.png)
+![](https://github.com/MIDORIINU/Sistemas_embebidos/blob/master/TP2/Imagenes/renombrar_%20prefix_sct.png)
+
 Para Simular el modelo se hizo clic derecho sobre *prefix.sct -> Run Us -> 1 Satechart Simulation*
 
-![](simulacion_statecharts_bare_metal.png)
+![](https://github.com/MIDORIINU/Sistemas_embebidos/blob/master/TP2/Imagenes/simulacion_statecharts_bare_metal.png)
 
 Para ver los cambios en los estados (de APAGADO a ENCENDIDO) se debe dar clic sobre la opción evTick en la ventana *Simulation*
 
