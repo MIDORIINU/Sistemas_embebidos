@@ -9,11 +9,11 @@ Siguiendo los primeros pasos de instalación y configuración del *IDE* enunciad
 
 Se copió el ejemplo   *sapi_examples/edu-ciaa-nxp/statcharts/statecharts_bare_metal/gen/*. Dado que no existía el archivo *prefix.sct* se copió y pegó Blinky.-sct y renombró como: *prefix.sct*.
 
-![](../../firmware_v2/projects/TPS/TP2/Imagenes/renombrar_ prefix_sct.png)
+![](Imagenes/renombrar_ prefix_sct.png)
 
 Para Simular el modelo se hizo clic derecho sobre *prefix.sct -> Run Us -> 1 Satechart Simulation*
 
-![](../../firmware_v2/projects/TPS/TP2/Imagenes/simulacion_statecharts_bare_metal.png)
+![](Imagenes/simulacion_statecharts_bare_metal.png)
 
 Para ver los cambios en los estados (de APAGADO a ENCENDIDO) se debe dar clic sobre la opción evTick en la ventana *Simulation*
 
