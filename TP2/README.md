@@ -34,11 +34,11 @@ Para el proceso de *edición de código* y *debug* se iguieron los siguientes pa
 
 Los cambios se pueden visualizar en la siguiente figura:
 
-![renombrar_prefix_sct.png](https://github.com/MIDORIINU/Sistemas_embebidos/blob/master/TP2/Imagenes/renombrar_%20prefix_sct.png)
+![renombrar_prefix_sct.png](Imagenes/renombrar_%20prefix_sct.png)
 
 - 4. Para Simular el modelo se hizo clic derecho sobre *prefix.sct -> Run Us -> 1 Satechart Simulation*. Para ver los cambios en los estados (de APAGADO a ENCENDIDO) se hizo clic sobre la opción evTick en la ventana *Simulation* :
 
-![simulacion_statecharts_bare_metal](https://github.com/MIDORIINU/Sistemas_embebidos/blob/master/TP2/Imagenes/simulacion_statecharts_bare_metal.png)
+![simulacion_statecharts_bare_metal](Imagenes/simulacion_statecharts_bare_metal.png)
 
 
 - 5. Para Generar el código del modelo se dió clic derecho sobre *pregix.sgen -> Generate Code Artifacts (Artifacts => Prefix.c, Prefix.h, PrefixRequired.h y sc_types.h)*
@@ -61,7 +61,7 @@ Dentro de la carpeta *gen* se se encuentran los archivos: *Prefix.c, Prefix.h, P
 
 - 7. Para probar la función de debug se puso un breakpoint en la funcion que cambia de estado el led para ver el cambio de estado debido a que la frecuencia de interrupcion seteada en el programa es demasiado rapida para ver el cambio a simple vista:
 
-![1a7_breackpoint_breakpoint.png](https://github.com/MIDORIINU/Sistemas_embebidos/blob/master/TP2/Imagenes/1a7_breackpoint_breakpoint.png)
+![1a7_breackpoint_breakpoint.png](Imagenes/1a7_breackpoint_breakpoint.png)
 
 ## 1.b funciones 
 
@@ -84,6 +84,6 @@ En la siguiente figura se puede visualizar las funciones:
 |  prefix_runCycle(&statechart);   | cambia el estado de la maquina de estados  |
 
 
-![1b1_funciones.png](https://github.com/MIDORIINU/Sistemas_embebidos/blob/master/TP2/Imagenes/1b1_funciones.png)
+![1b1_funciones.png](Imagenes/1b1_funciones.png)
 
-![1b2_funciones.png](https://github.com/MIDORIINU/Sistemas_embebidos/blob/master/TP2/Imagenes/1b2_funciones.png)
+![1b2_funciones.png](Imagenes/1b2_funciones.png)
