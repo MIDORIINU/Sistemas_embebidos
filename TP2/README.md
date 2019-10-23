@@ -58,3 +58,8 @@ Dentro de la carpeta *gen* se se encuentran los archivos: *Prefix.c, Prefix.h, P
 |prefix.sct | Yakindu SCT Statechart Model file |
 |prefix.sgen|  Yakindu SCT Code Generator Model file |
 
+
+- 7. Para probar la función de debug se puso un breakpoint en la funcion que cambia de estado el led para ver el cambio de estado debido a que la frecuencia de interrupcion seteada en el programa es demasiado rapida para ver el cambio a simple vista:
+
+![1a7_breackpoint_breakpoint.png](https://github.com/MIDORIINU/Sistemas_embebidos/blob/master/TP2/Imagenes/1a7_breackpoint_breakpoint.png)
+
