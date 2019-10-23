@@ -63,3 +63,23 @@ Dentro de la carpeta *gen* se se encuentran los archivos: *Prefix.c, Prefix.h, P
 
 ![1a7_breackpoint_breakpoint.png](https://github.com/MIDORIINU/Sistemas_embebidos/blob/master/TP2/Imagenes/1a7_breackpoint_breakpoint.png)
 
+## 1.b funciones 
+
+En la siguiente figura se puede visualizar las funciones:
+
+
+| Nombre | Descripción |
+| ------ | ----------- |
+|  boardConfig(); | configura los pines de entrada y salida    |
+|  tickConfig( TICKRATE_MS );  | configura la frecuencia de la interrupciones    |
+|  tickCallbackSet( myTickHook, (void*)NULL );  | configura la funcion que se ejecutara con cada interrupcion    |
+|  InitTimerTicks(ticks, NOF_TIMERS); | incializa la frecuencia del timer   |
+|  prefix_init(&statechart);  | inicializa la maquina de estados    |
+
+|  prefix_enter(&statechart);   |  cambia el estado de la maquina de estados   |
+|  UpdateTimers(ticks, NOF_TIMERS);  | actualiza la frecuencia del timer    |
+|  prefixIface_raise_evTick(&statechart);| activa el evento etick |
+|  IsPendEvent(ticks, NOF_TIMERS, ticks[i].evid)       | devuelve true si se cumplio el tiempo de eventos dado por NOF_TIMERS|
+|  prefix_raiseTimeEvent(&statechart, ticks[i].evid);   |  activa el evento etick   |
+|  MarkAsAttEvent(ticks, NOF_TIMERS, ticks[i].evid);   |  setea el evento pendiente en false  |
+|  prefix_runCycle(&statechart);   | cambia el estado de la maquina de estados  |
