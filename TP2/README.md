@@ -5,17 +5,42 @@
 - **Documentar lo que se solicita en c/ítems** 
 
 # 1 IDE
-Siguiendo los primeros pasos de instalación y configuración del *IDE* enunciados en el *TP1* se estableció como ejemplo guía dentro del *firmware_v2*: *sapi_examples/edu-ciaa-nxp/statecharts/statecharts_bare_metal*
 
-Se copió el ejemplo *sapi_examples/edu-ciaa-nxp/statcharts/statecharts_bare_metal/gen/*. Dado que no existía el archivo *prefix.sct* se copió y pegó Blinky.-sct y renombró como: *prefix.sct*.
+### 1.a.1 Instalacion de software
+Se insatalaron los complementos de OpenOCD, eGit y Yakindu StateChart  siguiendo los pasos de la instalación y configuración del *IDE* enunciados en la [guía de instalación de herramientas](https://campus.fi.uba.ar/pluginfile.php/307047/mod_resource/content/5/Sistemas_Embebidos-2019_2doC-Instalacion_de_Herramientas-Cruz.pdf)
 
+
+### 1.a.2 Instalacion del plugin de Yakindu SCT
+Dentro de Eclipse, se agregó el plug-in Yakindu StateChart Tools Menú Help → Install New Software … Work with: http://updates.yakindu.org/sct/mars/releases/.Se selecciono el plug-in y luego se sigio las instrucciones del asistente. 
+
+
+### 1.a.3 Edición de código y debug 
+
+Para el proceso de *edición de código* y *debug* se iguieron los siguientes pasos:
+
+- 1. Se Selecciono como nombre de Workspace: workspace-SE-2019-TPs (el mismo que utilizó para el TP1).
+- 2. En el archivo project.mk se configuro el proyecto, el procesador y la placa a utilizar:
+
+> PROJECT = sapi_examples/edu-ciaa-nxp/statecharts/statecharts_bare_metal	
+
+> TARGET = lpc4337_m4
+
+> BOARD = edu_ciaa_nxp
+
+
+- 3. Se copiaron en la carpeta sapi_examples/edu-ciaa-nxp/statcharts/statecharts_bare_metal/gen/ los archivos:
+
+- a. prefix.sct. Se copio y pego Blinky.-sct y  se renombro como: prefix.sct
+- b. pregix.sgen
+
+Los cambios se pueden visualizar en la siguiente figura:
 ![](https://github.com/MIDORIINU/Sistemas_embebidos/blob/master/TP2/Imagenes/renombrar_%20prefix_sct.png)
 
-Para Simular el modelo se hizo clic derecho sobre *prefix.sct -> Run Us -> 1 Satechart Simulation*
+- 4. Para Simular el modelo se hizo clic derecho sobre *prefix.sct -> Run Us -> 1 Satechart Simulation*. Para ver los cambios en los estados (de APAGADO a ENCENDIDO) se hizo clic sobre la opción evTick en la ventana *Simulation:
 
 ![](https://github.com/MIDORIINU/Sistemas_embebidos/blob/master/TP2/Imagenes/simulacion_statecharts_bare_metal.png)
 
-Para ver los cambios en los estados (de APAGADO a ENCENDIDO) se debe dar clic sobre la opción evTick en la ventana *Simulation*
+
 
 Para Generar el código del modelo se dió clic derecho sobre *pregix.sgen -> Generate Code Artifacts (Artifacts => Prefix.c, Prefix.h, PrefixRequired.h y sc_types.h)*
 
@@ -27,6 +52,9 @@ Dentro de la carpeta *gen* se se encuentran los archivos: *Prefix.c, Prefix.h, P
 |Prefix.h | Fuente con el nombre del statechart Prefix.sct |
 |PrefixRequired.h|Prototipos de funciones)  |
 |sc_types.h| Prototipos de variables) |
-|prefix.sct |  |
-|prefix.sgen|  |
+|prefix.sct | Yakindu SCT Statechart Model file |
+|prefix.sgen|  Yakindu SCT Code Generator Model file |
+
+Lass funciones invocadas dentro de 
+
 
