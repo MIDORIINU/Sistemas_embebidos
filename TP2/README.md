@@ -65,7 +65,7 @@ Dentro de la carpeta *gen* se se encuentran los archivos: *Prefix.c, Prefix.h, P
 
 ## 1.b funciones 
 
-En la siguiente figura se puede visualizar las funciones:
+En la siguiente tabla se puede visualizar las siguientes funciones:
 
 
 | Nombre | Descripción |
@@ -87,3 +87,18 @@ En la siguiente figura se puede visualizar las funciones:
 ![1b1_funciones.png](Imagenes/1b1_funciones.png)
 
 ![1b2_funciones.png](Imagenes/1b2_funciones.png)
+
+
+## 1.c Constantes y variables.
+
+En la siguiente tabla se puede visualizar las siguientes constantes:
+
+| Nombre | Descripción |
+| ------ | ----------- |
+|  TICKRATE_MS   |  setea la frecuencia de interrupciones   |
+|  USE_TIME_EVENTS  | flag utilizado para decididir si se ejecutan eventos por tiempo o no    |
+|  NOF_TIMERS  |  constante utilizada para definir el tiempo de cada evento  |
+|  SysTick_Time_Flag  |  flag utilizado para saber si se produjo una interrupcion  |
+
+![Constantes_Variables.png](Imagenes/Constantes_Variables.png)
+
