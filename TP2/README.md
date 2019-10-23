@@ -113,3 +113,14 @@ a: projects/TP2 dentro firmware_v2.
 Para cada caso se copio los archivos Blinky.-sct,BlinkyTimeEvent.-sct,Button.-sct,ldelBlinky.-sct, Application.-sct,Porton.-sct y se los renombro como prefix.sct cada uno por separado. .Luego se genero el codigo de cada uno por separado. Para generar los codigos fuentes correspondientes de cada maquina de estado se usaron los archivos de prefix.sgen -> generate code artifacts.Como se puede visualizar en la siguiente figura:
 
 ![2b_codigo_generado.png](Imagenes/2b_codigo_generado.png)
+
+
+*Global-Makefile*
+
+
+### 2.c Prueba de simulaciones
+
+Con los codigos generados en el punto anterior se modifico el #define TEST (SCT_?) con ? ={1,2,3,4,5} en el main.c para seleccionar entre los diferentes casos de las maquinas de estado como se puede visualizar en la siguiente figura:
+
+![2c_Simulaciones.png](Imagenes/2c_Simulaciones.png)
+
