@@ -75,7 +75,6 @@ En la siguiente figura se puede visualizar las funciones:
 |  tickCallbackSet( myTickHook, (void*)NULL );  | configura la funcion que se ejecutara con cada interrupcion    |
 |  InitTimerTicks(ticks, NOF_TIMERS); | incializa la frecuencia del timer   |
 |  prefix_init(&statechart);  | inicializa la maquina de estados    |
-
 |  prefix_enter(&statechart);   |  cambia el estado de la maquina de estados   |
 |  UpdateTimers(ticks, NOF_TIMERS);  | actualiza la frecuencia del timer    |
 |  prefixIface_raise_evTick(&statechart);| activa el evento etick |
@@ -83,3 +82,8 @@ En la siguiente figura se puede visualizar las funciones:
 |  prefix_raiseTimeEvent(&statechart, ticks[i].evid);   |  activa el evento etick   |
 |  MarkAsAttEvent(ticks, NOF_TIMERS, ticks[i].evid);   |  setea el evento pendiente en false  |
 |  prefix_runCycle(&statechart);   | cambia el estado de la maquina de estados  |
+
+
+![1b1_funciones.png](https://github.com/MIDORIINU/Sistemas_embebidos/blob/master/TP2/Imagenes/1b1_funciones.png)
+
+![1b2_funciones.png](https://github.com/MIDORIINU/Sistemas_embebidos/blob/master/TP2/Imagenes/1b2_funciones.png)
