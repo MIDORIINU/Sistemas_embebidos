@@ -22,9 +22,10 @@ Para el proceso de *edición de código* y *debug* se iguieron los siguientes pa
 
 - 2. En el archivo project.mk se configuro el proyecto, el procesador y la placa a utilizar:
 
-- PROJECT = sapi_examples/edu-ciaa-nxp/statecharts/statecharts_bare_metal	
-- TARGET = lpc4337_m4
-- BOARD = edu_ciaa_nxp
+> -  PROJECT = sapi_examples/edu-ciaa-nxp/statecharts/statecharts_bare_metal	
+> -  TARGET = lpc4337_m4
+> -  BOARD = edu_ciaa_nxp
+
 
 - 3.  Se copiaron en la carpeta sapi_examples/edu-ciaa-nxp/statcharts/statecharts_bare_metal/gen/ los archivos:
 
@@ -32,6 +33,7 @@ Para el proceso de *edición de código* y *debug* se iguieron los siguientes pa
 > - b. pregix.sgen
 
 Los cambios se pueden visualizar en la siguiente figura:
+
 ![renombrar_prefix_sct.png](https://github.com/MIDORIINU/Sistemas_embebidos/blob/master/TP2/Imagenes/renombrar_%20prefix_sct.png)
 
 - 4. Para Simular el modelo se hizo clic derecho sobre *prefix.sct -> Run Us -> 1 Satechart Simulation*. Para ver los cambios en los estados (de APAGADO a ENCENDIDO) se hizo clic sobre la opción evTick en la ventana *Simulation* :
@@ -42,7 +44,7 @@ Los cambios se pueden visualizar en la siguiente figura:
 - 5. Para Generar el código del modelo se dió clic derecho sobre *pregix.sgen -> Generate Code Artifacts (Artifacts => Prefix.c, Prefix.h, PrefixRequired.h y sc_types.h)*
 
 
-- 6. Luego se Compilo y debugeo firmware_v2 cambiando la ruta de debug por C:\Users\cmg-8\firmware_v2\out\lpc4337_m4\statecharts_bare_metal.axf
+- 6. Luego se Compilo y debugeo firmware_v2 cambiando la ruta de debug por C:\firmware_v2\out\lpc4337_m4\statecharts_bare_metal.axf
 
 
 Dentro de la carpeta *gen* se se encuentran los archivos: *Prefix.c, Prefix.h, PrefixRequired.h, sc_types.h, prefix.sct, prefix.sgen*. Su descripción se detalla a continuación:
@@ -56,19 +58,3 @@ Dentro de la carpeta *gen* se se encuentran los archivos: *Prefix.c, Prefix.h, P
 |prefix.sct | Yakindu SCT Statechart Model file |
 |prefix.sgen|  Yakindu SCT Code Generator Model file |
 
-Lass funciones invocadas dentro de 
-
-
-
-
-- 1. Se Selecciono como nombre de Workspace: workspace-SE-2019-TPs (el mismo que utilizó para el TP1).
-
-- 2. Se copiaron en la carpeta sapi_examples/edu-ciaa-nxp/statcharts/statecharts_bare_metal/gen/ los archivos:
-
-- 3.
-- 4.
-- 5.
-- 6.
- 
-
-gdgfdg
