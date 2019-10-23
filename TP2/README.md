@@ -102,3 +102,14 @@ En la siguiente tabla se puede visualizar las siguientes constantes:
 
 ![Constantes_Variables.png](Imagenes/Constantes_Variables.png)
 
+## 2. Uso del IDE (Integrated Development Environment) Eclipse 2019 & plug-in Yakindu SCT
+
+
+## 2.a Migrar proyecto
+Se migró el proyecto sapi_examples/edu-ciaa-nxp/statchart/statechart_bare_metal (parpadeo del LEDs c/sAPI & Yakindu SCT) 
+a: projects/TP2 dentro firmware_v2.
+
+## 2.b Generacion de códigos con statecharts
+Para cada caso se copio los archivos Blinky.-sct,BlinkyTimeEvent.-sct,Button.-sct,ldelBlinky.-sct, Application.-sct,Porton.-sct y se los renombro como prefix.sct cada uno por separado. .Luego se genero el codigo de cada uno por separado. Para generar los codigos fuentes correspondientes de cada maquina de estado se usaron los archivos de prefix.sgen -> generate code artifacts.Como se puede visualizar en la siguiente figura:
+
+![2b_codigo_generado.png](Imagenes/2b_codigo_generado.png)
