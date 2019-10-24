@@ -187,6 +187,21 @@ A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de
 
 ## 6. Escalera mecánica 
 
+*LADDER*
+
+![EscaleraMecanica_Ladder.png](Imagenes/EscaleraMecanica_Ladder.png)
+
+*SENSORS*
+
+![EscaleraMecanica_Sensors.png](Imagenes/EscaleraMecanica_Sensors.png)
+
+*BUTTONS*
+
+![EscaleraMecanica_Buttons.png](Imagenes/EscaleraMecanica_Buttons.png)
+
+
+![EscaleraMecanica_Prefix.png](Imagenes/EscaleraMecanica_Prefix.png)
+
 ## 7. Horno microondas
 Para el caso de horno microondas se tuvo en cuenta: 3 modos de cocción seleccionable por botón de modo, botón de comenzar/terminar y sensor de apertura de puerta.
 
