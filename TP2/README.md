@@ -315,4 +315,4 @@ A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de
 
 # 11. Hoja de ruta <a name=HojadeRuta></a>
 
-Aún nos resta firmar una parte.
+![](Imagenes/HojaDeRuta.jpg)
