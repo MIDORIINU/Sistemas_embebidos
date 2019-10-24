@@ -136,12 +136,15 @@ Las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta son:
 *SHAPE*, *MODE*, *BUTTONS*
 
 *SHAPE*
+
 ![GeneradorSenales_Shape.png](Imagenes/GeneradorSenales_Shape.png)
 
 *MODE*
+
 ![GeneradorSenales_Mode.png](Imagenes/GeneradorSenales_Mode.png)
 
 *BUTTONS*
+
 ![GeneradorSenales_Buttons.png](Imagenes/GeneradorSenales_Buttons.png)
 
 ![GeneradorSenalesPrefix.png](Imagenes/GeneradorSenalesPrefix.png)
@@ -158,15 +161,19 @@ Para el caso de horno microondas se tuvo en cuenta: 3 modos de cocción seleccio
 A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta: *MODE*, *BUTTONS*, *SENSORS* y *OVEN* 
 
 *MODE*
+
 ![HornoMicroondas_Mode.png](Imagenes/HornoMicroondas_Mode.png)
 
 *BUTTONS*
+
 ![HornoMicroondas_Buttons.png](Imagenes/HornoMicroondas_Buttons.png)
 
 *SENSORS* 
+
 ![HornoMicroondas_Sensors.png](Imagenes/HornoMicroondas_Sensors.png)
 
 *OVEN*
+
 ![HornoMicroondas_Oven.png](Imagenes/HornoMicroondas_Oven.png)
 
 ![HornoPrefix.png](Imagenes/HornoPrefix.png)
