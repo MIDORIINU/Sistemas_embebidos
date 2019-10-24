@@ -132,6 +132,19 @@ Con los codigos generados en el punto anterior se modifico el #define TEST (SCT_
 Para la implementacion de la maquina de estados para cada uno de los casos propuestos,se realizaron los diagramas de estado,se generaron los codigos fuente(prefix.sgen -> generate code artifacts) y se modifico el archivo makefile, añadiendo la opción de compilación paralela:
 
 ## 3. Panel de control de un generador de señales
+Las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta son: 
+*SHAPE*, *MODE*, *BUTTONS*
+
+*SHAPE*
+![GeneradorSenales_Shape.png](Imagenes/GeneradorSenales_Shape.png)
+
+*MODE*
+![GeneradorSenales_Mode.png](Imagenes/GeneradorSenales_Mode.png)
+
+*BUTTONS*
+![GeneradorSenales_Buttons.png](Imagenes/GeneradorSenales_Buttons.png)
+
+![GeneradorSenalesPrefix.png](Imagenes/GeneradorSenalesPrefix.png)
 
 ## 4. Puerta corrediza
 
