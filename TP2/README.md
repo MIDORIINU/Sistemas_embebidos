@@ -124,3 +124,36 @@ Con los codigos generados en el punto anterior se modifico el #define TEST (SCT_
 
 ![2c_Simulaciones.png](Imagenes/2c_Simulaciones.png)
 
+
+
+
+# Implementacion de las máquinas de estados finitos (MEF)
+
+Para la implementacion de la maquina de estados para cada uno de los casos propuestos,se realizaron los diagramas de estado,se generaron los codigos fuente(prefix.sgen -> generate code artifacts) y se modifico el archivo makefile, añadiendo la opción de compilación paralela:
+
+## 3. Panel de control de un generador de señales
+
+## 4. Puerta corrediza
+
+## 5. Portón de cochera
+
+## 6. Escalera mecánica 
+
+## 7. Horno microondas
+Para el caso de horno microondas se tuvo en cuenta: 3 modos de cocción seleccionable por botón de modo, botón de comenzar/terminar y sensor de apertura de puerta.
+
+A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta: *MODE*, *BUTTONS*, *SENSORS* y *OVEN* 
+
+*MODE*
+![HornoMicroondas_Mode.png](Imagenes/HornoMicroondas_Mode.png)
+
+*BUTTONS*
+![HornoMicroondas_Buttons.png](Imagenes/HornoMicroondas_Buttons.png)
+
+*SENSORS* 
+![HornoMicroondas_Sensors.png](Imagenes/HornoMicroondas_Sensors.png)
+
+*OVEN*
+![HornoMicroondas_Oven.png](Imagenes/HornoMicroondas_Oven.png)
+
+![HornoPrefix.png](Imagenes/HornoPrefix.png)
