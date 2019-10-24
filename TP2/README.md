@@ -132,8 +132,8 @@ Con los codigos generados en el punto anterior se modifico el #define TEST (SCT_
 Para la implementacion de la maquina de estados para cada uno de los casos propuestos,se realizaron los diagramas de estado,se generaron los codigos fuente(prefix.sgen -> generate code artifacts) y se modifico el archivo makefile, añadiendo la opción de compilación paralela:
 
 ## 3. Panel de control de un generador de señales
-Las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta son: 
-*SHAPE*, *MODE*, *BUTTONS*
+Para el caso del panel de control de un generador de señales se tuvo en cuenta: tensión de 0 a 10V, frecuencia de 20 a 20.000Hz y 3
+formas de señal. Las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta son: *SHAPE*, *MODE*, *BUTTONS*
 
 *SHAPE*
 
@@ -150,7 +150,7 @@ Las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta son:
 ![GeneradorSenalesPrefix.png](Imagenes/GeneradorSenalesPrefix.png)
 
 ## 4. Puerta corrediza
-A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta: *MODE*, *BUTTONS*, *SENSORS* 
+Para el caso de la puerta corrediza automatizada se tuvo en cuenta: motor con movimiento en dos sentidos, sensor de presencia y fines de carrera. A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta: *MODE*, *BUTTONS*, *SENSORS* 
 
 *MODE*
 
@@ -168,7 +168,7 @@ A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de
 ![](Imagenes/PuertaCorrediza_Prefix.png)
 
 ## 5. Portón de cochera
-
+Para el caso del portón de la cochera automatizado se tuvo en cuenta: motor con movimiento en dos sentidos, control remoto de apertura/cierre, fines de carrera y señalización luminosa. A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta: *DOOR*, *SENSORS* y *BUTTONS*
 
 *DOOR*
 
@@ -186,6 +186,9 @@ A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de
 
 
 ## 6. Escalera mecánica 
+Para el caso del portón de la escalera mecánica unidireccional automatizada se tuvo en cuenta: motor c/movimiento en un sentido y dos
+velocidades, sensores de ingreso, egreso y señalización luminosa. A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta: *LADDER*, *SENSORS* y *BUTTONS*
+
 
 *LADDER*
 
