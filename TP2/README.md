@@ -169,6 +169,22 @@ A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de
 
 ## 5. Portón de cochera
 
+
+*DOOR*
+
+![PortonCochera_Door.png](Imagenes/PortonCochera_Door.png)
+
+*SENSORS*
+
+![PortonCochera_Sensors.png](Imagenes/PortonCochera_Sensors.png)
+
+*BUTTONS*
+
+![PortonCochera_Buttons.png](Imagenes/PortonCochera_Buttons.png)
+
+![Prefix_PortonCochera.png](Imagenes/Prefix_PortonCochera.png)
+
+
 ## 6. Escalera mecánica 
 
 ## 7. Horno microondas
