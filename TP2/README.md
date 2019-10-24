@@ -150,6 +150,22 @@ Las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta son:
 ![GeneradorSenalesPrefix.png](Imagenes/GeneradorSenalesPrefix.png)
 
 ## 4. Puerta corrediza
+A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta: *MODE*, *BUTTONS*, *SENSORS* 
+
+*MODE*
+
+![PuertaCorrediza_Door.png](Imagenes/PuertaCorrediza_Door.png)
+
+*BUTTONS*
+
+![](Imagenes/PuertaCorrediza_Buttons.png)
+
+*SENSORS* 
+
+![PuertaCorrediza_Sensors.png](Imagenes/PuertaCorrediza_Sensors.png)
+
+
+![](Imagenes/PuertaCorrediza_Prefix.png)
 
 ## 5. Portón de cochera
 
