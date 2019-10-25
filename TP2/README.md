@@ -215,7 +215,30 @@ Algo muy importante, es que se puso énfasis en reducir el código escrito a man
 
 ## 6. Implementar el modelo de control de panel de control de un generador de señales <a name=Generador></a>
 Para el caso del panel de control de un generador de señales se tuvo en cuenta: tensión de 0 a 10V, frecuencia de 20 a 20.000Hz y 3
-formas de señal. Las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta son: *SHAPE*, *MODE*, *BUTTONS*
+formas de señal.
+
+Para este modelo se consideró el siguiente esquema:
+
+ **Tecla 1**: Cambio de forma de onda (triangular cuadrada, sinusoidal). Responde al presionarse y no vuelve actuar hasta soltarse.
+ 
+ **Tecla 2**: Cambio de modo de variable ajustada (tensión, frecuencia. Responde al presionarse y no vuelve actuar hasta soltarse.
+ 
+ **Tecla 3**: Incrementar variable ajustada. Responde al presionarse y vuelve actuar a los 120 ms de mantenerse sostenida.
+ 
+ **Tecla 4** : Decrementar variable ajustada. Responde al presionarse y vuelve actuar a los 120 ms de mantenerse sostenida.
+ 
+ **LED <span style="color:red">R</span><span style="color:green">G</span><span style="color:blue">B</span>**: Indica la forma de onda, <span style="color:red">rojo para triangular </span>, <span style="color:green">verde para cuadrada </span> y <span style="color:blue">azul para sinusoidal </span>.
+ 
+ <span style="color:#BBBB00">**LED 1**</span>: Indica modo frecuencia.
+ 
+ <span style="color:red">**LED 2**</span>: Indica modo tensión.
+ 
+ <span style="color:green">**LED 3**</span>: Indica acción de las teclas incrementar o decrementar con un parpadeo.
+ 
+ **Consola serial**: Indica cambios de forma y modo y muestra el valor de las variables controladas.
+
+
+A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta: *SHAPE*, *MODE*, *BUTTONS*:
 
 *SHAPE*
 
@@ -232,8 +255,36 @@ formas de señal. Las diferentes MEFs utilizadas, dado que se trata de una MEF c
 ![GeneradorSenalesPrefix.png](Imagenes/GeneradorSenalesPrefix.png)
 
 
+A continuación se muestra una captura de la consola serial para este ejemplo funcionando:
+
+![](Imagenes/Maq1Consola.png)
+
+
 ## 7. Implementar el modelo de control de puerta corrediza automatizada <a name=Door></a>
-Para el caso de la puerta corrediza automatizada se tuvo en cuenta: motor con movimiento en dos sentidos, sensor de presencia y fines de carrera. A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta: *MODE*, *BUTTONS*, *SENSORS* 
+Para el caso de la puerta corrediza automatizada se tuvo en cuenta: motor con movimiento en dos sentidos, sensor de presencia y fines de carrera. 
+
+Para este modelo se consideró el siguiente esquema:
+
+ **Tecla 1**: No se usa.
+ 
+ **Tecla 2**: Simula el sensor de fin de carrera para la puerta cerrada, con una pulsación se indica que el sensor se activó, solo funciona mientras la puerta está cerrando.
+ 
+ **Tecla 3**: Simula el sensor de fin de carrera para la puerta abierta, con una pulsación se indica que el sensor se activó, solo funciona mientras la puerta está abriendo.
+ 
+ **Tecla 4** : Simula el sensor de presencia, con una pulsación hace toogle para el estado de presencia.
+ 
+ **LED <span style="color:red">R</span><span style="color:green">G</span><span style="color:blue">B</span>**: Indica el estado del motor, <span style="color:red">rojo para motor abriendo </span>, <span style="color:green">verde para motor cerrando </span> y <span style="color:blue">azul para motor detenido </span>.
+ 
+ <span style="color:#BBBB00">**LED 1**</span>: Indica que el sensor de fin de carrera de puerta cerrada esta activo.
+ 
+ <span style="color:red">**LED 2**</span>: Indica que el sensor de fin de carrera de puerta abierta esta activo.
+ 
+ <span style="color:green">**LED 3**</span>: Indica que el sensor de presencia esta activo.
+ 
+**Consola serial**: Indica estados del motor y sensores.
+
+
+A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta: *MODE*, *BUTTONS*, *SENSORS*:
 
 *MODE*
 
@@ -250,8 +301,35 @@ Para el caso de la puerta corrediza automatizada se tuvo en cuenta: motor con mo
 
 ![](Imagenes/PuertaCorrediza_Prefix.png)
 
+A continuación se muestra una captura de la consola serial para este ejemplo funcionando:
+
+![](Imagenes/Maq2Consola.png)
+
 ## 8. Implementar el modelo de control de portón de cochera automatizado <a name=GarageDoor></a>
-Para el caso del portón de la cochera automatizado se tuvo en cuenta: motor con movimiento en dos sentidos, control remoto de apertura/cierre, fines de carrera y señalización luminosa. A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta: *DOOR*, *SENSORS* y *BUTTONS*
+Para el caso del portón de la cochera automatizado se tuvo en cuenta: motor con movimiento en dos sentidos, control remoto de apertura/cierre, fines de carrera y señalización luminosa.
+
+Para este modelo se consideró el siguiente esquema:
+
+ **Tecla 1**: Simula la señal del control remoto, que funciona en modo toogle.
+ 
+ **Tecla 2**: Simula el sensor de fin de carrera para la puerta cerrada, con una pulsación se indica que el sensor se activó, solo funciona mientras la puerta está cerrando.
+ 
+ **Tecla 3**: Simula el sensor de fin de carrera para la puerta abierta, con una pulsación se indica que el sensor se activó, solo funciona mientras la puerta está abriendo.
+ 
+ **Tecla 4** : Simula el sensor de presencia del vehículo, con una pulsación hace toogle para el estado de presencia.
+ 
+ **LED <span style="color:red">R</span><span style="color:green">G</span><span style="color:blue">B</span>**: Indica el estado del motor, <span style="color:red">rojo para motor abriendo </span>, <span style="color:green">verde para motor cerrando </span> y <span style="color:blue">azul para motor detenido </span>, indica con un blink de color blanco la recepción de la señal del control remoto.
+ 
+ <span style="color:#BBBB00">**LED 1**</span>: Indica que el sensor de fin de carrera de puerta cerrada esta activo.
+ 
+ <span style="color:red">**LED 2**</span>: Indica que el sensor de fin de carrera de puerta abierta esta activo.
+ 
+ <span style="color:green">**LED 3**</span>: Indica que el sensor de presencia esta activo.
+ 
+**Consola serial**: Indica estados del motor y sensores.
+
+
+A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta: *DOOR*, *SENSORS* y *BUTTONS*:
 
 *DOOR*
 
@@ -267,10 +345,37 @@ Para el caso del portón de la cochera automatizado se tuvo en cuenta: motor con
 
 ![Prefix_PortonCochera.png](Imagenes/Prefix_PortonCochera.png)
 
+A continuación se muestra una captura de la consola serial para este ejemplo funcionando:
+
+![](Imagenes/Maq3Consola.png)
+
 
 ## 9. Implementar el modelo de control de escalera mecánica unidireccional automatizada <a name=Ladder></a>
 Para el caso del portón de la escalera mecánica unidireccional automatizada se tuvo en cuenta: motor c/movimiento en un sentido y dos
-velocidades, sensores de ingreso, egreso y señalización luminosa. A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta: *LADDER*, *SENSORS* y *BUTTONS*
+velocidades, sensores de ingreso, egreso y señalización luminosa.
+
+Para este modelo se consideró el siguiente esquema:
+
+ **Tecla 1**: No se usa.
+ 
+ **Tecla 2**: Cambia entre las velocidades 1 y 2, cicla entre ambas velocidades.
+ 
+ **Tecla 3**: Simula el sensor presión de ingreso.
+ 
+ **Tecla 4** : Simula el sensor de presión de egreso.
+ 
+ **LED <span style="color:red">R</span><span style="color:green">G</span><span style="color:blue">B</span>**: Indica el estado de la escalera, <span style="color:red">rojo para la escalera funcionando a velocidad 2 </span>, <span style="color:green">verde para la escalera funcionando a velocidad 1 </span> y <span style="color:blue">azul para la escalera detenida </span>.
+ 
+ <span style="color:#BBBB00">**LED 1**</span>: Indica con un blink la acción del botón de cambio de velocidad.
+ 
+ <span style="color:red">**LED 2**</span>: Indica que el sensor de fin de carrera de puerta abierta esta activo.
+ 
+ <span style="color:green">**LED 3**</span>: Indica que el sensor de presencia esta activo.
+ 
+**Consola serial**: Indica estados de la escalera y de los sensores.
+
+
+A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta: *LADDER*, *SENSORS* y *BUTTONS*:
 
 
 *LADDER*
@@ -288,11 +393,40 @@ velocidades, sensores de ingreso, egreso y señalización luminosa. A continuaci
 
 ![EscaleraMecanica_Prefix.png](Imagenes/EscaleraMecanica_Prefix.png)
 
+A continuación se muestra una captura de la consola serial para este ejemplo funcionando:
+
+![](Imagenes/Maq4Consola.png)
+
 
 ## 10. Implementar el modelo de control de horno microondas <a name=MicroWaveOven></a>
 Para el caso de horno microondas se tuvo en cuenta: 3 modos de cocción seleccionable por botón de modo, botón de comenzar/terminar y sensor de apertura de puerta.
 
 A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta: *MODE*, *BUTTONS*, *SENSORS* y *OVEN* 
+
+
+Para este modelo se consideró el siguiente esquema:
+
+ **Tecla 1**: No se usa.
+ 
+ **Tecla 2**: Encendido del horno, funciona en modo toogle.
+ 
+ **Tecla 3**: Cicla entre los tres modos de cocción del horno.
+ 
+ **Tecla 4** : Simula el sensor de puerta abierta, funciona en modo toogle.
+ 
+ **LED <span style="color:red">R</span><span style="color:green">G</span><span style="color:blue">B</span>**: Indica el estado del horno, <span style="color:red">rojo para el modo microondas </span>, <span style="color:green">verde para el modo grill </span> y <span style="color:blue">azul para indicar la luz del horno </span>. El color final será la combinación obtenida de los modos, por ejemplo, con el horno apagado y la puerta cerrada, estará el LED apagado, pero con la puerta abierta será azul.
+ 
+ <span style="color:#BBBB00">**LED 1**</span>: Indica con un blink la acción del botón de encendido.
+ 
+ <span style="color:red">**LED 2**</span>: Indica con un blink la acción del botón de modo.
+ 
+ <span style="color:green">**LED 3**</span>: Indica que la puerta está abierta.
+ 
+**Consola serial**: Indica estados del horno y los modos.
+
+
+A continuación se muestran los diagramas de estados de cada una de las máquinas de estado:
+
 
 *MODE*
 
@@ -311,6 +445,10 @@ A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de
 ![HornoMicroondas_Oven.png](Imagenes/HornoMicroondas_Oven.png)
 
 ![HornoPrefix.png](Imagenes/HornoPrefix.png)
+
+A continuación se muestra una captura de la consola serial para este ejemplo funcionando:
+
+![](Imagenes/Maq5Consola.png)
 
 # 11. Hoja de ruta <a name=HojadeRuta></a>
 
