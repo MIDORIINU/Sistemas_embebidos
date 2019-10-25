@@ -231,7 +231,6 @@ formas de señal. Las diferentes MEFs utilizadas, dado que se trata de una MEF c
 
 ![GeneradorSenalesPrefix.png](Imagenes/GeneradorSenalesPrefix.png)
 
-![GeneradorSenalesPrefix.png](Imagenes/GeneradorSenalesPrefix.png)
 
 ## 7. Implementar el modelo de control de puerta corrediza automatizada <a name=Door></a>
 Para el caso de la puerta corrediza automatizada se tuvo en cuenta: motor con movimiento en dos sentidos, sensor de presencia y fines de carrera. A continuación se muestran las diferentes MEFs utilizadas, dado que se trata de una MEF compuesta: *MODE*, *BUTTONS*, *SENSORS* 
