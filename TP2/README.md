@@ -120,7 +120,7 @@ En la siguiente tabla se puede visualizar las siguientes constantes:
 | ------ | ----------- |
 |  TICKRATE_MS   |  setea la frecuencia de interrupciones   |
 |  USE_TIME_EVENTS  | flag utilizado para decidir si se ejecutan eventos por tiempo o no    |
-|  NOF_TIMERS  |  constante utilizada para definir el tiempo de cada evento  |
+|  NOF_TIMERS  |  constante utilizada para definir el número de time-outs que se están considerando  |
 |  SysTick_Time_Flag  |  flag utilizado para saber si se produjo una interrupción  |
 
 ![Constantes_Variables.png](Imagenes/Constantes_Variables.png)
@@ -358,6 +358,7 @@ Para este modelo se consideró el siguiente esquema:
 
  **Tecla 1**: No se usa.
  
+
  **Tecla 2**: Cambia entre las velocidades 1 y 2, cicla entre ambas velocidades.
  
  **Tecla 3**: Simula el sensor presión de ingreso.
