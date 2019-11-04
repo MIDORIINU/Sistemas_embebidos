@@ -16,9 +16,9 @@ Repositorio para el seminario de sistemas embebidos 66.48
 - [**IDE**](#IDE)
 - [**Análisis del proyecto del proyecto freertos_examples_1_to_9**](#freertosexamples1to9 )
 - [**Análisis del proyecto del proyecto freertos_examples_10_to_16**](#freertosexamples10to16)
-- [**Punto 4: Tarea 1 periódica**](#punto4)
-- [**Punto 5: Intercambio de las palabras semáforo <--> cola**](#punto5)
-- [**Punto 6: Tareas de secuencia fija**](#punto6)
+- [**Implementación 1: Tarea 1 periódica**](#punto4)
+- [**Implementación 2: Intercambio de las palabras semáforo <--> cola**](#punto5)
+- [**Implementación 3: Tareas de secuencia fija**](#punto6)
 - [**Hoja de ruta**](#HojadeRuta)
 
 # 1 IDE <a name=IDE></a>
@@ -33,3 +33,51 @@ Se utilizó **MCUXpresso** somo **IDE**. Se creó un Workspace de nombre *worksp
 
 
 ![importProject](Imagenes/importProject.jpeg)
+
+
+# 2 Análisis del proyecto del proyecto **freertos_examples_1_to_9* <a freertosexamples1to_9></a>
+
+Para cada uno de los ejemplos 1 a 9, se analizó el comportamiento de sus tareas involucradas a través del desarrollo de un  diagrama temporal, para plasmar la distribución del tiempo de CPU entre tareas, Kernel e interrupciones.
+### Example 1
+
+### Example 2
+
+### Example 3
+
+### Example 4
+
+### Example 5
+
+### Example 6
+
+### Example 7
+
+### Example 8
+
+### Example 9
+
+
+# 3 Análisis del proyecto del proyecto **freertos_examples_10_to_16* <a freertosexamples10to_16></a>
+
+### Example 10
+
+### Example 11
+
+### Example 12
+
+### Example 13
+
+### Example 14
+
+### Example 15
+
+### Example 16
+
+
+# 4 Implementación 1 <a Implementación1></a>
+
+# 5 Implementación 2 <a Implementación2></a>
+
+# 6 Implementación 3 <a Implementación2></a>
+
+# 7 Hoja de ruta <a name=HojadeRuta></a>
