@@ -38,9 +38,17 @@ Se utilizó **MCUXpresso** somo **IDE**. Se creó un Workspace de nombre *worksp
 # 2 Análisis del proyecto del proyecto **freertos_examples_1_to_9* <a freertosexamples1to_9></a>
 
 Para cada uno de los ejemplos 1 a 9, se analizó el comportamiento de sus tareas involucradas a través del desarrollo de un  diagrama temporal, para plasmar la distribución del tiempo de CPU entre tareas, Kernel e interrupciones.
+
 ### Example 1
+El ejemplo 1 consta de dos tareas (*Task1* y *Task2*) de prioridad *tskIDLE_PRIORITY + 1UL*. *Task1* enciende el LED3 y *Task2* apaga lo apaga. 
+
+![Example1_1](Imagenes/Example1_1.png)
+
 
 ### Example 2
+El ejemplo 2 consta de dos tareas (*Task1* y *Task2*) de prioridad *tskIDLE_PRIORITY + 1UL* que comparten la ejecución de la función *vTaskFunction*. Esta función hace destellar el LED3 con la instrucción *Board_LED_Toggle(LED3)*. La ejecución de las tareas hace que el destello del led sea muy corto sin que el periodo sea fijo. El diagrama temporal es similar al del ejemplo2. 
+
+![Example2](Imagenes/Example2.png)
 
 ### Example 3
 
