@@ -27,8 +27,8 @@
 							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.lib.debug.144085135" name="ARM-based MCU (Debug)" superClass="com.crt.advproject.platform.lib.debug"/>
 							<builder buildPath="${workspace_loc:/lpc_board_nxp_lpcxpresso_4337}/Debug" id="com.crt.advproject.builder.lib.debug.896756833" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.lib.debug"/>
 							<tool id="com.crt.advproject.cpp.lib.debug.451366593" name="MCU C++ Compiler" superClass="com.crt.advproject.cpp.lib.debug">
-								<option id="com.crt.advproject.cpp.hdrlib.1765087471" superClass="com.crt.advproject.cpp.hdrlib"/>
-								<option id="com.crt.advproject.cpp.fpu.230181435" superClass="com.crt.advproject.cpp.fpu"/>
+								<option id="com.crt.advproject.cpp.hdrlib.1765087471" superClass="com.crt.advproject.cpp.hdrlib" useByScannerDiscovery="false"/>
+								<option id="com.crt.advproject.cpp.fpu.230181435" superClass="com.crt.advproject.cpp.fpu" useByScannerDiscovery="false"/>
 							</tool>
 							<tool id="com.crt.advproject.gcc.lib.debug.1652494366" name="MCU C Compiler" superClass="com.crt.advproject.gcc.lib.debug">
 								<option id="com.crt.advproject.gcc.arch.1717474518" name="Architecture" superClass="com.crt.advproject.gcc.arch" useByScannerDiscovery="false" value="com.crt.advproject.gcc.target.cm4" valueType="enumerated"/>
