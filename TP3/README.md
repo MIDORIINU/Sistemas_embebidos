@@ -63,15 +63,30 @@ Las dos tareas comparten la ejecución de la función *vTaskFunction*. Esta func
 
 ### Example 5
 
+El diagrama temporal del ejemplo 5 es el mismo del ejemplo 4, salvo que con el uso de *xLastWakeTime = xTaskGetTickCount()* y *vTaskDelayUntil(&xLastWakeTime, (250 / portTICK_RATE_MS))* se garantiza el tiempo en que las tareas salen del estado *Blocked*.
+
+
 ### Example 6
+
+El ejemplo 6 consta de tres tareas (*Task1*, *Task2* y *Task3*)
+*Task1* , *Task2* de *tskIDLE_PRIORITY + 1UL* y *Task3* de prioridad *tskIDLE_PRIORITY + 2UL*
+![Example6](Imagenes/Example6.png)
 
 ### Example 7
 
+Se imprime  el mensaje de contador *DEBUGOUT("Idle ulCycleCount %d %s", ulIdleCycleCount, pcTaskName)* durante el periodo inexacto definido por
+*vTaskDelay(250 / portTICK_RATE_MS)*. *Idle ulCycleCount* incrementa su valor a través de la función *vApplicationIdleHook()*.
+
+
 ### Example 8
+*Task1* tiene mayor prioridad que *Task2*  y a través de *uxTaskPriorityGet()* y *vTaskPrioritySet((xTaskHandle)NULL, (uxPriority - 2))* se invierten las prioridades. 
+
+![Example8](Imagenes/Example8.png)
 
 ### Example 9
+La *Task1* tiene prioridad 1 y al ejecutarse crea a *Task2* con prioridad 2, luego *Task2* tiene mayor prioridad y pasa a ejecutarse inmediatamente. La *Task2* no hace algo salvo usar *vTaskDelete(xTask2Handle)* para borarse a sí misma. 
 
-
+![Example9](Imagenes/Example9.png)
 # 3 Análisis del proyecto del proyecto **freertos_examples_10_to_16* <a freertosexamples10to_16></a>
 
 ### Example 10
