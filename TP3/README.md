@@ -51,12 +51,15 @@ El ejemplo 2 consta de dos tareas (*Task1* y *Task2*) de prioridad *tskIDLE_PRIO
 ![Example2](Imagenes/Example2.png)
 
 ### Example 3
-El ejemplo 3 consta de dos tareas (*Task1* y *Task2*), de prioridades tskIDLE_PRIORITY + 1UL*  y 
-*tskIDLE_PRIORITY + 2UL*, respectivamente. Las dos tareas comparten la ejecución de la función *vTaskFunction*. Esta función hace destellar el LED3 con la instrucción *Board_LED_Toggle(LED3)*. La tarea 2 tiene una prioridad más alta que la tarea 1 y será la única tarea en ejecutarse (estado *RUNNING*) debido a que el *scheduler* siempre seleccionará la tarea de mayor prioridad para ejecutar. Como la Tarea 1 nunca entra en el estado *RUNNING*, nunca imprime su string (*Task 1 is running*). El destello del *LED3* se puede ver mejor que en el ejemplo2. 
+El ejemplo 3 consta de dos tareas (*Task1* y *Task2*), de prioridades tskIDLE_PRIORITY + 1UL*  y *tskIDLE_PRIORITY + 2UL*, respectivamente. Las dos tareas comparten la ejecución de la función *vTaskFunction*. Esta función hace destellar el LED3 con la instrucción *Board_LED_Toggle(LED3)*. La tarea 2 tiene una prioridad más alta que la tarea 1 y será la única tarea en ejecutarse (estado *RUNNING*) debido a que el *scheduler* siempre seleccionará la tarea de mayor prioridad para ejecutar. Como la Tarea 1 nunca entra en el estado *RUNNING*, nunca imprime su string (*Task 1 is running*). El destello del *LED3* se puede ver mejor que en el ejemplo2. 
 
 ![Example3](Imagenes/Example3.png)
 
 ### Example 4
+El ejemplo 4 consta de dos tareas (*Task1* y *Task2*),de prioridades tskIDLE_PRIORITY + 1UL*  y *tskIDLE_PRIORITY + 2UL*, respectivamente.
+Las dos tareas comparten la ejecución de la función *vTaskFunction*. Esta función hace destellar el LED3 con la instrucción*Board_LED_Toggle(LED3)*. A su vez, al ser *Task2* de mayor prioridad, hace que se imprima primero el mensaje (*Task 2 is running*) y en la siguiente lìnea (*Task 1 is running*). El orden de ejecuciòn: *Task1*-*Task2* hace que el led destelle por intervalos cortos y luego las tareas pasan a estado *Blocked*, ejecutàndose la *Idle task* durante el periodo de 250 ms definido por *vTaskDelay(250 / portTICK_RATE_MS)*
+
+![Example4](Imagenes/Example4.png)
 
 ### Example 5
 
