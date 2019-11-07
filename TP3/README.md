@@ -91,6 +91,8 @@ La *Task1* tiene prioridad 1 y al ejecutarse crea a *Task2* con prioridad 2, lue
 
 ### Example 10
 
+![Example10](Imagenes/Example10.png)
+
 ### Example 11
 
 ### Example 12

@@ -14,6 +14,6 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
-exercises/src \
+exercise1/src \
 freertos/src \
 

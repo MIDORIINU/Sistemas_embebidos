@@ -4229,7 +4229,7 @@ END GROUP
                 0x00004f08                _image_size = (_image_end - _image_start)
 OUTPUT(freertos_examples_1_to_9.axf elf32-littlearm)
 
-.debug_info     0x00000000     0xa702
+.debug_info     0x00000000     0xa6f3
  .debug_info    0x00000000      0x2f8 ./freertos/src/FreeRTOSCommonHooks.o
  .debug_info    0x000002f8      0x282 ./freertos/src/heap_3.o
  .debug_info    0x0000057a      0x44a ./freertos/src/list.o
@@ -4246,7 +4246,7 @@ OUTPUT(freertos_examples_1_to_9.axf elf32-littlearm)
  .debug_info    0x00008599      0x164 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(fpu_init.o)
  .debug_info    0x000086fd      0x4a4 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(gpio_18xx_43xx.o)
  .debug_info    0x00008ba1      0x99f C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(sysinit_18xx_43xx.o)
- .debug_info    0x00009540     0x11c2 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(uart_18xx_43xx.o)
+ .debug_info    0x00009540     0x11b3 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(uart_18xx_43xx.o)
 
 .debug_abbrev   0x00000000     0x1eaa
  .debug_abbrev  0x00000000      0x181 ./freertos/src/FreeRTOSCommonHooks.o
@@ -4413,7 +4413,7 @@ OUTPUT(freertos_examples_1_to_9.axf elf32-littlearm)
  .debug_macro   0x00008a88      0x2da C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(sysinit_18xx_43xx.o)
  .debug_macro   0x00008d62      0x2da C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(uart_18xx_43xx.o)
 
-.debug_line     0x00000000     0x994b
+.debug_line     0x00000000     0x994a
  .debug_line    0x00000000      0x8e2 ./freertos/src/FreeRTOSCommonHooks.o
  .debug_line    0x000008e2      0x882 ./freertos/src/heap_3.o
  .debug_line    0x00001164      0x94c ./freertos/src/list.o
@@ -4430,7 +4430,7 @@ OUTPUT(freertos_examples_1_to_9.axf elf32-littlearm)
  .debug_line    0x00007ab2      0x2b9 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(fpu_init.o)
  .debug_line    0x00007d6b      0x7a5 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(gpio_18xx_43xx.o)
  .debug_line    0x00008510      0x81f C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(sysinit_18xx_43xx.o)
- .debug_line    0x00008d2f      0xc1c C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(uart_18xx_43xx.o)
+ .debug_line    0x00008d2f      0xc1b C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(uart_18xx_43xx.o)
 
 .debug_str      0x00000000    0x1f1cb
  .debug_str     0x00000000    0x18976 ./freertos/src/FreeRTOSCommonHooks.o
