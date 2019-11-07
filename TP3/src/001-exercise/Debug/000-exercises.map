@@ -3,7 +3,7 @@ Archive member included to satisfy reference by file (symbol)
 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
                               ./freertos/src/FreeRTOSCommonHooks.o (Board_UARTPutSTR)
 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board_sysinit.o)
-                              ./example/src/sysinit.o (Board_SystemInit)
+                              ./exercises/src/sysinit.o (Board_SystemInit)
 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(wm8904.o)
                               C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o) (WM8904_Init)
 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(chip_18xx_43xx.o)
@@ -11,7 +11,7 @@ C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debu
 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(clock_18xx_43xx.o)
                               C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(chip_18xx_43xx.o) (Chip_Clock_GetClockInputHz)
 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(fpu_init.o)
-                              ./example/src/sysinit.o (fpuInit)
+                              ./exercises/src/sysinit.o (fpuInit)
 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(gpio_18xx_43xx.o)
                               C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o) (Chip_GPIO_Init)
 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(i2c_18xx_43xx.o)
@@ -25,7 +25,7 @@ C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debu
 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(ring_buffer.o)
                               C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(uart_18xx_43xx.o) (RingBuffer_Insert)
 c:/apps/electronics/mcuxpressoide_11.0.1_2563/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.0.1.201907311258/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/softfp\libcr_nohost.a(_cr__main.o)
-                              ./example/src/cr_startup_lpc43xx.o (__main)
+                              ./exercises/src/cr_startup_lpc43xx.o (__main)
 c:/apps/electronics/mcuxpressoide_11.0.1_2563/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.0.1.201907311258/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/softfp\libcr_c.a(memcpy.o)
                               ./freertos/src/queue.o (memcpy)
 c:/apps/electronics/mcuxpressoide_11.0.1_2563/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.0.1.201907311258/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/softfp\libcr_c.a(memset.o)
@@ -104,7 +104,7 @@ Common symbol       size              file
 
 SystemCoreClock     0x4               C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(chip_18xx_43xx.o)
 xQueueRegistry      0x50              ./freertos/src/queue.o
-xQueue              0x4               ./example/src/freertos_examples_10_to_16.o
+xQueue              0x4               ./exercises/src/ej1.o
 
 Discarded input sections
 
@@ -353,8 +353,8 @@ Discarded input sections
  .debug_macro   0x00000000       0x79 ./freertos/src/croutine.o
  .debug_macro   0x00000000       0x69 ./freertos/src/croutine.o
  .debug_macro   0x00000000       0x49 ./freertos/src/croutine.o
- .debug_line    0x00000000      0xa70 ./freertos/src/croutine.o
- .debug_str     0x00000000    0x19e21 ./freertos/src/croutine.o
+ .debug_line    0x00000000      0xa58 ./freertos/src/croutine.o
+ .debug_str     0x00000000    0x19e14 ./freertos/src/croutine.o
  .comment       0x00000000       0x76 ./freertos/src/croutine.o
  .debug_frame   0x00000000      0x10c ./freertos/src/croutine.o
  .ARM.attributes
@@ -516,8 +516,8 @@ Discarded input sections
  .debug_macro   0x00000000       0x79 ./freertos/src/event_groups.o
  .debug_macro   0x00000000       0x69 ./freertos/src/event_groups.o
  .debug_macro   0x00000000       0x91 ./freertos/src/event_groups.o
- .debug_line    0x00000000      0xb3c ./freertos/src/event_groups.o
- .debug_str     0x00000000    0x1969a ./freertos/src/event_groups.o
+ .debug_line    0x00000000      0xb24 ./freertos/src/event_groups.o
+ .debug_str     0x00000000    0x1968d ./freertos/src/event_groups.o
  .comment       0x00000000       0x76 ./freertos/src/event_groups.o
  .debug_frame   0x00000000      0x1a4 ./freertos/src/event_groups.o
  .ARM.attributes
@@ -1381,252 +1381,252 @@ Discarded input sections
  .debug_macro   0x00000000       0x69 ./freertos/src/timers.o
  .debug_macro   0x00000000       0xb0 ./freertos/src/timers.o
  .debug_macro   0x00000000       0x91 ./freertos/src/timers.o
- .debug_line    0x00000000      0x85b ./freertos/src/timers.o
- .debug_str     0x00000000    0x19c26 ./freertos/src/timers.o
+ .debug_line    0x00000000      0x843 ./freertos/src/timers.o
+ .debug_str     0x00000000    0x19c19 ./freertos/src/timers.o
  .comment       0x00000000       0x76 ./freertos/src/timers.o
  .ARM.attributes
                 0x00000000       0x37 ./freertos/src/timers.o
- .group         0x00000000        0xc ./example/src/cr_startup_lpc43xx.o
- .text          0x00000000        0x0 ./example/src/cr_startup_lpc43xx.o
- .data          0x00000000        0x0 ./example/src/cr_startup_lpc43xx.o
- .bss           0x00000000        0x0 ./example/src/cr_startup_lpc43xx.o
- .debug_macro   0x00000000      0xab4 ./example/src/cr_startup_lpc43xx.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/freertos_examples_10_to_16.o
- .text          0x00000000        0x0 ./example/src/freertos_examples_10_to_16.o
- .data          0x00000000        0x0 ./example/src/freertos_examples_10_to_16.o
- .bss           0x00000000        0x0 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0xab4 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x10 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x10 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0x12e ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0x5b3 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x22 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x28 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x3b ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x2d ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x42 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0xd39 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0x2bc ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0x112 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x11 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x2a ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x16 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0x2e6 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x82 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0x13d ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0x198 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x34 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x58 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0x236 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0x572 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x16 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0x18a ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x88 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0x1b9 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0x1da ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x40 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x1c ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x2e ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x2e ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x22 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0x201 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0xe0 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0x34c ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0xdc ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0xc4 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x94 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0xb8 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x4c ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x16 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0x328 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x3a ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0xd0 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x22 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x40 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0x183 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x9a ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x20 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x40 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0xaf ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x12 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x1f ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000      0x35a ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x79 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0x69 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00000000       0xb0 ./example/src/freertos_examples_10_to_16.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .group         0x00000000        0xc ./example/src/sysinit.o
- .text          0x00000000        0x0 ./example/src/sysinit.o
- .data          0x00000000        0x0 ./example/src/sysinit.o
- .bss           0x00000000        0x0 ./example/src/sysinit.o
- .debug_macro   0x00000000      0xab4 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x10 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x10 ./example/src/sysinit.o
- .debug_macro   0x00000000      0x12e ./example/src/sysinit.o
- .debug_macro   0x00000000      0x5b3 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x22 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x7b ./example/src/sysinit.o
- .debug_macro   0x00000000       0x28 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x3b ./example/src/sysinit.o
- .debug_macro   0x00000000       0x2d ./example/src/sysinit.o
- .debug_macro   0x00000000       0x42 ./example/src/sysinit.o
- .debug_macro   0x00000000      0xd39 ./example/src/sysinit.o
- .debug_macro   0x00000000      0x2bc ./example/src/sysinit.o
- .debug_macro   0x00000000      0x112 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x11 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x2a ./example/src/sysinit.o
- .debug_macro   0x00000000       0x16 ./example/src/sysinit.o
- .debug_macro   0x00000000      0x2e6 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x82 ./example/src/sysinit.o
- .debug_macro   0x00000000      0x13d ./example/src/sysinit.o
- .debug_macro   0x00000000      0x198 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x34 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x58 ./example/src/sysinit.o
- .debug_macro   0x00000000      0x236 ./example/src/sysinit.o
- .debug_macro   0x00000000      0x572 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x16 ./example/src/sysinit.o
- .debug_macro   0x00000000      0x18a ./example/src/sysinit.o
- .debug_macro   0x00000000       0x88 ./example/src/sysinit.o
- .debug_macro   0x00000000      0x1b9 ./example/src/sysinit.o
- .debug_macro   0x00000000      0x1da ./example/src/sysinit.o
- .debug_macro   0x00000000       0x40 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x1c ./example/src/sysinit.o
- .debug_macro   0x00000000       0x2e ./example/src/sysinit.o
- .debug_macro   0x00000000       0x2e ./example/src/sysinit.o
- .debug_macro   0x00000000       0x22 ./example/src/sysinit.o
- .debug_macro   0x00000000      0x201 ./example/src/sysinit.o
- .debug_macro   0x00000000       0xe0 ./example/src/sysinit.o
- .debug_macro   0x00000000      0x34c ./example/src/sysinit.o
- .debug_macro   0x00000000       0xdc ./example/src/sysinit.o
- .debug_macro   0x00000000       0xc4 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x94 ./example/src/sysinit.o
- .debug_macro   0x00000000       0xb8 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x4c ./example/src/sysinit.o
- .debug_macro   0x00000000       0x16 ./example/src/sysinit.o
- .debug_macro   0x00000000      0x328 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x3a ./example/src/sysinit.o
- .debug_macro   0x00000000       0xd0 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x18 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x22 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x40 ./example/src/sysinit.o
- .debug_macro   0x00000000      0x183 ./example/src/sysinit.o
- .debug_macro   0x00000000       0x9a ./example/src/sysinit.o
- .debug_macro   0x00000000       0x20 ./example/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/cr_startup_lpc43xx.o
+ .text          0x00000000        0x0 ./exercises/src/cr_startup_lpc43xx.o
+ .data          0x00000000        0x0 ./exercises/src/cr_startup_lpc43xx.o
+ .bss           0x00000000        0x0 ./exercises/src/cr_startup_lpc43xx.o
+ .debug_macro   0x00000000      0xab4 ./exercises/src/cr_startup_lpc43xx.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/ej1.o
+ .text          0x00000000        0x0 ./exercises/src/ej1.o
+ .data          0x00000000        0x0 ./exercises/src/ej1.o
+ .bss           0x00000000        0x0 ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0xab4 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x10 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x10 ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0x12e ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0x5b3 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x22 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x28 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x3b ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x2d ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x42 ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0xd39 ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0x2bc ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0x112 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x11 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x2a ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x16 ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0x2e6 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x82 ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0x13d ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0x198 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x34 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x58 ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0x236 ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0x572 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x16 ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0x18a ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x88 ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0x1b9 ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0x1da ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x40 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x1c ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x2e ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x2e ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x22 ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0x201 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0xe0 ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0x34c ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0xdc ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0xc4 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x94 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0xb8 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x4c ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x16 ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0x328 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x3a ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0xd0 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x22 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x40 ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0x183 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x9a ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x20 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x40 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0xaf ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x12 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x1f ./exercises/src/ej1.o
+ .debug_macro   0x00000000      0x35a ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x79 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0x69 ./exercises/src/ej1.o
+ .debug_macro   0x00000000       0xb0 ./exercises/src/ej1.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .group         0x00000000        0xc ./exercises/src/sysinit.o
+ .text          0x00000000        0x0 ./exercises/src/sysinit.o
+ .data          0x00000000        0x0 ./exercises/src/sysinit.o
+ .bss           0x00000000        0x0 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000      0xab4 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x10 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x10 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000      0x12e ./exercises/src/sysinit.o
+ .debug_macro   0x00000000      0x5b3 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x22 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x7b ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x28 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x3b ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x2d ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x42 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000      0xd39 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000      0x2bc ./exercises/src/sysinit.o
+ .debug_macro   0x00000000      0x112 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x11 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x2a ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x16 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000      0x2e6 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x82 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000      0x13d ./exercises/src/sysinit.o
+ .debug_macro   0x00000000      0x198 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x34 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x58 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000      0x236 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000      0x572 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x16 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000      0x18a ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x88 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000      0x1b9 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000      0x1da ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x40 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x1c ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x2e ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x2e ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x22 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000      0x201 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0xe0 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000      0x34c ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0xdc ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0xc4 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x94 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0xb8 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x4c ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x16 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000      0x328 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x3a ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0xd0 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x18 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x22 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x40 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000      0x183 ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x9a ./exercises/src/sysinit.o
+ .debug_macro   0x00000000       0x20 ./exercises/src/sysinit.o
  .group         0x00000000        0xc C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
  .group         0x00000000        0xc C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
  .group         0x00000000        0xc C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
@@ -3318,9 +3318,9 @@ LOAD ./freertos/src/queue.o
 LOAD ./freertos/src/redlib_memfix.o
 LOAD ./freertos/src/tasks.o
 LOAD ./freertos/src/timers.o
-LOAD ./example/src/cr_startup_lpc43xx.o
-LOAD ./example/src/freertos_examples_10_to_16.o
-LOAD ./example/src/sysinit.o
+LOAD ./exercises/src/cr_startup_lpc43xx.o
+LOAD ./exercises/src/ej1.o
+LOAD ./exercises/src/sysinit.o
 LOAD C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a
 LOAD C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a
 START GROUP
@@ -3377,7 +3377,7 @@ END GROUP
  FILL mask 0xff
                 0x1a000000                __vectors_start__ = ABSOLUTE (.)
  *(.isr_vector)
- .isr_vector    0x1a000000      0x114 ./example/src/cr_startup_lpc43xx.o
+ .isr_vector    0x1a000000      0x114 ./exercises/src/cr_startup_lpc43xx.o
                 0x1a000000                g_pfnVectors
                 0x1a000114                . = ALIGN (0x4)
                 0x1a000114                __section_table_start = .
@@ -3413,7 +3413,7 @@ END GROUP
                 0x1a000178                __section_table_end = .
  *(.after_vectors*)
  .after_vectors
-                0x1a000178       0xb8 ./example/src/cr_startup_lpc43xx.o
+                0x1a000178       0xb8 ./exercises/src/cr_startup_lpc43xx.o
                 0x1a000178                data_init
                 0x1a0001bc                bss_init
                 0x1a0001f4                NMI_Handler
@@ -3640,18 +3640,18 @@ END GROUP
                 0x1a00192c       0x84 ./freertos/src/tasks.o
                 0x1a00192c                vTaskPriorityDisinherit
  .text.ResetISR
-                0x1a0019b0       0xc4 ./example/src/cr_startup_lpc43xx.o
+                0x1a0019b0       0xc4 ./exercises/src/cr_startup_lpc43xx.o
                 0x1a0019b0                ResetISR
  .text.prvSetupHardware
-                0x1a001a74       0x18 ./example/src/freertos_examples_10_to_16.o
+                0x1a001a74       0x18 ./exercises/src/ej1.o
  .text.vSenderTask
-                0x1a001a8c       0x40 ./example/src/freertos_examples_10_to_16.o
+                0x1a001a8c       0x40 ./exercises/src/ej1.o
  .text.vReceiverTask
-                0x1a001acc       0x68 ./example/src/freertos_examples_10_to_16.o
- .text.main     0x1a001b34       0xa4 ./example/src/freertos_examples_10_to_16.o
+                0x1a001acc       0x68 ./exercises/src/ej1.o
+ .text.main     0x1a001b34       0xa4 ./exercises/src/ej1.o
                 0x1a001b34                main
  .text.SystemInit
-                0x1a001bd8       0x28 ./example/src/sysinit.o
+                0x1a001bd8       0x28 ./exercises/src/sysinit.o
                 0x1a001bd8                SystemInit
  .text.Chip_SCU_PinMuxSet
                 0x1a001c00       0x34 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
@@ -3937,7 +3937,7 @@ END GROUP
  *fill*         0x1a00577a        0x2 ff
  .rodata        0x1a00577c        0x5 ./freertos/src/tasks.o
  *fill*         0x1a005781        0x3 ff
- .rodata        0x1a005784       0xce ./example/src/freertos_examples_10_to_16.o
+ .rodata        0x1a005784       0xce ./exercises/src/ej1.o
  *fill*         0x1a005852        0x2 ff
  .rodata.ExtRateIn
                 0x1a005854        0x4 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
@@ -4075,7 +4075,7 @@ END GROUP
  .data.xNextTaskUnblockTime
                 0x10000004        0x4 ./freertos/src/tasks.o
  .data.pcTextForMain
-                0x10000008        0x4 ./example/src/freertos_examples_10_to_16.o
+                0x10000008        0x4 ./exercises/src/ej1.o
                 0x10000008                pcTextForMain
                 0x1000000c                . = ALIGN (0x4)
                 0x1000000c                _edata = .
@@ -4184,7 +4184,7 @@ END GROUP
  .bss.__Ciob    0x10000164      0x1e0 c:/apps/electronics/mcuxpressoide_11.0.1_2563/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.0.1.201907311258/tools/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/softfp\libcr_nohost.a(__ciob.o)
                 0x10000164                __Ciob
  *(COMMON)
- COMMON         0x10000344        0x4 ./example/src/freertos_examples_10_to_16.o
+ COMMON         0x10000344        0x4 ./exercises/src/ej1.o
                 0x10000344                xQueue
  COMMON         0x10000348        0x4 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(chip_18xx_43xx.o)
                 0x10000348                SystemCoreClock
@@ -4236,7 +4236,7 @@ END GROUP
                 0x1a000000                _image_start = LOADADDR (.text)
                 0x1a005a0c                _image_end = (LOADADDR (.data) + SIZEOF (.data))
                 0x00005a0c                _image_size = (_image_end - _image_start)
-OUTPUT(freertos_examples_10_to_16.axf elf32-littlearm)
+OUTPUT(000-exercises.axf elf32-littlearm)
 
 .debug_info     0x00000000     0xb989
  .debug_info    0x00000000      0x2f8 ./freertos/src/FreeRTOSCommonHooks.o
@@ -4246,9 +4246,9 @@ OUTPUT(freertos_examples_10_to_16.axf elf32-littlearm)
  .debug_info    0x0000134c     0x1233 ./freertos/src/queue.o
  .debug_info    0x0000257f       0x85 ./freertos/src/redlib_memfix.o
  .debug_info    0x00002604     0x19b6 ./freertos/src/tasks.o
- .debug_info    0x00003fba      0x2bd ./example/src/cr_startup_lpc43xx.o
- .debug_info    0x00004277      0x84f ./example/src/freertos_examples_10_to_16.o
- .debug_info    0x00004ac6      0x250 ./example/src/sysinit.o
+ .debug_info    0x00003fba      0x2bd ./exercises/src/cr_startup_lpc43xx.o
+ .debug_info    0x00004277      0x84f ./exercises/src/ej1.o
+ .debug_info    0x00004ac6      0x250 ./exercises/src/sysinit.o
  .debug_info    0x00004d16     0x1c70 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
  .debug_info    0x00006986      0xd0c C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board_sysinit.o)
  .debug_info    0x00007692      0xacc C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(chip_18xx_43xx.o)
@@ -4266,9 +4266,9 @@ OUTPUT(freertos_examples_10_to_16.axf elf32-littlearm)
  .debug_abbrev  0x00000629      0x24b ./freertos/src/queue.o
  .debug_abbrev  0x00000874       0x85 ./freertos/src/redlib_memfix.o
  .debug_abbrev  0x000008f9      0x2c9 ./freertos/src/tasks.o
- .debug_abbrev  0x00000bc2      0x120 ./example/src/cr_startup_lpc43xx.o
- .debug_abbrev  0x00000ce2      0x17d ./example/src/freertos_examples_10_to_16.o
- .debug_abbrev  0x00000e5f       0xeb ./example/src/sysinit.o
+ .debug_abbrev  0x00000bc2      0x120 ./exercises/src/cr_startup_lpc43xx.o
+ .debug_abbrev  0x00000ce2      0x17d ./exercises/src/ej1.o
+ .debug_abbrev  0x00000e5f       0xeb ./exercises/src/sysinit.o
  .debug_abbrev  0x00000f4a      0x3b0 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
  .debug_abbrev  0x000012fa      0x1f9 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board_sysinit.o)
  .debug_abbrev  0x000014f3      0x19b C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(chip_18xx_43xx.o)
@@ -4294,11 +4294,11 @@ OUTPUT(freertos_examples_10_to_16.axf elf32-littlearm)
  .debug_aranges
                 0x00000250      0x190 ./freertos/src/tasks.o
  .debug_aranges
-                0x000003e0       0x80 ./example/src/cr_startup_lpc43xx.o
+                0x000003e0       0x80 ./exercises/src/cr_startup_lpc43xx.o
  .debug_aranges
-                0x00000460       0x38 ./example/src/freertos_examples_10_to_16.o
+                0x00000460       0x38 ./exercises/src/ej1.o
  .debug_aranges
-                0x00000498       0x20 ./example/src/sysinit.o
+                0x00000498       0x20 ./exercises/src/sysinit.o
  .debug_aranges
                 0x000004b8      0x170 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
  .debug_aranges
@@ -4324,9 +4324,9 @@ OUTPUT(freertos_examples_10_to_16.axf elf32-littlearm)
  .debug_ranges  0x00000100       0xe0 ./freertos/src/queue.o
  .debug_ranges  0x000001e0       0x10 ./freertos/src/redlib_memfix.o
  .debug_ranges  0x000001f0      0x180 ./freertos/src/tasks.o
- .debug_ranges  0x00000370       0x70 ./example/src/cr_startup_lpc43xx.o
- .debug_ranges  0x000003e0       0x28 ./example/src/freertos_examples_10_to_16.o
- .debug_ranges  0x00000408       0x10 ./example/src/sysinit.o
+ .debug_ranges  0x00000370       0x70 ./exercises/src/cr_startup_lpc43xx.o
+ .debug_ranges  0x000003e0       0x28 ./exercises/src/ej1.o
+ .debug_ranges  0x00000408       0x10 ./exercises/src/sysinit.o
  .debug_ranges  0x00000418      0x160 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
  .debug_ranges  0x00000578       0x38 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board_sysinit.o)
  .debug_ranges  0x000005b0       0x30 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(chip_18xx_43xx.o)
@@ -4408,15 +4408,15 @@ OUTPUT(freertos_examples_10_to_16.axf elf32-littlearm)
  .debug_macro   0x000063ec       0x17 ./freertos/src/redlib_memfix.o
  .debug_macro   0x00006403      0x43c ./freertos/src/tasks.o
  .debug_macro   0x0000683f       0x16 ./freertos/src/tasks.o
- .debug_macro   0x00006855       0x1d ./example/src/cr_startup_lpc43xx.o
- .debug_macro   0x00006872      0x3e4 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00006c56       0x7b ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00006cd1       0x18 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00006ce9       0x10 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00006cf9       0xf5 ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00006dee       0x7e ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00006e6c       0x1c ./example/src/freertos_examples_10_to_16.o
- .debug_macro   0x00006e88      0x310 ./example/src/sysinit.o
+ .debug_macro   0x00006855       0x1d ./exercises/src/cr_startup_lpc43xx.o
+ .debug_macro   0x00006872      0x3e4 ./exercises/src/ej1.o
+ .debug_macro   0x00006c56       0x7b ./exercises/src/ej1.o
+ .debug_macro   0x00006cd1       0x18 ./exercises/src/ej1.o
+ .debug_macro   0x00006ce9       0x10 ./exercises/src/ej1.o
+ .debug_macro   0x00006cf9       0xf5 ./exercises/src/ej1.o
+ .debug_macro   0x00006dee       0x7e ./exercises/src/ej1.o
+ .debug_macro   0x00006e6c       0x1c ./exercises/src/ej1.o
+ .debug_macro   0x00006e88      0x310 ./exercises/src/sysinit.o
  .debug_macro   0x00007198      0x336 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
  .debug_macro   0x000074ce      0xaa8 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
  .debug_macro   0x00007f76       0x12 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
@@ -4429,62 +4429,62 @@ OUTPUT(freertos_examples_10_to_16.axf elf32-littlearm)
  .debug_macro   0x00008f25      0x2da C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(sysinit_18xx_43xx.o)
  .debug_macro   0x000091ff      0x2da C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(uart_18xx_43xx.o)
 
-.debug_line     0x00000000     0xa93a
- .debug_line    0x00000000      0x8e6 ./freertos/src/FreeRTOSCommonHooks.o
- .debug_line    0x000008e6      0x888 ./freertos/src/heap_3.o
- .debug_line    0x0000116e      0x94f ./freertos/src/list.o
- .debug_line    0x00001abd      0xb39 ./freertos/src/port.o
- .debug_line    0x000025f6      0xfb0 ./freertos/src/queue.o
- .debug_line    0x000035a6       0x60 ./freertos/src/redlib_memfix.o
- .debug_line    0x00003606     0x1677 ./freertos/src/tasks.o
- .debug_line    0x00004c7d      0x1aa ./example/src/cr_startup_lpc43xx.o
- .debug_line    0x00004e27      0x918 ./example/src/freertos_examples_10_to_16.o
- .debug_line    0x0000573f      0x711 ./example/src/sysinit.o
- .debug_line    0x00005e50      0xcfc C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
- .debug_line    0x00006b4c      0x812 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board_sysinit.o)
- .debug_line    0x0000735e      0x722 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(chip_18xx_43xx.o)
- .debug_line    0x00007a80     0x1021 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(clock_18xx_43xx.o)
- .debug_line    0x00008aa1      0x2b9 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(fpu_init.o)
- .debug_line    0x00008d5a      0x7a5 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(gpio_18xx_43xx.o)
- .debug_line    0x000094ff      0x81f C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(sysinit_18xx_43xx.o)
- .debug_line    0x00009d1e      0xc1c C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(uart_18xx_43xx.o)
+.debug_line     0x00000000     0xa881
+ .debug_line    0x00000000      0x8ce ./freertos/src/FreeRTOSCommonHooks.o
+ .debug_line    0x000008ce      0x870 ./freertos/src/heap_3.o
+ .debug_line    0x0000113e      0x937 ./freertos/src/list.o
+ .debug_line    0x00001a75      0xb21 ./freertos/src/port.o
+ .debug_line    0x00002596      0xf98 ./freertos/src/queue.o
+ .debug_line    0x0000352e       0x60 ./freertos/src/redlib_memfix.o
+ .debug_line    0x0000358e     0x165f ./freertos/src/tasks.o
+ .debug_line    0x00004bed      0x1ac ./exercises/src/cr_startup_lpc43xx.o
+ .debug_line    0x00004d99      0x8eb ./exercises/src/ej1.o
+ .debug_line    0x00005684      0x713 ./exercises/src/sysinit.o
+ .debug_line    0x00005d97      0xcfc C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
+ .debug_line    0x00006a93      0x812 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board_sysinit.o)
+ .debug_line    0x000072a5      0x722 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(chip_18xx_43xx.o)
+ .debug_line    0x000079c7     0x1021 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(clock_18xx_43xx.o)
+ .debug_line    0x000089e8      0x2b9 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(fpu_init.o)
+ .debug_line    0x00008ca1      0x7a5 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(gpio_18xx_43xx.o)
+ .debug_line    0x00009446      0x81f C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(sysinit_18xx_43xx.o)
+ .debug_line    0x00009c65      0xc1c C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(uart_18xx_43xx.o)
 
-.debug_str      0x00000000    0x1f843
- .debug_str     0x00000000    0x18978 ./freertos/src/FreeRTOSCommonHooks.o
-                              0x18a9f (size before relaxing)
- .debug_str     0x00018978      0x103 ./freertos/src/heap_3.o
-                              0x18a95 (size before relaxing)
- .debug_str     0x00018a7b      0x139 ./freertos/src/list.o
-                              0x187ad (size before relaxing)
- .debug_str     0x00018bb4     0x11d1 ./freertos/src/port.o
-                              0x19bd0 (size before relaxing)
- .debug_str     0x00019d85     0x10ed ./freertos/src/queue.o
-                              0x1a672 (size before relaxing)
- .debug_str     0x0001ae72       0x6f ./freertos/src/redlib_memfix.o
-                               0x2eb2 (size before relaxing)
- .debug_str     0x0001aee1     0x165e ./freertos/src/tasks.o
-                              0x1acf5 (size before relaxing)
- .debug_str     0x0001c53f      0x1cf ./example/src/cr_startup_lpc43xx.o
-                               0x3036 (size before relaxing)
- .debug_str     0x0001c70e      0x91c ./example/src/freertos_examples_10_to_16.o
-                              0x1a7a5 (size before relaxing)
- .debug_str     0x0001d02a       0x23 ./example/src/sysinit.o
-                              0x161ec (size before relaxing)
- .debug_str     0x0001d04d     0x1a46 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
+.debug_str      0x00000000    0x1f825
+ .debug_str     0x00000000    0x1896b ./freertos/src/FreeRTOSCommonHooks.o
+                              0x18a92 (size before relaxing)
+ .debug_str     0x0001896b      0x103 ./freertos/src/heap_3.o
+                              0x18a88 (size before relaxing)
+ .debug_str     0x00018a6e      0x139 ./freertos/src/list.o
+                              0x187a0 (size before relaxing)
+ .debug_str     0x00018ba7     0x11d1 ./freertos/src/port.o
+                              0x19bc3 (size before relaxing)
+ .debug_str     0x00019d78     0x10ed ./freertos/src/queue.o
+                              0x1a665 (size before relaxing)
+ .debug_str     0x0001ae65       0x6f ./freertos/src/redlib_memfix.o
+                               0x2ea5 (size before relaxing)
+ .debug_str     0x0001aed4     0x165e ./freertos/src/tasks.o
+                              0x1ace8 (size before relaxing)
+ .debug_str     0x0001c532      0x1d1 ./exercises/src/cr_startup_lpc43xx.o
+                               0x302b (size before relaxing)
+ .debug_str     0x0001c703      0x907 ./exercises/src/ej1.o
+                              0x1a783 (size before relaxing)
+ .debug_str     0x0001d00a       0x25 ./exercises/src/sysinit.o
+                              0x161e1 (size before relaxing)
+ .debug_str     0x0001d02f     0x1a46 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
                               0x18662 (size before relaxing)
- .debug_str     0x0001ea93      0x125 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board_sysinit.o)
+ .debug_str     0x0001ea75      0x125 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board_sysinit.o)
                               0x16f78 (size before relaxing)
- .debug_str     0x0001ebb8       0xf3 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(chip_18xx_43xx.o)
+ .debug_str     0x0001eb9a       0xf3 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(chip_18xx_43xx.o)
                               0x16629 (size before relaxing)
- .debug_str     0x0001ecab      0x5e7 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(clock_18xx_43xx.o)
+ .debug_str     0x0001ec8d      0x5e7 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(clock_18xx_43xx.o)
                               0x16ba8 (size before relaxing)
- .debug_str     0x0001f292       0xb5 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(fpu_init.o)
+ .debug_str     0x0001f274       0xb5 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(fpu_init.o)
                                0xa1ae (size before relaxing)
- .debug_str     0x0001f347       0xe4 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(gpio_18xx_43xx.o)
+ .debug_str     0x0001f329       0xe4 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(gpio_18xx_43xx.o)
                               0x15a3b (size before relaxing)
- .debug_str     0x0001f42b       0xb4 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(sysinit_18xx_43xx.o)
+ .debug_str     0x0001f40d       0xb4 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(sysinit_18xx_43xx.o)
                               0x16608 (size before relaxing)
- .debug_str     0x0001f4df      0x364 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(uart_18xx_43xx.o)
+ .debug_str     0x0001f4c1      0x364 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(uart_18xx_43xx.o)
                               0x1676c (size before relaxing)
 
 .comment        0x00000000       0x75
@@ -4496,9 +4496,9 @@ OUTPUT(freertos_examples_10_to_16.axf elf32-littlearm)
  .comment       0x00000075       0x76 ./freertos/src/queue.o
  .comment       0x00000075       0x76 ./freertos/src/redlib_memfix.o
  .comment       0x00000075       0x76 ./freertos/src/tasks.o
- .comment       0x00000075       0x76 ./example/src/cr_startup_lpc43xx.o
- .comment       0x00000075       0x76 ./example/src/freertos_examples_10_to_16.o
- .comment       0x00000075       0x76 ./example/src/sysinit.o
+ .comment       0x00000075       0x76 ./exercises/src/cr_startup_lpc43xx.o
+ .comment       0x00000075       0x76 ./exercises/src/ej1.o
+ .comment       0x00000075       0x76 ./exercises/src/sysinit.o
  .comment       0x00000075       0x76 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
  .comment       0x00000075       0x76 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board_sysinit.o)
  .comment       0x00000075       0x76 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(chip_18xx_43xx.o)
@@ -4558,11 +4558,11 @@ OUTPUT(freertos_examples_10_to_16.axf elf32-littlearm)
  .ARM.attributes
                 0x0000012c       0x32 ./freertos/src/tasks.o
  .ARM.attributes
-                0x0000015e       0x32 ./example/src/cr_startup_lpc43xx.o
+                0x0000015e       0x32 ./exercises/src/cr_startup_lpc43xx.o
  .ARM.attributes
-                0x00000190       0x32 ./example/src/freertos_examples_10_to_16.o
+                0x00000190       0x32 ./exercises/src/ej1.o
  .ARM.attributes
-                0x000001c2       0x32 ./example/src/sysinit.o
+                0x000001c2       0x32 ./exercises/src/sysinit.o
  .ARM.attributes
                 0x000001f4       0x32 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
  .ARM.attributes
@@ -4660,9 +4660,9 @@ OUTPUT(freertos_examples_10_to_16.axf elf32-littlearm)
  .debug_frame   0x00000388      0x404 ./freertos/src/queue.o
  .debug_frame   0x0000078c       0x38 ./freertos/src/redlib_memfix.o
  .debug_frame   0x000007c4      0x6cc ./freertos/src/tasks.o
- .debug_frame   0x00000e90      0x170 ./example/src/cr_startup_lpc43xx.o
- .debug_frame   0x00001000       0x8c ./example/src/freertos_examples_10_to_16.o
- .debug_frame   0x0000108c       0x34 ./example/src/sysinit.o
+ .debug_frame   0x00000e90      0x170 ./exercises/src/cr_startup_lpc43xx.o
+ .debug_frame   0x00001000       0x8c ./exercises/src/ej1.o
+ .debug_frame   0x0000108c       0x34 ./exercises/src/sysinit.o
  .debug_frame   0x000010c0      0x634 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board.o)
  .debug_frame   0x000016f4       0xe4 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug\liblpc_board_nxp_lpcxpresso_4337.a(board_sysinit.o)
  .debug_frame   0x000017d8       0xa0 C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug\liblpc_chip_43xx.a(chip_18xx_43xx.o)
