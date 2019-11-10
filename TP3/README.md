@@ -65,6 +65,7 @@ Las dos tareas comparten la ejecución de la función *vTaskFunction*. Esta func
 
 El diagrama temporal del ejemplo 5 es el mismo del ejemplo 4, salvo que con el uso de *xLastWakeTime = xTaskGetTickCount()* y *vTaskDelayUntil(&xLastWakeTime, (250 / portTICK_RATE_MS))* se garantiza el tiempo en que las tareas salen del estado *Blocked*.
 
+![Example5](Imagenes/Example5.png)
 
 ### Example 6
 
