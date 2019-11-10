@@ -76,7 +76,7 @@ El ejemplo 6 consta de tres tareas (*Task1*, *Task2* y *Task3*)
 ### Example 7
 
 Se imprime  el mensaje de contador *DEBUGOUT("Idle ulCycleCount %d %s", ulIdleCycleCount, pcTaskName)* durante el periodo inexacto definido por
-*vTaskDelay(250 / portTICK_RATE_MS)*. *Idle ulCycleCount* incrementa su valor a través de la función *vApplicationIdleHook()*.
+*vTaskDelay(250 / portTICK_RATE_MS)*. *Idle ulCycleCount* incrementa su valor a través de la función *vApplicationIdleHook()* ejecutando *Idle Task Hook*.
 
 
 ### Example 8
