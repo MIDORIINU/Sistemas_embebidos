@@ -99,8 +99,10 @@ El ejemplo 11 es similar al ejemplo 10, pero las prioridades de la tarea se invi
 En el ejemplo 11, las tareas de envío tienen la mayor prioridad, por lo que la cola normalmente estará llena. Esto se debe a que tan pronto como la tarea de recepción elimine un elemento de la cola, será reemplazado por una de las tareas de envío que luego volverá a llenar la cola. La tarea de envío volverá a ingresar al estado *Blocked* para esperar a que el espacio vuelva a estar disponible en la cola.
 
 En el tiempo t5, *Sender2* intenta escribir datos en la cola. Debido a que la cola ya está llena, *Sender2* ingresa al estado bloqueado para esperar a que haya espacio disponible, lo que permite que *Sender1* se ejecute una vez más.
+![Example11](Imagenes/Example11.png)
 
 ### Example 12
+
 
 ### Example 13
 
