@@ -78,6 +78,7 @@ El ejemplo 6 consta de tres tareas (*Task1*, *Task2* y *Task3*)
 Se imprime  el mensaje de contador *DEBUGOUT("Idle ulCycleCount %d %s", ulIdleCycleCount, pcTaskName)* durante el periodo inexacto definido por
 *vTaskDelay(250 / portTICK_RATE_MS)*. *Idle ulCycleCount* incrementa su valor a través de la función *vApplicationIdleHook()* ejecutando *Idle Task Hook*.
 
+![Example7](Imagenes/Example7.png)
 
 ### Example 8
 *Task1* tiene mayor prioridad que *Task2*  y a través de *uxTaskPriorityGet()* y *vTaskPrioritySet((xTaskHandle)NULL, (uxPriority - 2))* se invierten las prioridades. 
