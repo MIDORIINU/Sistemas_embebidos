@@ -116,6 +116,7 @@ En el tiempo t5, *Sender2* intenta escribir datos en la cola. Debido a que la co
 
 ### Example 15
 
+
 ### Example 16
 
 
