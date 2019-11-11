@@ -116,8 +116,11 @@ En el tiempo t5, *Sender2* intenta escribir datos en la cola. Debido a que la co
 
 ### Example 15
 
+![Example15](Imagenes/Example15.png)
 
 ### Example 16
+
+![Example16](Imagenes/Example16.png)
 
 
 # 4 Implementación 1 <a Implementación1></a>
