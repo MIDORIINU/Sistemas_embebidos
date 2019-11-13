@@ -123,7 +123,7 @@ En el tiempo t5, *Sender2* intenta escribir datos en la cola. Debido a que la co
 ![Example16](Imagenes/Example16.png)
 
 
-# 4 Implementación 1 <a Implementación1></a>
+# 4 Implementación 1: Tarea 1 periódica <a Implementación1></a>
 De acuerdo con el *diagrama 1* se crearon tres tareas: *vSender1*, *vSender1* y *vReceiver*, con prioridades 1, 1 y 2, respectivamente. 
 ![diagrama1](Imagenes/diagrama1.png)
 
@@ -134,10 +134,12 @@ La tarea de recepción *vReceiver* especifica un tiempo de bloqueo de 500 milise
 Las tareas *vSender1* y *vSender1* llaman a taskYIELD() en cada iteración de su bucle infinito. taskYIELD() informa al planificador que un cambio a otra tarea debería ocurrir ahora en lugar de mantener la tarea de ejecución en el estado *Running* hasta el final del segmento de tiempo actual. Como ambas tareas que se envían a la cola tienen una prioridad idéntica cada vez que se llama a taskYIELD(), la otra comienza a ejecutarse. Esto hace que las dos tareas de envío envíen datos a la cola a su vez.
 
 
-# 5 Implementación 2 <a Implementación2></a>
+# 5 Implementación 2: Intercambio de las palabras semáforo <a Implementación2></a>
 
 
 ![diagrama2](Imagenes/diagrama2.png)
-# 6 Implementación 3 <a Implementación2></a>
+# 6 Implementación 3: Tareas de secuencia fija <a Implementación2></a>
 ![diagrama3](Imagenes/diagrama3.png)
+
+
 # 7 Hoja de ruta <a name=HojadeRuta></a>

@@ -43,7 +43,8 @@
 #define EXERSICE_2 (2)		/* Exercise 2 */
 #define EXERSICE_3 (3)		/* Exercise 3 */
 
-#define EXERCISE (EXERSICE_1)
+#define EXERCISE (EXERSICE_2)
+
 
 /*****************************************************************************
  * Public types/enumerations/variables
@@ -122,7 +123,7 @@ static void vReceiverTask(void *pvParameters)
 	/* Declare the variable that will hold the values received from the queue. */
 	long lReceivedValue;
 	portBASE_TYPE xStatus;
-	const portTickType xTicksToWait = 100 / portTICK_RATE_MS;
+	const portTickType xTicksToWait = 500 / portTICK_RATE_MS;
 
 
 	while (1) {
@@ -341,6 +342,7 @@ int main(void)
 {
 	/* Sets up system hardware */
 	prvSetupHardware();
+
 
 	/* Print out the name of this example. */
 	DEBUGOUT(pcTextForMain);
