@@ -65,6 +65,7 @@ Las dos tareas comparten la ejecución de la función *vTaskFunction*. Esta func
 
 El diagrama temporal del ejemplo 5 es el mismo del ejemplo 4, salvo que con el uso de *xLastWakeTime = xTaskGetTickCount()* y *vTaskDelayUntil(&xLastWakeTime, (250 / portTICK_RATE_MS))* se garantiza el tiempo en que las tareas salen del estado *Blocked*.
 
+![Example5](Imagenes/Example5.png)
 
 ### Example 6
 
@@ -75,8 +76,8 @@ El ejemplo 6 consta de tres tareas (*Task1*, *Task2* y *Task3*)
 ### Example 7
 
 Se imprime  el mensaje de contador *DEBUGOUT("Idle ulCycleCount %d %s", ulIdleCycleCount, pcTaskName)* durante el periodo inexacto definido por
-*vTaskDelay(250 / portTICK_RATE_MS)*. *Idle ulCycleCount* incrementa su valor a través de la función *vApplicationIdleHook()*.
-
+*vTaskDelay(250 / portTICK_RATE_MS)*. *Idle ulCycleCount* incrementa su valor a través de la función *vApplicationIdleHook()* ejecutando *Idle Task Hook*.
+![Example7](Imagenes/Example7.png)
 
 ### Example 8
 *Task1* tiene mayor prioridad que *Task2*  y a través de *uxTaskPriorityGet()* y *vTaskPrioritySet((xTaskHandle)NULL, (uxPriority - 2))* se invierten las prioridades. 
@@ -87,21 +88,39 @@ Se imprime  el mensaje de contador *DEBUGOUT("Idle ulCycleCount %d %s", ulIdleCy
 La *Task1* tiene prioridad 1 y al ejecutarse crea a *Task2* con prioridad 2, luego *Task2* tiene mayor prioridad y pasa a ejecutarse inmediatamente. La *Task2* no hace algo salvo usar *vTaskDelete(xTask2Handle)* para borarse a sí misma. 
 
 ![Example9](Imagenes/Example9.png)
-# 3 Análisis del proyecto del proyecto **freertos_examples_10_to_16* <a freertosexamples10to_16></a>
+# 3 Análisis del proyecto **freertos_examples_10_to_16* <a freertosexamples10to_16></a>
 
 ### Example 10
 
+![Example10](Imagenes/Example10.png)
+
 ### Example 11
+El ejemplo 11 es similar al ejemplo 10, pero las prioridades de la tarea se invierten, por lo que la tarea de recepción tiene una prioridad menor que las tareas de envío. También la cola se usa para pasar estructuras entre las tareas en lugar de simples enteros largos.
+En el ejemplo 11, las tareas de envío tienen la mayor prioridad, por lo que la cola normalmente estará llena. Esto se debe a que tan pronto como la tarea de recepción elimine un elemento de la cola, será reemplazado por una de las tareas de envío que luego volverá a llenar la cola. La tarea de envío volverá a ingresar al estado *Blocked* para esperar a que el espacio vuelva a estar disponible en la cola.
+
+En el tiempo t5, *Sender2* intenta escribir datos en la cola. Debido a que la cola ya está llena, *Sender2* ingresa al estado bloqueado para esperar a que haya espacio disponible, lo que permite que *Sender1* se ejecute una vez más.
+![Example11](Imagenes/Example11.png)
 
 ### Example 12
 
+![Example12](Imagenes/Example12.png)
+
 ### Example 13
+
+![Example13](Imagenes/Example13.png)
 
 ### Example 14
 
+![Example14](Imagenes/Example14.png)
+
+
 ### Example 15
 
+![Example15](Imagenes/Example15.png)
+
 ### Example 16
+
+![Example16](Imagenes/Example16.png)
 
 
 # 4 Implementación 1 <a Implementación1></a>
