@@ -91,7 +91,7 @@ La *Task1* tiene prioridad 1 y al ejecutarse crea a *Task2* con prioridad 2, lue
 # 3 Análisis del proyecto freertos\_examples\_10\_to\_16 <a name=freertosexamples10to16></a>
 
 ### Example 10
-
+Consta de tres tareas: *vSender1*, *vSender1* y *vReceiver*, con prioridades 1, 1 y 2, respectivamente.*vSender1* y *vSender1* son dos instancias de *vReceiverTask*. *vSender1* escribe continuamente 100 a una cola de tamaño 5, mientras que *vSender2* escribe 200 a la cola. Los datos escritos a la cola son recividos por *vReceiver*. Al ser *vReceiverTask* de mayor prioridad significa que la cola nunca contendrá más de un elemento porque tan pronto como se envíen los datos a la cola, la tarea de recepción se desbloqueará, se adelantará a la tarea de envío y eliminará los datos, dejando la cola vacía una vez más.
 ![Example10](Imagenes/Example10.png)
 
 ### Example 11
@@ -125,15 +125,26 @@ En el tiempo t5, *Sender2* intenta escribir datos en la cola. Debido a que la co
 
 # 4 Implementación 1 <a name=app1></a>
 
+De acuerdo con el *diagrama 1* se crearon tres tareas: *vSender1*, *vSender1* y *vReceiver*, con prioridades 1, 1 y 2, respectivamente. 
+![diagrama1](Imagenes/diagrama1.png)
+
+Para este ejercicio se creó una cola de tamaño 5. *vSender1* escribe continuamente 100 a la cola, mientras que *vSender2* escribe 200 a la cola. 
+
+La tarea de recepción *vReceiver* especifica un tiempo de bloqueo de 500 milisegundos, por lo que ingresará al estado *Blocked* para esperar a que los datos estén disponibles. Dejará el estado *Blocked* cuando haya datos disponibles en la cola o pasen 500 milisegundos sin que los datos estén disponibles. El tiempo de espera de 500 milisegundos nunca debe expirar, ya que hay dos tareas que continuamente escriben en la cola.
+
+Las tareas *vSender1* y *vSender1* llaman a taskYIELD() en cada iteración de su bucle infinito. taskYIELD() informa al planificador que un cambio a otra tarea debería ocurrir ahora en lugar de mantener la tarea de ejecución en el estado *Running* hasta el final del segmento de tiempo actual. Como ambas tareas que se envían a la cola tienen una prioridad idéntica cada vez que se llama a taskYIELD(), la otra comienza a ejecutarse. Esto hace que las dos tareas de envío envíen datos a la cola a su vez.
+
 ![Exc1](Imagenes/exc1.png)
 
 
 # 5 Implementación 2 <a name=app2></a>
 
+![diagrama2](Imagenes/diagrama2.png)
 ![Exc1](Imagenes/exc2.png)
 
 # 6 Implementación 3 <a name=app3></a>
 
+![diagrama3](Imagenes/diagrama3.png)
 ![Exc1](Imagenes/exc3.png)
 
 # 7 Hoja de ruta <a name=HojadeRuta></a>
