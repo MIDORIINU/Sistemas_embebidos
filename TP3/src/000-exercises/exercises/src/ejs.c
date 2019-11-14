@@ -16,7 +16,12 @@
 #define EXERCISE_2 (2)          /* Exercise 2 */
 #define EXERCISE_3 (3)          /* Exercise 3 */
 
+<<<<<<< HEAD
 #define EXERCISE (EXERCISE_3)
+=======
+#define EXERCISE (EXERSICE_2)
+
+>>>>>>> c7beb372caf2a286cc0d1b06e356862c9ac3087f
 
 /*****************************************************************************
         Public types/enumerations/variables
@@ -69,6 +74,7 @@ volatile long interrupt=0;
 
 static void vTask1(void* pvParameters)
 {
+<<<<<<< HEAD
         while(1)
         {
                 /*      This task is just used to 'simulate' an interrupt.  This is done by
@@ -82,6 +88,48 @@ static void vTask1(void* pvParameters)
                 mainTRIGGER_INTERRUPT();
 
         }
+=======
+	/* Declare the variable that will hold the values received from the queue. */
+	long lReceivedValue;
+	portBASE_TYPE xStatus;
+	const portTickType xTicksToWait = 500 / portTICK_RATE_MS;
+
+
+	while (1) {
+		Board_LED_Set(LED3, LED_OFF);
+
+		/* As this task unblocks immediately that data is written to the queue this
+		 * call should always find the queue empty. */
+		if (uxQueueMessagesWaiting(xQueue) != 0) {
+			DEBUGOUT("Queue should have been empty!\r\n");
+		}
+
+		/* The first parameter is the queue from which data is to be received.  The
+		 * queue is created before the scheduler is started, and therefore before this
+		 * task runs for the first time.
+		 *
+		 * The second parameter is the buffer into which the received data will be
+		 * placed.  In this case the buffer is simply the address of a variable that
+		 * has the required size to hold the received data.
+		 *
+		 * The last parameter is the block time � the maximum amount of time that the
+		 * task should remain in the Blocked state to wait for data to be available should
+		 * the queue already be empty. */
+		xStatus = xQueueReceive(xQueue, &lReceivedValue, xTicksToWait);
+
+		if (xStatus == pdPASS) {
+			/* Data was successfully received from the queue, print out the received
+			 * value. */
+			DEBUGOUT("Received = %d\r\n", lReceivedValue);
+		}
+		else {
+			/* We did not receive anything from the queue even after waiting for 100ms.
+			 * This must be an error as the sending tasks are free running and will be
+			 * continuously writing to the queue. */
+			DEBUGOUT("Could not receive from the queue.\r\n");
+		}
+	}
+>>>>>>> c7beb372caf2a286cc0d1b06e356862c9ac3087f
 }
 
 
@@ -176,6 +224,7 @@ void vSoftwareInterruptHandler(void)
 
 int main(void)
 {
+<<<<<<< HEAD
         /* Sets up system hardware */
         prvSetupHardware();
         DEBUGOUT("Start exercise 1.\r\n");
@@ -201,6 +250,50 @@ int main(void)
                 /* Task 3 */
                 xTaskCreate(vTask3, (char*) "Task3", configMINIMAL_STACK_SIZE, NULL,
                             (tskIDLE_PRIORITY), (xTaskHandle*) NULL);
+=======
+	/* Sets up system hardware */
+	prvSetupHardware();
+
+
+	/* Print out the name of this example. */
+	DEBUGOUT(pcTextForMain);
+
+    /* The queue is created to hold a maximum of 3 structures of type xData. */
+    xQueue = xQueueCreate(3, sizeof(xData));
+
+	if (xQueue != (xQueueHandle)NULL) {
+		/* Create two instances of the task that will write to the queue.  The
+		 * parameter is used to pass the structure that the task should write to the
+		 * queue, so one task will continuously send xStructsToSend[ 0 ] to the queue
+		 * while the other task will continuously send xStructsToSend[ 1 ].  Both
+		 * tasks are created at priority 2 which is above the priority of the receiver. */
+		xTaskCreate(vSenderTask, (char *) "vSender1", configMINIMAL_STACK_SIZE, (void *) &(xStructsToSend[0]),
+					(tskIDLE_PRIORITY + 2UL), (xTaskHandle *) NULL);
+		xTaskCreate(vSenderTask, (char *) "vSender2", configMINIMAL_STACK_SIZE, (void *) &(xStructsToSend[1]),
+					(tskIDLE_PRIORITY + 2UL), (xTaskHandle *) NULL);
+
+		/* Create the task that will read from the queue.  The task is created with
+		 * priority 1, so below the priority of the sender tasks. */
+		xTaskCreate(vReceiverTask, (char *) "vReceiver", configMINIMAL_STACK_SIZE, NULL,
+					(tskIDLE_PRIORITY + 1UL), (xTaskHandle *) NULL);
+
+	/* Start the scheduler */
+	vTaskStartScheduler();
+	}
+	else {
+		/* The queue could not be created. */
+	}
+
+    /* If all is well we will never reach here as the scheduler will now be
+     * running the tasks.  If we do reach here then it is likely that there was
+     * insufficient heap memory available for a resource to be created. */
+	while (1);
+
+	/* Should never arrive here */
+	return ((int) NULL);
+}
+#endif
+>>>>>>> c7beb372caf2a286cc0d1b06e356862c9ac3087f
 
 
                 /* Start the scheduler so the created tasks start executing. */

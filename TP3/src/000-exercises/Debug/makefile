@@ -30,7 +30,11 @@ all: 000-exercises.axf
 000-exercises.axf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU Linker'
+<<<<<<< HEAD
 	arm-none-eabi-gcc -nostdlib -L"C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_chip_43xx\Debug" -L"C:\DATA\Facultad\Materias\Sistemas embebidos\TPS\REPO\TP3\src\lpc_board_nxp_lpcxpresso_4337\Debug" -Xlinker -Map="000-exercises.map" -Xlinker --gc-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -mthumb -T "freertos_exercisess_10_to_16_Debug.ld" -o "000-exercises.axf" $(OBJS) $(USER_OBJS) $(LIBS)
+=======
+	arm-none-eabi-gcc -nostdlib -L"C:\Particion_D\SeminarioE\LPCXpresso-FreeRTOS-Examples\lpc_chip_43xx\Debug" -L"C:\Particion_D\SeminarioE\LPCXpresso-FreeRTOS-Examples\lpc_board_nxp_lpcxpresso_4337\Debug" -Xlinker -Map="000-exercises.map" -Xlinker --gc-sections -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -mthumb -T "freertos_exercisess_10_to_16_Debug.ld" -o "000-exercises.axf" $(OBJS) $(USER_OBJS) $(LIBS)
+>>>>>>> c7beb372caf2a286cc0d1b06e356862c9ac3087f
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build
