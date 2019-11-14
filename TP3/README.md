@@ -14,11 +14,11 @@ Repositorio para el seminario de sistemas embebidos 66.48
 # Contenidos
 
 - [**IDE**](#IDE)
-- [**Análisis del proyecto del proyecto freertos_examples_1_to_9**](#freertosexamples1to9 )
+- [**Análisis del proyecto del proyecto freertos_examples_1_to_9**](#freertosexamples1to9)
 - [**Análisis del proyecto del proyecto freertos_examples_10_to_16**](#freertosexamples10to16)
-- [**Implementación 1: Tarea 1 periódica**](#punto4)
-- [**Implementación 2: Intercambio de las palabras semáforo <--> cola**](#punto5)
-- [**Implementación 3: Tareas de secuencia fija**](#punto6)
+- [**Implementación 1: Tarea 1 periódica**](#app1)
+- [**Implementación 2: Intercambio de las palabras semáforo <--> cola**](#app2)
+- [**Implementación 3: Tareas de secuencia fija**](#app3)
 - [**Hoja de ruta**](#HojadeRuta)
 
 # 1 IDE <a name=IDE></a>
@@ -35,7 +35,7 @@ Se utilizó **MCUXpresso** somo **IDE**. Se creó un Workspace de nombre *worksp
 ![importProject](Imagenes/importProject.jpeg)
 
 
-# 2 Análisis del proyecto del proyecto **freertos_examples_1_to_9* <a freertosexamples1to_9></a>
+# 2 Análisis del proyecto freertos\_examples\_1\_to\_9  <a name=freertosexamples1to9></a>
 
 Para cada uno de los ejemplos 1 a 9, se analizó el comportamiento de sus tareas involucradas a través del desarrollo de un  diagrama temporal, para plasmar la distribución del tiempo de CPU entre tareas, Kernel e interrupciones.
 
@@ -88,7 +88,7 @@ Se imprime  el mensaje de contador *DEBUGOUT("Idle ulCycleCount %d %s", ulIdleCy
 La *Task1* tiene prioridad 1 y al ejecutarse crea a *Task2* con prioridad 2, luego *Task2* tiene mayor prioridad y pasa a ejecutarse inmediatamente. La *Task2* no hace algo salvo usar *vTaskDelete(xTask2Handle)* para borarse a sí misma. 
 
 ![Example9](Imagenes/Example9.png)
-# 3 Análisis del proyecto **freertos_examples_10_to_16* <a freertosexamples10to_16></a>
+# 3 Análisis del proyecto freertos\_examples\_10\_to\_16 <a name=freertosexamples10to16></a>
 
 ### Example 10
 
@@ -123,10 +123,20 @@ En el tiempo t5, *Sender2* intenta escribir datos en la cola. Debido a que la co
 ![Example16](Imagenes/Example16.png)
 
 
-# 4 Implementación 1 <a Implementación1></a>
+# 4 Implementación 1 <a name=app1></a>
 
-# 5 Implementación 2 <a Implementación2></a>
+![Exc1](Imagenes/exc1.png)
 
-# 6 Implementación 3 <a Implementación2></a>
+
+# 5 Implementación 2 <a name=app2></a>
+
+![Exc1](Imagenes/exc2.png)
+
+# 6 Implementación 3 <a name=app3></a>
+
+![Exc1](Imagenes/exc3.png)
 
 # 7 Hoja de ruta <a name=HojadeRuta></a>
+
+
+<img src="Imagenes/Planilla.jpg" width="720">
