@@ -36,7 +36,7 @@ static void prvSetupHardware(void)
 }
 
 
-#if (EXERCISE == EXERCISE_3)            /* EXC1 */
+#if (EXERCISE == EXERCISE_1)            /* EXC1 */
 
 #define mainSW_INTERRUPT_ID             (0)
 
